@@ -6,7 +6,6 @@ class CreateVolunteers < ActiveRecord::Migration
       t.string :street
       t.string :city
       t.string :state
-      t.string :zip
       t.integer :zip
       t.integer :primary_phone
       t.integer :secondary_phone
