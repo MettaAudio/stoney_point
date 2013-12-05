@@ -12,9 +12,11 @@ gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'simple_form'
 gem 'thin'
 group :development do
+  gem 'hirb'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'rails_layout'
+  gem 'pry-rails'
 end
 group :development, :test do
   gem 'rspec-rails'

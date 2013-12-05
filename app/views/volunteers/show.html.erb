@@ -26,7 +26,13 @@
       <%= @volunteer.email %>
     </p>
   </div>
+</div>
 
+<div class="well">
+  <h4>Committees</h4>
+  <% @volunteer.committees.each do |committee| %>
+    <%= link_to committee.name, committee %>
+  <% end %>
 </div>
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(@volunteer), :class => 'btn btn-small' %>

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20131205191013) do
     t.string   "last_name"
     t.integer  "phone"
     t.string   "school"
+    t.integer  "golfer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,12 +45,15 @@ ActiveRecord::Schema.define(version: 20131205191013) do
     t.date     "available"
     t.integer  "number_of_bedrooms"
     t.integer  "number_of_bathrooms"
+    t.integer  "volunteer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "jobs", force: true do |t|
     t.string   "title"
+    t.integer  "committee_id"
+    t.integer  "volunteer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(version: 20131205191013) do
   create_table "work_days", force: true do |t|
     t.datetime "time"
     t.integer  "job_id"
+    t.integer  "volunteer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

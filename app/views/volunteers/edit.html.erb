@@ -1,6 +1,24 @@
 <h1>Editing volunteer</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="span6">
+    <%= render 'form' %>
+  </div>
+  <div class="span6">
+    <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_committee_path, method: 'post') do |f| %>
+      <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
+      <%= f.association :committees %>
+      <%= f.button :submit, 'Add' %>
+    <% end %>
+  </div>
+  <div class="span6">
+    <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_job_path, method: 'post') do |f| %>
+      <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
+      <%= f.association :jobs, collection: @volunteer.available_jobs %>
+      <%= f.button :submit, 'Add' %>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to '<i class="icon-eye-open"></i>'.html_safe, @volunteer, :class => 'btn btn-small' %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, volunteers_path, :class => 'btn btn-small' %>

@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
+<h2>
+  <%= @committee.name %> Committee &nbsp;&nbsp;
+  <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-small' %>
+  <%= link_to '<i class="icon-list"></i>'.html_safe, committees_path, :class => 'btn btn-small' %>
+</h2>
+<hr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @committee.name %>
-</p>
-
-<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-small' %>
-<%= link_to '<i class="icon-list"></i>'.html_safe, committees_path, :class => 'btn btn-small' %>
+<h3>Volunteers:</h3>
+<ul>
+  <% @committee.volunteers.each do |volunteer| %>
+    <li><%= link_to volunteer.full_name, volunteer %></li>
+  <% end %>
+</ul>
