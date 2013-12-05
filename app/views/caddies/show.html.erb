@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @caddy.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @caddy.last_name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @caddy.phone %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @caddy.school %>
+</p>
+
+<%= link_to 'Edit', edit_caddy_path(@caddy) %> |
+<%= link_to 'Back', caddies_path %>

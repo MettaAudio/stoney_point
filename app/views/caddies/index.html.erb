@@ -1,0 +1,33 @@
+<h1>Listing caddies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Phone</th>
+      <th>School</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caddies.each do |caddy| %>
+      <tr>
+        <td><%= caddy.first_name %></td>
+        <td><%= caddy.last_name %></td>
+        <td><%= caddy.phone %></td>
+        <td><%= caddy.school %></td>
+        <td><%= link_to 'Show', caddy %></td>
+        <td><%= link_to 'Edit', edit_caddy_path(caddy) %></td>
+        <td><%= link_to 'Destroy', caddy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Caddie', new_caddy_path %>

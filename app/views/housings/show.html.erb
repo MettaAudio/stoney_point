@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @housing.available %>
+</p>
+
+<p>
+  <strong>Number of bedrooms:</strong>
+  <%= @housing.number_of_bedrooms %>
+</p>
+
+<p>
+  <strong>Number of bathrooms:</strong>
+  <%= @housing.number_of_bathrooms %>
+</p>
+
+<%= link_to 'Edit', edit_housing_path(@housing) %> |
+<%= link_to 'Back', housings_path %>

@@ -1,0 +1,13 @@
+<%= simple_form_for(@housing) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :available %>
+    <%= f.input :number_of_bedrooms %>
+    <%= f.input :number_of_bathrooms %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

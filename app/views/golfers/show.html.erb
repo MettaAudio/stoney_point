@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @golfer.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @golfer.last_name %>
+</p>
+
+<%= link_to 'Edit', edit_golfer_path(@golfer) %> |
+<%= link_to 'Back', golfers_path %>
