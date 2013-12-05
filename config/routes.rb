@@ -1,4 +1,6 @@
 StoneyPoint::Application.routes.draw do
+  resources :work_days
+
   resources :housings
 
   resources :caddies

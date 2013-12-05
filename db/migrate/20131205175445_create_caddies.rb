@@ -5,6 +5,7 @@ class CreateCaddies < ActiveRecord::Migration
       t.string :last_name
       t.integer :phone
       t.string :school
+      t.belongs_to :golfer
 
       t.timestamps
     end

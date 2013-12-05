@@ -1,54 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @volunteer.first_name %>
-</p>
+<h1><%= @volunteer.full_name %></h1>
+<div class="row">
+  <div class="span4">
+    <div class="well">
+      <h2>Address</h2>
+      <p>
+        <%= @volunteer.street %><br>
+        <%= @volunteer.city %>, <%= @volunteer.state %>  <%= @volunteer.zip %>
+      </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @volunteer.last_name %>
-</p>
+  <div class="span4">
+    <h3>Phone</h3>
+    <p>
+      <%= @volunteer.primary_phone %> <br>
+      <%= @volunteer.secondary_phone %>
+    </p>
+  </div>
 
-<p>
-  <strong>Street:</strong>
-  <%= @volunteer.street %>
-</p>
+  <div class="span4">
+    <h3>Email</h3>
+    <p>
+      <%= @volunteer.email %>
+    </p>
+  </div>
 
-<p>
-  <strong>City:</strong>
-  <%= @volunteer.city %>
-</p>
+</div>
 
-<p>
-  <strong>State:</strong>
-  <%= @volunteer.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @volunteer.zip %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @volunteer.zip %>
-</p>
-
-<p>
-  <strong>Primary phone:</strong>
-  <%= @volunteer.primary_phone %>
-</p>
-
-<p>
-  <strong>Secondary phone:</strong>
-  <%= @volunteer.secondary_phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @volunteer.email %>
-</p>
-
-<%= link_to 'Edit', edit_volunteer_path(@volunteer) %> |
-<%= link_to 'Back', volunteers_path %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(@volunteer), :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-list"></i>'.html_safe, volunteers_path, :class => 'btn btn-small' %>

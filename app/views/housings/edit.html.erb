@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @housing %> |
-<%= link_to 'Back', housings_path %>
+<%= link_to '<i class="icon-eye-open"></i>'.html_safe, @housing, :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-list"></i>'.html_safe, housings_path, :class => 'btn btn-small' %>

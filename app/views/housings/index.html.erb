@@ -18,9 +18,9 @@
         <td><%= housing.available %></td>
         <td><%= housing.number_of_bedrooms %></td>
         <td><%= housing.number_of_bathrooms %></td>
-        <td><%= link_to 'Show', housing %></td>
-        <td><%= link_to 'Edit', edit_housing_path(housing) %></td>
-        <td><%= link_to 'Destroy', housing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, housing, :class => 'btn btn-small' %></td>
+        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small' %></td>
+        <td><%= link_to '<i class="icon-trash"></i>'.html_safe, housing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
       </tr>
     <% end %>
   </tbody>

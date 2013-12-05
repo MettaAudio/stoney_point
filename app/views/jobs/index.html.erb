@@ -14,9 +14,9 @@
     <% @jobs.each do |job| %>
       <tr>
         <td><%= job.title %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, job %></td>
+        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_job_path(job), :class => 'btn btn-small' %></td>
+        <td><%= link_to '<i class="icon-trash"></i>'.html_safe, job, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
       </tr>
     <% end %>
   </tbody>

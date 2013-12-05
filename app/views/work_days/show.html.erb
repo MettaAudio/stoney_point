@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @work_day.time %>
+</p>
+
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_work_day_path(@work_day), :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-list"></i>'.html_safe, work_days_path, :class => 'btn btn-small' %>

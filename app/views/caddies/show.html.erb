@@ -20,5 +20,5 @@
   <%= @caddy.school %>
 </p>
 
-<%= link_to 'Edit', edit_caddy_path(@caddy) %> |
-<%= link_to 'Back', caddies_path %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddy_path(@caddy), :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-list"></i>'.html_safe, caddies_path, :class => 'btn btn-small' %>

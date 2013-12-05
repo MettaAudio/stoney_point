@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @caddy %> |
-<%= link_to 'Back', caddies_path %>
+<%= link_to '<i class="icon-eye-open"></i>'.html_safe, @caddy, :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-list"></i>'.html_safe, caddies_path, :class => 'btn btn-small' %>
