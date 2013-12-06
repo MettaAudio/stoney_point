@@ -1,38 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @volunteer.full_name %></h1>
 <div class="row">
   <div class="span4">
+    <h1><%= @volunteer.full_name %></h1>
+    <h4>Address</h4>
+    <p>
+      <%= @volunteer.street %><br>
+      <%= @volunteer.city %>, <%= @volunteer.state %>  <%= @volunteer.zip %>
+    </p>
+  </div>
+
+  <div class="span4">
     <div class="well">
-      <h2>Address</h2>
+      <h4>Phone</h4>
       <p>
-        <%= @volunteer.street %><br>
-        <%= @volunteer.city %>, <%= @volunteer.state %>  <%= @volunteer.zip %>
+        <%= @volunteer.primary_phone %> <br>
+        <%= @volunteer.secondary_phone %>
       </p>
     </div>
   </div>
 
   <div class="span4">
-    <h3>Phone</h3>
-    <p>
-      <%= @volunteer.primary_phone %> <br>
-      <%= @volunteer.secondary_phone %>
-    </p>
-  </div>
-
-  <div class="span4">
-    <h3>Email</h3>
-    <p>
-      <%= @volunteer.email %>
-    </p>
+    <div class="well">
+      <h4>Email</h4>
+      <p>
+        <%= @volunteer.email %>
+      </p>
+    </div>
   </div>
 </div>
+<hr>
+<div class="row">
+  <div class="span4">
+    <div class="well">
+      <h4>Committees</h4>
+      <ul class='unstyled'>
+        <% @volunteer.committees.each do |committee| %>
+          <li><%= link_to "#{committee.name} Committee", committee %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <h4>Jobs</h4>
+      <ul class='unstyled'>
+        <% @volunteer.jobs.each do |job| %>
+          <li><%= link_to job.title, job %> <span class='muted'>(<%= job.committee.name %> Committee)</span></li>
+        <% end %>
 
-<div class="well">
-  <h4>Committees</h4>
-  <% @volunteer.committees.each do |committee| %>
-    <%= link_to committee.name, committee %>
-  <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(@volunteer), :class => 'btn btn-small' %>
