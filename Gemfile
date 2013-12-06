@@ -10,6 +10,11 @@ gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'simple_form'
 gem 'thin'
+
+group :production do
+  gem 'pg'
+end
+
 group :development do
   gem 'sqlite3'
   gem 'hirb'
