@@ -14,8 +14,8 @@
     <div class="well">
       <h4>Phone</h4>
       <p>
-        <%= @volunteer.primary_phone %> <br>
-        <%= @volunteer.secondary_phone %>
+        <%= build_phone_number(@volunteer.primary_phone) %> <br>
+        <%= build_phone_number(@volunteer.secondary_phone) %>
       </p>
     </div>
   </div>

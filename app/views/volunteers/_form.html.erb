@@ -8,8 +8,8 @@
     <%= f.input :city, input_html: { value: 'Greenwood' } %>
     <%= f.input :state, input_html: { value: 'SC' } %>
     <%= f.input :zip %>
-    <%= f.input :primary_phone %>
-    <%= f.input :secondary_phone %>
+    <%= f.input :primary_phone, as: :string, input_html: { value: primary_phone_placeholder } %>
+    <%= f.input :secondary_phone, as: :string, input_html: { value: secondary_phone_placeholder } %>
     <%= f.input :email %>
   </div>
 
