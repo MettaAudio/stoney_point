@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131206171512) do
+ActiveRecord::Schema.define(version: 20131206172234) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 20131206171512) do
     t.string   "city"
     t.string   "state"
     t.integer  "zip"
-    t.integer  "primary_phone"
-    t.integer  "secondary_phone"
+    t.string   "primary_phone"
+    t.string   "secondary_phone"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
