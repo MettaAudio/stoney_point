@@ -9,6 +9,7 @@ module VolunteersHelper
   end
 
   def build_phone_number(ph)
+    return nil if ph.blank?
     ph = ph.to_s
     "(#{ph[0,3]})#{ph[3,3]}-#{ph[6,4]}"
   end
