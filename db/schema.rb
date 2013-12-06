@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205191013) do
+ActiveRecord::Schema.define(version: 20131206171512) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
