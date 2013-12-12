@@ -11,6 +11,11 @@
     <%= f.input :primary_phone, as: :string, input_html: { value: primary_phone_placeholder } %>
     <%= f.input :secondary_phone, as: :string, input_html: { value: secondary_phone_placeholder } %>
     <%= f.input :email %>
+    <hr>
+    <%= f.input :shirt_size, :collection => shirt_sizes, label: 'Shirt Size:' %>
+    <%= f.input :paid, label: 'Paid?' %>
+    <hr>
+    <%= f.input :physical_activity, label: 'Physical Activity?' %>
   </div>
 
   <div class="form-actions">

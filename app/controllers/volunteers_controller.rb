@@ -100,7 +100,7 @@ class VolunteersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def volunteer_params
-      params.require(:volunteer).permit(:first_name, :last_name, :street, :city, :state, :zip, :zip, :primary_phone, :secondary_phone, :email)
+      params.require(:volunteer).permit(:first_name, :last_name, :street, :city, :state, :zip, :zip, :primary_phone, :secondary_phone, :email, :paid, :physical_activity, :shirt_size)
     end
 
     def association_params

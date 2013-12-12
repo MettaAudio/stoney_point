@@ -13,4 +13,18 @@ module VolunteersHelper
     ph = ph.to_s
     "(#{ph[0,3]})#{ph[3,3]}-#{ph[6,4]}"
   end
+
+  def shirt_sizes
+    [
+      'MS',
+      'MM',
+      'ML',
+      'MXL',
+      'MXXL',
+      'WS',
+      'WM',
+      'WL',
+      'WXL'
+    ]
+  end
 end

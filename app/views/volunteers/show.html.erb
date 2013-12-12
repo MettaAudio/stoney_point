@@ -1,35 +1,38 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
-  <div class="span4">
-    <h1><%= @volunteer.full_name %> </h1>
+  <h1><%= @volunteer.full_name %> <small><%= @volunteer.organization.try(:name) %></small> </h1>
+  <div class="span3">
     <h4>Address</h4>
     <p>
       <%= @volunteer.street %><br>
       <%= @volunteer.city %>, <%= @volunteer.state %>  <%= @volunteer.zip %>
     </p>
-    <h4><%= @volunteer.organization.name %></h4>
   </div>
 
-  <div class="span4">
-    <div class="well">
-      <h4>Phone</h4>
-      <p>
-        <%= build_phone_number(@volunteer.primary_phone) %> <br>
-        <%= build_phone_number(@volunteer.secondary_phone) %>
-      </p>
-    </div>
+  <div class="span3">
+    <h4>Phone</h4>
+    <p>
+      <%= build_phone_number(@volunteer.primary_phone) %> <br>
+      <%= build_phone_number(@volunteer.secondary_phone) %>
+    </p>
   </div>
 
-  <div class="span4">
-    <div class="well">
-      <h4>Email</h4>
-      <p>
-        <%= @volunteer.email %>
-      </p>
-    </div>
+  <div class="span3">
+    <h4>Email</h4>
+    <p>
+      <%= @volunteer.email %>
+    </p>
+  </div>
+
+  <div class="span3">
+    <h5>Shirt Size</h5>
+    <p><%= @volunteer.shirt_size.present? ? @volunteer.shirt_size : 'Not specified' %></p>
+    <h5>Paid?</h5>
+    <p><%= @volunteer.paid ? 'Yes' : 'No' %></p>
+    <h5>Physical Activity?</h5>
+    <p><%= @volunteer.physical_activity ? 'Yes' : 'No' %></p>
   </div>
 </div>
+
 <hr>
 <div class="row">
   <div class="span4">
