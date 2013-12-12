@@ -25,6 +25,30 @@
       <%= f.button :submit, 'Add' %>
     <% end %>
   </div>
+
+  <div class="span6">
+    <!-- Button to trigger modal -->
+    <a href="#myModal" role="button" class="btn" data-toggle="modal"><i class="icon-home"></i> Add Housing</a>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add Housing</h3>
+    </div>
+    <%= simple_form_for(@housing, html: {class: 'form-horizontal' }, :url => add_volunteer_housing_path, method: 'post') do |f| %>
+      <div class="modal-body">
+        <%= f.input :volunteer_id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
+        <%= render :partial => "housings/form", locals: {f: f} %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
 <%= link_to '<i class="icon-eye-open"></i>'.html_safe, @volunteer, :class => 'btn btn-small' %>

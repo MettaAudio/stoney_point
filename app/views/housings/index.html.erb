@@ -3,9 +3,12 @@
 <table class ='table table-striped'>
   <thead>
     <tr>
+      <th>Volunteer</th>
       <th>Available</th>
       <th>Number of bedrooms</th>
       <th>Number of bathrooms</th>
+      <th>Pets</th>
+      <th>Smoking</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +18,12 @@
   <tbody>
     <% @housings.each do |housing| %>
       <tr>
+        <td><%= link_to housing.volunteer.full_name, housing.volunteer %></td>
         <td><%= housing.available %></td>
         <td><%= housing.number_of_bedrooms %></td>
         <td><%= housing.number_of_bathrooms %></td>
+        <td><%= housing.pets ? "Yes" : "No" %></td>
+        <td><%= housing.smoking ? "Yes" : "No" %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, housing, :class => 'btn btn-small' %></td>
         <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small' %></td>
         <td><%= link_to '<i class="icon-trash"></i>'.html_safe, housing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
@@ -25,7 +31,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Housing', new_housing_path %>

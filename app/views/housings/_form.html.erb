@@ -1,14 +1,9 @@
-<%= simple_form_for(@housing, html: {class: 'form-horizontal' }) do |f| %>
-  <%= f.error_notification %>
+<%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :volunteer %>
-    <%= f.input :available %>
-    <%= f.input :number_of_bedrooms %>
-    <%= f.input :number_of_bathrooms %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+<div class="form-inputs">
+  <%= f.input :available %>
+  <%= f.input :number_of_bedrooms %>
+  <%= f.input :number_of_bathrooms %>
+  <%= f.input :pets, label: 'Pets?' %>
+  <%= f.input :smoking, label: 'Smoking?' %>
+</div>

@@ -20,6 +20,7 @@ class VolunteersController < ApplicationController
   # GET /volunteers/1/edit
   def edit
     @committees = Committee.all
+    @housing = Housing.new
   end
 
   # POST /volunteers
@@ -82,6 +83,18 @@ class VolunteersController < ApplicationController
     end
   end
 
+  def add_housing
+    @volunteer = Volunteer.find(housing_params[:volunteer_id])
+    @housing = Housing.new( housing_params )
+    if @housing.save
+      redirect_to @volunteer, notice: "#{@volunteer.full_name}'s housing was added."
+    else
+      @committees = Committee.all
+      flash[:error] = "There was a problem adding your housing. Please try again."
+      render action: 'edit'
+    end
+  end
+
   # DELETE /volunteers/1
   # DELETE /volunteers/1.json
   def destroy
@@ -105,5 +118,9 @@ class VolunteersController < ApplicationController
 
     def association_params
       params.require(:volunteer).permit(:id)
+    end
+
+    def housing_params
+      params.require(:housing).permit(:volunteer_id, :available, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoking)
     end
 end

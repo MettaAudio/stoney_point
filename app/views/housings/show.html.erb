@@ -1,18 +1,27 @@
-<p id="notice"><%= notice %></p>
-
+<h1>Housing with <%= @housing.volunteer.full_name %></h1>
 <p>
-  <strong>Available:</strong>
+  <strong>Date Available:</strong>
   <%= @housing.available %>
 </p>
 
 <p>
-  <strong>Number of bedrooms:</strong>
+  <strong>Bedrooms:</strong>
   <%= @housing.number_of_bedrooms %>
 </p>
 
 <p>
-  <strong>Number of bathrooms:</strong>
+  <strong>Bathrooms:</strong>
   <%= @housing.number_of_bathrooms %>
+</p>
+
+<p>
+  <strong>Pets?</strong>
+  <%= @housing.pets ? "Yes" : "No" %>
+</p>
+
+<p>
+  <strong>Smoking?</strong>
+  <%= @housing.smoking ? "Yes" : "No" %>
 </p>
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_housing_path(@housing), :class => 'btn btn-small' %>

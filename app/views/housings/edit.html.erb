@@ -1,6 +1,14 @@
-<h1>Editing housing</h1>
+<h1>Editing housing for <%= link_to @housing.volunteer.full_name, @housing.volunteer %></h1>
 
-<%= render 'form' %>
+<%= simple_form_for(@housing, html: {class: 'form-horizontal' }) do |f| %>
+  <div class="form-inputs">
+    <%= render :partial => "form", locals: {f: f} %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
 
 <%= link_to '<i class="icon-eye-open"></i>'.html_safe, @housing, :class => 'btn btn-small' %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, housings_path, :class => 'btn btn-small' %>

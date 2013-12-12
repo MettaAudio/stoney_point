@@ -56,6 +56,26 @@
       </ul>
     </div>
   </div>
+
+  <% if @volunteer.housing.present? %>
+    <div class="span4">
+      <div class="well">
+        <h4>Housing</h4>
+        <ul class='unstyled'>
+          <% @volunteer.housing.each do |housing| %>
+          <li><strong>Date Available:</strong> <%= housing.available %></li>
+          <li><strong>Bedrooms:</strong> <%= housing.number_of_bedrooms %></li>
+          <li><strong>Bathrooms:</strong> <%= housing.number_of_bathrooms %></li>
+          <li><strong>Pets?</strong> <%= housing.pets ? 'Yes' : 'No' %></li>
+          <li><strong>Smoking?</strong> <%= housing.smoking ? 'Yes' : 'No' %></li>
+          <li><hr></li>
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
 </div>
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(@volunteer), :class => 'btn btn-small' %>
