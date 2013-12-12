@@ -72,6 +72,16 @@ class VolunteersController < ApplicationController
     end
   end
 
+  def add_organization
+    organization_id = params[:volunteer][:organization_id]
+    @volunteer = Volunteer.find(association_params[:id])
+    if @volunteer.update_attributes(:organization_id => organization_id )
+      redirect_to @volunteer, notice: "#{@volunteer.full_name}'s organization was updated."
+    else
+      redirect_to @volunteer, notice: "We're sorry, an error has occurred. Please try again."
+    end
+  end
+
   # DELETE /volunteers/1
   # DELETE /volunteers/1.json
   def destroy

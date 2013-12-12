@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organization.name %>
+</p>
+
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_organization_path(@organization), :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-list"></i>'.html_safe, organizations_path, :class => 'btn btn-small' %>

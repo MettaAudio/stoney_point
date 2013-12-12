@@ -18,6 +18,13 @@
       <%= f.button :submit, 'Add' %>
     <% end %>
   </div>
+  <div class="span6">
+    <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_organization_path, method: 'post') do |f| %>
+      <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
+      <%= f.association :organization, :prompt => 'Choose One' %>
+      <%= f.button :submit, 'Add' %>
+    <% end %>
+  </div>
 </div>
 
 <%= link_to '<i class="icon-eye-open"></i>'.html_safe, @volunteer, :class => 'btn btn-small' %>

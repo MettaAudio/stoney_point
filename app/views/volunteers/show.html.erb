@@ -2,12 +2,13 @@
 
 <div class="row">
   <div class="span4">
-    <h1><%= @volunteer.full_name %></h1>
+    <h1><%= @volunteer.full_name %> </h1>
     <h4>Address</h4>
     <p>
       <%= @volunteer.street %><br>
       <%= @volunteer.city %>, <%= @volunteer.state %>  <%= @volunteer.zip %>
     </p>
+    <h4><%= @volunteer.organization.name %></h4>
   </div>
 
   <div class="span4">

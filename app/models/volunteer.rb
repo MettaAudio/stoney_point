@@ -1,5 +1,6 @@
 class Volunteer < ActiveRecord::Base
   has_and_belongs_to_many :committees
+  belongs_to :organization
   has_many :housing,    dependent: :destroy
   has_many :jobs
   has_many :work_days
