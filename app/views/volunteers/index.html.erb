@@ -3,7 +3,8 @@
 <table id='volunteers_table' class ='table table-striped'>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>First</th>
+      <th>Last</th>
       <th>Street</th>
       <th>City</th>
       <th>State</th>
@@ -19,7 +20,8 @@
   <tbody>
     <% @volunteers.each do |volunteer| %>
       <tr>
-        <td><%= link_to(volunteer.full_name, volunteer) %></td>
+        <td><%= link_to(volunteer.first_name, volunteer) %></td>
+        <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= volunteer.street %></td>
         <td><%= volunteer.city %></td>
         <td><%= volunteer.state %></td>

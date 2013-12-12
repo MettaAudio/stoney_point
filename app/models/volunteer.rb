@@ -9,6 +9,8 @@ class Volunteer < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name,  presence: true
 
+  default_scope order('last_name ASC')
+
   def primary_phone=(val)
     write_attribute(:primary_phone, formatted_number(val))
   end
