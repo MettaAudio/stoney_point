@@ -5,5 +5,5 @@ class Housing < ActiveRecord::Base
   validates :number_of_bathrooms, presence: true
   validates :volunteer_id, presence: true
 
-  default_scope order('available ASC')
+  default_scope includes(:volunteer).order('volunteers.last_name ASC')
 end
