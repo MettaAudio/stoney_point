@@ -24,5 +24,11 @@
   <%= @housing.smoking ? "Yes" : "No" %>
 </p>
 
+<% if @housing.comments.present? %>
+  <p><strong>Comments:</strong><br>
+    <%= @housing.comments %>
+  </p>
+<% end %>
+
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_housing_path(@housing), :class => 'btn btn-small' %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, housings_path, :class => 'btn btn-small' %>

@@ -76,6 +76,9 @@
           <li><strong>Bathrooms:</strong> <%= housing.number_of_bathrooms %></li>
           <li><strong>Pets?</strong> <%= housing.pets ? 'Yes' : 'No' %></li>
           <li><strong>Smoking?</strong> <%= housing.smoking ? 'Yes' : 'No' %></li>
+          <% if housing.comments.present? %>
+            <li><strong>Comments:</strong> <%= housing.comments %></li>
+          <% end %>
           <li><hr></li>
           <% end %>
 
