@@ -19,7 +19,7 @@
     <% @housings.each do |housing| %>
       <tr>
         <td><%= link_to housing.volunteer.full_name, housing.volunteer %></td>
-        <td><%= housing.available %></td>
+        <td><%= housing.available.strftime('%A, %B %e %Y') %></td>
         <td><%= housing.number_of_bedrooms %></td>
         <td><%= housing.number_of_bathrooms %></td>
         <td><%= housing.pets ? "Yes" : "No" %></td>

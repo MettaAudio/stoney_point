@@ -1,7 +1,7 @@
 <%= f.error_notification %>
 
 <div class="form-inputs">
-  <%= f.input :available %>
+  <%= f.input :available, :collection => [['Sun, 04 May 2014', '2014-05-04'], ['Mon, 05 May 2014', '2014-05-05']] %>
   <%= f.input :number_of_bedrooms %>
   <%= f.input :number_of_bathrooms %>
   <%= f.input :pets, label: 'Pets?' %>

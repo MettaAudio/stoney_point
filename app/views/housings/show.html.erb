@@ -1,7 +1,7 @@
 <h1>Housing with <%= @housing.volunteer.full_name %></h1>
 <p>
   <strong>Date Available:</strong>
-  <%= @housing.available %>
+  <%= @housing.available.strftime('%A, %B %e %Y') %>
 </p>
 
 <p>
