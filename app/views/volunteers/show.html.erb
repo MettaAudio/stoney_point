@@ -58,7 +58,7 @@
       <h4>Jobs</h4>
       <ul class='unstyled'>
         <% @volunteer.jobs.each do |job| %>
-          <li><%= link_to job.title, job %> <span class='muted'>(<%= job.committee.name %> Committee)</span></li>
+          <li><%= link_to name_for(job), job %></li>
         <% end %>
 
       </ul>

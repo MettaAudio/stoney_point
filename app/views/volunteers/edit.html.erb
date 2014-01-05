@@ -14,7 +14,7 @@
   <div class="span6">
     <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_job_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
-      <%= f.association :jobs, collection: @volunteer.available_jobs %>
+      <%= f.association :jobs %>
       <%= f.button :submit, 'Add' %>
     <% end %>
   </div>
