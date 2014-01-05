@@ -10,5 +10,5 @@
   <%= @golfer.last_name %>
 </p>
 
-<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_golfer_path(@golfer), :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_golfer_path(@golfer), :class => 'btn btn-small' if current_user %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, golfers_path, :class => 'btn btn-small' %>

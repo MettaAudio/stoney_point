@@ -89,5 +89,5 @@
 
 </div>
 
-<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(@volunteer), :class => 'btn btn-small' %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(@volunteer), :class => 'btn btn-small' if current_user %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, volunteers_path, :class => 'btn btn-small' %>

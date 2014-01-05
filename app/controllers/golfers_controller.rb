@@ -1,5 +1,6 @@
 class GolfersController < ApplicationController
   before_action :set_golfer, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /golfers
   # GET /golfers.json

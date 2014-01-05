@@ -4,8 +4,10 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
+      <% if current_user %>
+        <th></th>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -13,8 +15,10 @@
     <% @committees.each do |committee| %>
       <tr>
         <td><%= link_to committee.name, committee %></td>
-        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_committee_path(committee), :class => 'btn btn-small' %></td>
-        <td><%= link_to '<i class="icon-trash"></i>'.html_safe, committee, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+        <% if current_user %>
+          <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_committee_path(committee), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<i class="icon-trash"></i>'.html_safe, committee, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Committee', new_committee_path %>
+<%= link_to 'New Committee', new_committee_path if current_user %>

@@ -11,6 +11,12 @@
             <ul class="nav">
               <%= render 'layouts/navigation_links' %>
             </ul>
+            <% if user_signed_in? %>
+              <ul class="nav pull-right">
+                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              </ul>
+            <% end %>
           </div>
         </div>
       </div>

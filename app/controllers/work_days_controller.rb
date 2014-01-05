@@ -1,5 +1,6 @@
 class WorkDaysController < ApplicationController
   before_action :set_work_day, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /work_days
   # GET /work_days.json

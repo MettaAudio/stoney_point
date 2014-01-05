@@ -7,8 +7,10 @@
       <th>Last name</th>
       <th>Phone</th>
       <th>School</th>
-      <th></th>
-      <th></th>
+      <% if current_user %>
+        <th></th>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -18,8 +20,10 @@
         <td><%= link_to caddy.full_name, caddy %></td>
         <td><%= caddy.phone %></td>
         <td><%= caddy.school %></td>
-        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddy_path(caddy), :class => 'btn btn-small' %></td>
-        <td><%= link_to '<i class="icon-trash"></i>'.html_safe, caddy, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+        <% if current_user %>
+          <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddy_path(caddy), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<i class="icon-trash"></i>'.html_safe, caddy, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Caddie', new_caddy_path %>
+<%= link_to 'New Caddie', new_caddy_path if current_user %>
