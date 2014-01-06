@@ -63,4 +63,12 @@ module VolunteersHelper
       'WXL'
     ]
   end
+
+  def sessions
+    ['AM', 'PM', 'Both']
+  end
+
+  def availability
+    ['Mon-Sun', 'Thur-Sun']
+  end
 end

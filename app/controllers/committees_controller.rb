@@ -26,15 +26,10 @@ class CommitteesController < ApplicationController
   # POST /committees.json
   def create
     @committee = Committee.new(committee_params)
-
-    respond_to do |format|
-      if @committee.save
-        format.html { redirect_to @committee, notice: 'Committee was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @committee }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @committee.errors, status: :unprocessable_entity }
-      end
+    if @committee.save
+      redirect_to :back, notice: 'Committee was successfully created.'
+    else
+      render action: 'new'
     end
   end
 

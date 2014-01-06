@@ -12,16 +12,23 @@
     <%= f.input :secondary_phone, as: :string, input_html: { value: secondary_phone_placeholder } %>
     <%= f.input :email %>
     <hr>
-    <%= f.input :shirt_size, :collection => shirt_sizes, label: 'Shirt Size:' %>
-    <%= f.input :number_of_shirts, input_html: { value: (f.object.number_of_shirts || 1) } %>
+    <%= f.input :shirt_size, :collection => shirt_sizes, label: 'Shirt Size' %>
+    <%= f.input :number_of_shirts,
+      label: 'Quantity',
+      input_html: { value: (f.object.number_of_shirts || (f.object.shirt_size ? '1' : nil)) }
+    %>
     <%= f.input :paid, label: 'Paid?' %>
     <hr>
     <%= f.input :physical_activity, label: 'Physical Activity?' %>
+    <%= f.input :golfer, label: 'Golfer?' %>
+    <hr>
+    <%= f.input :availability, :collection => availability %>
+    <%= f.input :sessions, :collection => sessions %>
     <hr>
     <%= f.input :comments %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn btn-primary btn-large' %>
   </div>
 <% end %>
