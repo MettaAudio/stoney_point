@@ -62,6 +62,16 @@ class HousingsController < ApplicationController
     end
   end
 
+  def add_golfer
+    @housing = Housing.find(association_params[:id])
+    golfer_id = params[:housing][:golfer_id]
+    if @housing.update_attributes(:golfer_id => golfer_id)
+      redirect_to @housing, notice: "Golfer added!"
+    else
+      redirect_to @housing, notice: "We're sorry, an error has occurred. Please try again."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_housing
@@ -72,4 +82,9 @@ class HousingsController < ApplicationController
     def housing_params
       params.require(:housing).permit(:available, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoking, :comments)
     end
+
+    def association_params
+      params.require(:housing).permit(:id)
+    end
+
 end

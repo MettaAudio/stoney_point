@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105041708) do
+ActiveRecord::Schema.define(version: 20140106154943) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140105041708) do
     t.boolean  "pets"
     t.boolean  "smoking"
     t.text     "comments"
+    t.integer  "golfer_id"
   end
 
   create_table "jobs", force: true do |t|
