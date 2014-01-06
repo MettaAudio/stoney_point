@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <h1><%= @golfer.full_name %> <small>Golfer</small></h1>
+</div>
+<div class="row">
+  <div class="span3">
+    <h4>Caddies</h4>
+    <ul>
+      <% @golfer.caddies.each do |caddie| %>
+        <li><%= link_to caddie.full_name, caddie %></li>
+      <% end %>
+    </ul>
+  </div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @golfer.first_name %>
-</p>
+  <div class="span3">
+    <h4>Caddie Preferences</h4>
+    <p><%= @golfer.caddie_preferences %></p>
+  </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @golfer.last_name %>
-</p>
+</div>
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_golfer_path(@golfer), :class => 'btn btn-small' if current_user %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, golfers_path, :class => 'btn btn-small' %>

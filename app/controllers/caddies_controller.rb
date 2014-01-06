@@ -1,5 +1,5 @@
 class CaddiesController < ApplicationController
-  before_action :set_caddy, only: [:show, :edit, :update, :destroy]
+  before_action :set_caddie, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /caddies
@@ -15,7 +15,7 @@ class CaddiesController < ApplicationController
 
   # GET /caddies/new
   def new
-    @caddy = Caddie.new
+    @caddie = Caddie.new
   end
 
   # GET /caddies/1/edit
@@ -25,16 +25,12 @@ class CaddiesController < ApplicationController
   # POST /caddies
   # POST /caddies.json
   def create
-    @caddy = Caddie.new(caddy_params)
+    @caddie = Caddie.new(caddie_params)
 
-    respond_to do |format|
-      if @caddy.save
-        format.html { redirect_to @caddy, notice: 'Caddie was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @caddy }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @caddy.errors, status: :unprocessable_entity }
-      end
+    if @caddie.save
+      redirect_to :back, notice: 'Caddie was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
@@ -42,12 +38,12 @@ class CaddiesController < ApplicationController
   # PATCH/PUT /caddies/1.json
   def update
     respond_to do |format|
-      if @caddy.update(caddy_params)
-        format.html { redirect_to @caddy, notice: 'Caddie was successfully updated.' }
+      if @caddie.update(caddie_params)
+        format.html { redirect_to @caddie, notice: 'Caddie was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @caddy.errors, status: :unprocessable_entity }
+        format.json { render json: @caddie.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,7 +51,7 @@ class CaddiesController < ApplicationController
   # DELETE /caddies/1
   # DELETE /caddies/1.json
   def destroy
-    @caddy.destroy
+    @caddie.destroy
     respond_to do |format|
       format.html { redirect_to caddies_url }
       format.json { head :no_content }
@@ -64,12 +60,12 @@ class CaddiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_caddy
-      @caddy = Caddie.find(params[:id])
+    def set_caddie
+      @caddie = Caddie.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def caddy_params
-      params.require(:caddy).permit(:first_name, :last_name, :phone, :school)
+    def caddie_params
+      params.require(:caddie).permit(:first_name, :last_name, :phone, :school)
     end
 end

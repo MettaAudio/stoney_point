@@ -1,24 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @caddy.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @caddy.last_name %>
-</p>
-
+<h1><%= @caddie.full_name %> <small>Caddie</small></h1>
 <p>
   <strong>Phone:</strong>
-  <%= @caddy.phone %>
+  <%= build_phone_number(@caddie.phone) %>
 </p>
 
 <p>
   <strong>School:</strong>
-  <%= @caddy.school %>
+  <%= @caddie.school %>
 </p>
 
-<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddy_path(@caddy), :class => 'btn btn-small' if current_user %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddie_path(@caddie), :class => 'btn btn-small' if current_user %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, caddies_path, :class => 'btn btn-small' %>

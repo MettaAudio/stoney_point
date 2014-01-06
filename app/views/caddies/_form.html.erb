@@ -1,10 +1,10 @@
-<%= simple_form_for(@caddy, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@caddie, html: {class: 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    <%= f.input :phone %>
+    <%= f.input :phone, as: :string %>
     <%= f.input :school %>
   </div>
 

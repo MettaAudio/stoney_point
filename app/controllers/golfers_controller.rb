@@ -20,6 +20,7 @@ class GolfersController < ApplicationController
 
   # GET /golfers/1/edit
   def edit
+    @caddie = Caddie.new
   end
 
   # POST /golfers
@@ -35,6 +36,16 @@ class GolfersController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @golfer.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def add_caddie
+    caddie_ids = params[:golfer][:caddie_ids]
+    @golfer = Golfer.find(association_params[:id])
+    if @golfer.update_attributes(:caddie_ids => caddie_ids )
+      redirect_to :back, notice: "#{@golfer.full_name}'s caddies were updated."
+    else
+      redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."
     end
   end
 
@@ -68,8 +79,13 @@ class GolfersController < ApplicationController
       @golfer = Golfer.find(params[:id])
     end
 
+    def association_params
+      params.require(:golfer).permit(:id)
+    end
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def golfer_params
-      params.require(:golfer).permit(:first_name, :last_name)
+      params.require(:golfer).permit(:first_name, :last_name, :caddie_preferences)
     end
 end
