@@ -22,6 +22,8 @@ StoneyPoint::Application.routes.draw do
   post "/add_volunteer_housing", to: "volunteers#add_housing", as: 'add_volunteer_housing'
   post "/add_golfer_to_housing", to: "housings#add_golfer", as: 'add_golfer_to_housing'
 
+  get "/shirts", to: "volunteers#shirts", as: 'shirts'
+
   root :to => 'volunteers#index'
 
 end

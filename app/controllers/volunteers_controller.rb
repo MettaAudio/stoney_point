@@ -8,6 +8,10 @@ class VolunteersController < ApplicationController
     @volunteers = Volunteer.all
   end
 
+  def shirts
+    @volunteers = Volunteer.all
+  end
+
   # GET /volunteers/1
   # GET /volunteers/1.json
   def show
@@ -114,7 +118,7 @@ class VolunteersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def volunteer_params
-      params.require(:volunteer).permit(:first_name, :last_name, :street, :city, :state, :zip, :zip, :primary_phone, :secondary_phone, :email, :paid, :physical_activity, :shirt_size, :comments)
+      params.require(:volunteer).permit(:first_name, :last_name, :street, :city, :state, :zip, :zip, :primary_phone, :secondary_phone, :email, :paid, :physical_activity, :shirt_size, :comments, :number_of_shirts)
     end
 
     def association_params

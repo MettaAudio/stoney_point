@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106154943) do
+ActiveRecord::Schema.define(version: 20140106163000) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20140106154943) do
     t.boolean  "physical_activity"
     t.string   "shirt_size"
     t.text     "comments"
+    t.integer  "number_of_shirts",  default: 1
   end
 
   create_table "work_days", force: true do |t|

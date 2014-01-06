@@ -5,14 +5,15 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :street %>
-    <%= f.input :city, input_html: { value: 'Greenwood' } %>
-    <%= f.input :state, input_html: { value: 'SC' } %>
-    <%= f.input :zip, input_html: { value: 29649 } %>
+    <%= f.input :city, input_html: { value: (f.object.city || 'Greenwood') } %>
+    <%= f.input :state, input_html: { value: (f.object.state || 'SC') } %>
+    <%= f.input :zip, input_html: { value: (f.object.zip || 29649) } %>
     <%= f.input :primary_phone, as: :string, input_html: { value: primary_phone_placeholder } %>
     <%= f.input :secondary_phone, as: :string, input_html: { value: secondary_phone_placeholder } %>
     <%= f.input :email %>
     <hr>
     <%= f.input :shirt_size, :collection => shirt_sizes, label: 'Shirt Size:' %>
+    <%= f.input :number_of_shirts, input_html: { value: (f.object.number_of_shirts || 1) } %>
     <%= f.input :paid, label: 'Paid?' %>
     <hr>
     <%= f.input :physical_activity, label: 'Physical Activity?' %>
