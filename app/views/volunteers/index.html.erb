@@ -6,13 +6,11 @@
     <tr>
       <th>Last</th>
       <th>First</th>
-      <th>Street</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Primary phone</th>
-      <th>Secondary phone</th>
-      <th>Email</th>
+      <th>Organization</th>
+      <th>Committee</th>
+      <th>Job(s)</th>
+      <th>Housing</th>
+      <th>Golfer(s)</th>
       <th></th>
       <% if current_user %>
         <th></th>
@@ -26,13 +24,11 @@
       <tr>
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
-        <td><%= volunteer.street %></td>
-        <td><%= volunteer.city %></td>
-        <td><%= volunteer.state %></td>
-        <td><%= volunteer.zip %></td>
-        <td><%= build_phone_number volunteer.primary_phone %></td>
-        <td><%= build_phone_number volunteer.secondary_phone %></td>
-        <td><%= volunteer.email %></td>
+        <td><%= volunteer.organization.try(:name) %></td>
+        <td><%= committees_for(volunteer) %></td>
+        <td><%= jobs_for(volunteer) %></td>
+        <td><%= housing_for(volunteer) %></td>
+        <td><%= golfers_for(volunteer) %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
         <% if current_user %>
           <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small' %></td>

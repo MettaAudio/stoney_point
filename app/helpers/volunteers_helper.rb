@@ -14,6 +14,42 @@ module VolunteersHelper
     "(#{ph[0,3]})#{ph[3,3]}-#{ph[6,4]}"
   end
 
+  def golfers_for(volunteer)
+    golfers = []
+    return unless volunteer.housing
+    volunteer.housing.each do |house|
+      golfers << link_to(house.golfer.full_name, house.golfer) if house.golfer
+    end
+    golfers.join(', ').html_safe
+  end
+
+  def jobs_for(volunteer)
+    jobs = []
+    return unless volunteer.jobs
+    volunteer.jobs.each do |job|
+      jobs << link_to(job.title, job)
+    end
+    jobs.join(', ').html_safe
+  end
+
+  def housing_for(volunteer)
+    houses = 0
+    return '--' unless volunteer.housing.present?
+    volunteer.housing.each do |house|
+      houses += house.number_of_bedrooms
+    end
+    "#{houses} bedrooms"
+  end
+
+  def committees_for(volunteer)
+    committees = []
+    return unless volunteer.committees.present?
+    volunteer.committees.each do |committee|
+      committees << link_to(committee.name, committee)
+    end
+    committees.join(', ').html_safe
+  end
+
   def shirt_sizes
     [
       'MS',
