@@ -7,9 +7,10 @@
       <th>Available</th>
       <th>Beds</th>
       <th>Baths</th>
-      <th>Pets</th>
       <th>Smoking</th>
+      <th>Pets</th>
       <th>Comments</th>
+      <th>Golfers</th>
       <th></th>
       <% if current_user %>
         <th></th>
@@ -28,6 +29,7 @@
         <td><%= housing.pets ? "Yes" : "No" %></td>
         <td><%= housing.smoking ? "Yes" : "No" %></td>
         <td><%= housing.comments %></td>
+        <td><%= housing.golfer.present? ? link_to(housing.golfer.full_name, housing.golfer): '--' %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, housing, :class => 'btn btn-small' %></td>
         <% if current_user %>
           <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small' %></td>
