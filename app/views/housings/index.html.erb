@@ -28,8 +28,8 @@
         <td><%= housing.available.strftime('%A') %></td>
         <td><%= housing.number_of_bedrooms %></td>
         <td><%= housing.number_of_bathrooms %></td>
-        <td><%= housing.pets ? "Yes" : "No" %></td>
         <td><%= housing.smoking ? "Yes" : "No" %></td>
+        <td><%= housing.pets ? "Yes" : "No" %></td>
         <td><%= housing.comments %></td>
         <td><%= housing.golfer.present? ? link_to(housing.golfer.full_name, housing.golfer): '--' %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, housing, :class => 'btn btn-small' %></td>

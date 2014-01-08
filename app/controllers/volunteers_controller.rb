@@ -9,7 +9,7 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.all
+    @volunteers = Volunteer.receiving_shirts
   end
 
   # GET /volunteers/1
@@ -134,7 +134,8 @@ class VolunteersController < ApplicationController
         :comments,
         :availability,
         :sessions,
-        :number_of_shirts
+        :number_of_shirts,
+        :golfer
         )
     end
 
