@@ -8,6 +8,25 @@ class VolunteersController < ApplicationController
     @volunteers = Volunteer.all
   end
 
+  def address_list
+    @volunteers = Volunteer.all
+  end
+
+  def duplicate
+    id = params[:volunteer_id]
+    volunteer = Volunteer.find(id)
+    if volunteer
+      duplicate_volunteer = volunteer.duplicate!
+      if duplicate_volunteer
+        redirect_to edit_volunteer_path(duplicate_volunteer), notice: 'Volunteer duplicated!.'
+      else
+        redirect_to :back, notice: 'Sorry, there was an error duplicating that volunteer. Sorry it didn\'t work out.'
+      end
+    else
+      redirect_to :back, notice: 'No volunteer was found to duplicate.'
+    end
+  end
+
   def shirts
     @volunteers = Volunteer.receiving_shirts
   end

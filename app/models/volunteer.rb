@@ -32,7 +32,38 @@ class Volunteer < ActiveRecord::Base
   end
 
   def formatted_number(val)
+    return val if val == nil
     val == '(864)' ? nil : val.gsub(/\D/, '')
+  end
+
+  def duplicate!
+    duplicate_attributes = {}
+    usable_attributes.each do |usable_attribute|
+      duplicate_attributes[usable_attribute] = self.send(usable_attribute)
+    end
+    duplicate_attributes["first_name"] = '** Duplicate **'
+
+    new_volunteer = Volunteer.create!(duplicate_attributes)
+    new_volunteer
+  end
+
+  def usable_attributes
+    [
+      "street",
+      "last_name",
+      "city",
+      "state",
+      "zip",
+      "primary_phone",
+      "secondary_phone",
+      "email",
+      "organization_id",
+      "paid",
+      "physical_activity",
+      "golfer",
+      "availability",
+      "sessions"
+    ]
   end
 
   def full_name

@@ -1,4 +1,4 @@
-<h1>Volunteers <small><%= Volunteer.number_of_volunteers %> assigned volunteers</small></h1>
+<h1>Volunteers <small>Contact list</small></h1>
 <%= link_to 'Add New Volunteer', new_volunteer_path if current_user %>
 <hr>
 <table id='volunteers_table' class ='table table-striped'>
@@ -7,13 +7,12 @@
       <th>Last</th>
       <th>First</th>
       <th>Organization</th>
-      <th>Committee</th>
-      <th>Job(s)</th>
-      <th>Housing</th>
-      <th>Golfer(s)</th>
+      <th>Street Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Committee(s)</th>
       <th></th>
       <% if current_user %>
-        <th></th>
         <th></th>
         <th></th>
       <% end %>
@@ -26,14 +25,13 @@
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
         <td><%= volunteer.organization.try(:name) %></td>
+        <td><%= volunteer.street %></td>
+        <td><%= build_phone_number(volunteer.primary_phone) %></td>
+        <td><%= mail_to volunteer.email %></td>
         <td><%= committees_for(volunteer) %></td>
-        <td><%= jobs_for(volunteer) %></td>
-        <td><%= housing_for(volunteer) %></td>
-        <td><%= golfers_for(volunteer) %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
         <% if current_user %>
           <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small' %></td>
-          <td><%= link_to('<i class="icon-wrench"></i>'.html_safe, duplicate_volunteer_path(:volunteer_id => volunteer.id), method: :post, data: { confirm: 'Duplicate this volunteer?' }, :class => 'btn btn-small') %></td>
           <td><%= link_to '<i class="icon-trash"></i>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>
