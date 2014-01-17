@@ -68,9 +68,9 @@ class VolunteersController < ApplicationController
   end
 
   def add_job
-    job_ids = params[:volunteer][:job_ids]
     @volunteer = Volunteer.find(association_params[:id])
-    if @volunteer.update_attributes(:job_ids => job_ids )
+    job_ids = params[:volunteer][:job_ids]
+    if @volunteer.update_attributes(:job_ids => job_ids)
       redirect_to :back, notice: "#{@volunteer.full_name}'s jobs were updated."
     else
       redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."

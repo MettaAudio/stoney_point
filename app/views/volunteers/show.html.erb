@@ -78,12 +78,11 @@
   </div>
   <div class="span4">
     <div class="well">
-      <h4>Jobs</h4>
+      <h4>Job</h4>
       <ul class='unstyled'>
         <% @volunteer.jobs.each do |job| %>
-          <li><%= link_to name_for(job), job %></li>
+          <li><%= link_to "#{job.name} job", job %> </li>
         <% end %>
-
       </ul>
     </div>
   </div>
