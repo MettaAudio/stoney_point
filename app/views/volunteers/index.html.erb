@@ -1,4 +1,4 @@
-<h1>volunteers</h1>
+<h1>Volunteers <small><%= Volunteer.number_of_volunteers %> assigned volunteers</small></h1>
 <%= link_to 'Add New Volunteer', new_volunteer_path if current_user %>
 <hr>
 <table id='volunteers_table' class ='table table-striped'>
