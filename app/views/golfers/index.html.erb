@@ -37,7 +37,9 @@
 <%= link_to 'New Golfer', new_golfer_path if current_user %>
 <script>
   $(document).ready(function() {
-    $('#golfers_table').dataTable();
+    $('#golfers_table').dataTable( {
+      "iDisplayLength": 100
+    });
   }
 );
 </script>

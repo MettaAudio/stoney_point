@@ -59,7 +59,9 @@
 </table>
 <script>
   $(document).ready(function() {
-    $('#shirts_table').dataTable();
+    $('#shirts_table').dataTable({
+      "iDisplayLength": 100
+    });
   }
 );
 </script>

@@ -40,7 +40,9 @@
 </table>
 <script>
   $(document).ready(function() {
-    $('#volunteers_table').dataTable();
+    $('#volunteers_table').dataTable( {
+      "iDisplayLength": 100
+    });
   }
 );
 </script>

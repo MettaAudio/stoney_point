@@ -43,7 +43,9 @@
 </table>
 <script>
   $(document).ready(function() {
-    $('#housing_table').dataTable();
+    $('#housing_table').dataTable( {
+      "iDisplayLength": 100
+    });
   }
 );
 </script>
