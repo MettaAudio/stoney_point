@@ -81,7 +81,7 @@
       <h4>Job</h4>
       <ul class='unstyled'>
         <% @volunteer.jobs.each do |job| %>
-          <li><%= link_to "#{job.name} job", job %> </li>
+          <li><%= link_to "#{job.title} job", job %> </li>
         <% end %>
       </ul>
     </div>
