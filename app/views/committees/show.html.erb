@@ -31,8 +31,8 @@
       <tr>
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
-        <td><%= volunteer.physical_activity %></td>
-        <td><%= volunteer.golfer %></td>
+        <td><%= volunteer.physical_activity ? 'Yes' : 'No' %></td>
+        <td><%= volunteer.golfer ? 'Yes' : 'No' %></td>
         <td><%= volunteer.availability %></td>
         <td><%= volunteer.sessions %></td>
         <td><%= volunteer.comments %></td>
