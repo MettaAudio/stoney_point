@@ -69,6 +69,6 @@ module VolunteersHelper
   end
 
   def availability
-    ['Mon-Sun', 'Thur-Sun']
+    ['Mon-Sun', 'Thur-Sun', 'Weekend Only']
   end
 end
