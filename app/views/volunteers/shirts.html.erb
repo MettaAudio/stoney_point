@@ -1,35 +1,91 @@
 <h1>Shirts</h1>
 <hr>
 <div class="row">
-  <div class="span12 well">
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>MS</th>
-          <th>MM</th>
-          <th>ML</th>
-          <th>MXL</th>
-          <th>MXXL</th>
-          <th>WS</th>
-          <th>WM</th>
-          <th>WL</th>
-          <th>WXL</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= shirt_count_for('MS') %></td>
-          <td><%= shirt_count_for('MM') %></td>
-          <td><%= shirt_count_for('ML') %></td>
-          <td><%= shirt_count_for('MXL') %></td>
-          <td><%= shirt_count_for('MXXL') %></td>
-          <td><%= shirt_count_for('WS') %></td>
-          <td><%= shirt_count_for('WM') %></td>
-          <td><%= shirt_count_for('WL') %></td>
-          <td><%= shirt_count_for('WXL') %></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="span4">
+    <div class="well">
+      <h4>Paid</h4>
+      <p><%= @shirts_paid %></p>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <h4>Unpaid</h4>
+      <p><%= @shirts_unpaid %></p>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <h4>Receipts to Date <small><%= Date.today.strftime('%m/%d/%Y') %></small></h4>
+      <p><%= number_to_currency(@shirts_paid * 30) %></p>
+      <p></p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span6">
+    <div class="well">
+      <h3>Men</h3>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>MS</th>
+            <th>MM</th>
+            <th>ML</th>
+            <th>MXL</th>
+            <th>MXXL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= shirt_count_for('MS') %></td>
+            <td><%= shirt_count_for('MM') %></td>
+            <td><%= shirt_count_for('ML') %></td>
+            <td><%= shirt_count_for('MXL') %></td>
+            <td><%= shirt_count_for('MXXL') %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="span5">
+    <div class="well">
+      <h3>Women</h3>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>WS</th>
+            <th>WM</th>
+            <th>WL</th>
+            <th>WXL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= shirt_count_for('WS') %></td>
+            <td><%= shirt_count_for('WM') %></td>
+            <td><%= shirt_count_for('WL') %></td>
+            <td><%= shirt_count_for('WXL') %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="well">
+      <h3>&nbsp;</h3>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @shirts_unknown %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <table id='shirts_table' class ='table table-striped'>

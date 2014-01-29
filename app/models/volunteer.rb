@@ -15,9 +15,35 @@ class Volunteer < ActiveRecord::Base
   scope :with_committees, joins(:committees)
   scope :receiving_shirts, -> { where("shirt_size <> ''") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
+  scope :with_shirts_paid, -> { where('paid = ?', true)}
+  scope :with_shirts_unpaid, -> { where('paid = ?', false)}
 
   def self.working
     Volunteer.with_committees.distinct
+  end
+
+  def self.number_of_shirts_paid
+    count = 0
+    receiving_shirts.with_shirts_paid.each do |shirt|
+      count += shirt.number_of_shirts ? shirt.number_of_shirts : 1
+    end
+    count
+  end
+
+  def self.number_of_shirts_unpaid
+    count = 0
+    receiving_shirts.with_shirts_unpaid.each do |shirt|
+      count += shirt.number_of_shirts ? shirt.number_of_shirts : 1
+    end
+    count
+  end
+
+  def self.number_of_shirts_unknown
+    count = 0
+    shirts_of_size('?').each do |shirt|
+      count += shirt.number_of_shirts ? shirt.number_of_shirts : 1
+    end
+    count
   end
 
   def primary_phone=(val)
