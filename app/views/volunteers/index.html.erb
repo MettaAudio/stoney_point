@@ -1,4 +1,4 @@
-<h1>Volunteers <small><%= Volunteer.number_of_volunteers %> assigned volunteers</small></h1>
+<h1>Volunteers <small><%= Volunteer.working.count %> work volunteers</small></h1>
 <%= link_to 'Add New Volunteer', new_volunteer_path if current_user %>
 <hr>
 <table id='volunteers_table' class ='table table-striped'>
@@ -7,10 +7,12 @@
       <th>Last</th>
       <th>First</th>
       <th>Organization</th>
+      <th>Days</th>
+      <th>Session</th>
+      <th>Physical?</th>
+      <th>Golf?</th>
+      <th>Comments</th>
       <th>Committee</th>
-      <th>Job(s)</th>
-      <th>Housing</th>
-      <th>Golfer(s)</th>
       <th></th>
       <% if current_user %>
         <th></th>
@@ -26,10 +28,12 @@
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
         <td><%= volunteer.organization.try(:name) %></td>
+        <td><%= volunteer.availability %></td>
+        <td><%= volunteer.sessions %></td>
+        <td><%= volunteer.physical_activity ? 'Yes' : 'No' %></td>
+        <td><%= volunteer.golfer ? 'Yes' : 'No' %></td>
+        <td><%= volunteer.comments %></td>
         <td><%= committees_for(volunteer) %></td>
-        <td><%= jobs_for(volunteer) %></td>
-        <td><%= housing_for(volunteer) %></td>
-        <td><%= golfers_for(volunteer) %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
         <% if current_user %>
           <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small' %></td>

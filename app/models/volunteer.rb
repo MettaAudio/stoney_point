@@ -12,15 +12,12 @@ class Volunteer < ActiveRecord::Base
 
   default_scope { order('last_name ASC') }
 
+  scope :with_committees, joins(:committees)
   scope :receiving_shirts, -> { where("shirt_size <> ''") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
 
-  def self.number_of_volunteers
-    count = 0
-    Volunteer.all.each do |volunteer|
-      count += 1 if volunteer.committees.present?
-    end
-    count
+  def self.working
+    Volunteer.with_committees.distinct
   end
 
   def primary_phone=(val)
