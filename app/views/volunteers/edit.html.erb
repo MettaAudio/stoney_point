@@ -30,6 +30,9 @@
   </div>
 
   <div class="span6">
+    <%= link_to('<i class="icon-user"></i> Add Spouse'.html_safe, duplicate_volunteer_path(:volunteer_id => @volunteer.id), method: :post, data: { confirm: 'Duplicate this volunteer?' }, :class => 'btn') %>
+    <br>
+    <br>
     <!-- Button to trigger modal -->
     <a href="#myModal" role="button" class="btn" data-toggle="modal"><i class="icon-home"></i> Add Housing</a>
   </div>

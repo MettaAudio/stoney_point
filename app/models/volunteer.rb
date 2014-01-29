@@ -56,8 +56,6 @@ class Volunteer < ActiveRecord::Base
       "email",
       "organization_id",
       "paid",
-      "physical_activity",
-      "golfer",
       "availability",
       "sessions"
     ]
