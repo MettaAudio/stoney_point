@@ -27,7 +27,7 @@
         <td><%= volunteer.organization.try(:name) %></td>
         <td><%= volunteer.street %></td>
         <td><%= build_phone_number(volunteer.primary_phone) %></td>
-        <td><%= mail_to volunteer.email %></td>
+        <td><%= mail_to volunteer.email, volunteer.email, :encode => "javascript" %></td>
         <td><%= committees_for(volunteer) %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
         <% if current_user %>

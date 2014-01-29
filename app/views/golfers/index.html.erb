@@ -1,4 +1,8 @@
 <h1>Golfers</h1>
+<% if current_user %>
+  <%= link_to 'New Golfer', new_golfer_path if current_user %> |
+  <%= link_to 'New Caddie', new_caddie_path if current_user %>
+<% end %>
 <hr>
 <table class ='table table-striped' id='golfers_table'>
   <thead>
@@ -31,10 +35,6 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Golfer', new_golfer_path if current_user %>
 <script>
   $(document).ready(function() {
     $('#golfers_table').dataTable( {

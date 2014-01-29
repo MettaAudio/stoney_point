@@ -5,9 +5,20 @@
 </p>
 
 <p>
+  <strong>Email:</strong>
+  <%= mail_to @caddie.email, @caddie.email, :encode => "javascript" %>
+</p>
+
+<p>
   <strong>School:</strong>
   <%= @caddie.school %>
 </p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= build_phone_number(@caddie.phone) %>
+</p>
+
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddie_path(@caddie), :class => 'btn btn-small' if current_user %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, caddies_path, :class => 'btn btn-small' %>
