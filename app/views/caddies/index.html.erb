@@ -1,4 +1,5 @@
-<h1>caddies</h1>
+<h1>Caddies</h1>
+<%= link_to 'New Caddie', new_caddie_path if current_user %>
 <hr>
 <table class ='table table-striped' id='caddies_table'>
   <thead>
@@ -21,7 +22,7 @@
       <tr>
         <td><%= link_to caddie.last_name, caddie %></td>
         <td><%= link_to caddie.first_name, caddie %></td>
-        <td><%= caddie.phone %></td>
+        <td><%= build_phone_number(caddie.phone) %></td>
         <td><%= mail_to caddie.email, caddie.email, :encode => "javascript" %></td>
         <td><%= caddie.school %></td>
         <td><%= caddie.comments %></td>
@@ -36,7 +37,6 @@
 
 <br>
 
-<%= link_to 'New Caddie', new_caddie_path if current_user %>
 <script>
   $(document).ready(function() {
     $('#caddies_table').dataTable();
