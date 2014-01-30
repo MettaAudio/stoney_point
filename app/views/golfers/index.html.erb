@@ -12,6 +12,7 @@
       <th>Host</th>
       <th>Caddie pref</th>
       <th>Caddie name</th>
+      <th></th>
       <% if current_user %>
         <th></th>
         <th></th>
@@ -27,6 +28,7 @@
         <td><%= volunteer_housing_for(golfer) %></td>
         <td><%= golfer.caddie_preferences %></td>
         <td><%= caddies_for(golfer) %></td>
+        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, golfer, :class => 'btn btn-small' %></td>
         <% if current_user %>
           <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_golfer_path(golfer), :class => 'btn btn-small' %></td>
           <td><%= link_to '<i class="icon-trash"></i>'.html_safe, golfer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>

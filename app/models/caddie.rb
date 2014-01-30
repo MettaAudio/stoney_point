@@ -10,6 +10,7 @@ class Caddie < ActiveRecord::Base
   end
 
   def formatted_number(val)
-    val.gsub(/\D/, '')
+    return val if val == nil
+    val == '(864)' ? nil : val.gsub(/\D/, '')
   end
 end

@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129165440) do
+ActiveRecord::Schema.define(version: 20140130042157) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "school"
     t.integer  "golfer_id"
     t.datetime "created_at"
