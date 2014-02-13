@@ -157,7 +157,8 @@ class VolunteersController < ApplicationController
         :availability,
         :sessions,
         :number_of_shirts,
-        :golfer
+        :golfer,
+        :waiver
         )
     end
 

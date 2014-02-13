@@ -7,6 +7,7 @@
       <th>Last</th>
       <th>First</th>
       <th>Organization</th>
+      <th>W</th>
       <th>Days</th>
       <th>Session</th>
       <th>Physical?</th>
@@ -27,6 +28,7 @@
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
         <td><%= volunteer.organization.try(:name) %></td>
+        <td><%= volunteer.waiver ? 'Y' : 'N' %></td>
         <td><%= volunteer.availability %></td>
         <td><%= volunteer.sessions %></td>
         <td><%= volunteer.physical_activity ? 'Yes' : 'No' %></td>

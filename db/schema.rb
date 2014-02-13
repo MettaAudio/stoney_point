@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213034451) do
+ActiveRecord::Schema.define(version: 20140213042907) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140213034451) do
     t.boolean  "golfer"
     t.string   "availability"
     t.string   "sessions"
+    t.boolean  "waiver"
   end
 
   create_table "work_days", force: true do |t|
