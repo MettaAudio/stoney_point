@@ -4,7 +4,7 @@
   <%= link_to 'New Caddie', new_caddie_path if current_user %>
 <% end %>
 <hr>
-<table class ='table table-striped' id='golfers_table'>
+<table class ='table table-striped' id='data_table'>
   <thead>
     <tr>
       <th>Last</th>
@@ -37,11 +37,4 @@
     <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function() {
-    $('#golfers_table').dataTable( {
-      "iDisplayLength": 100
-    });
-  }
-);
-</script>
+<%= render 'shared/datatable_js' %>

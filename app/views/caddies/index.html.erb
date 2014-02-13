@@ -1,7 +1,7 @@
 <h1>Caddies</h1>
 <%= link_to 'New Caddie', new_caddie_path if current_user %>
 <hr>
-<table class ='table table-striped' id='caddies_table'>
+<table class ='table table-striped' id='data_table'>
   <thead>
     <tr>
       <th>Last</th>
@@ -45,9 +45,4 @@
 
 <br>
 
-<script>
-  $(document).ready(function() {
-    $('#caddies_table').dataTable();
-  }
-);
-</script>
+<%= render 'shared/datatable_js' %>
