@@ -1,5 +1,6 @@
 class Caddie < ActiveRecord::Base
   belongs_to :golfer
+  belongs_to :organization
 
   def full_name
     [first_name, last_name].join(' ')

@@ -8,7 +8,10 @@
       <th>First</th>
       <th>Phone</th>
       <th>Email</th>
-      <th>School</th>
+      <th>Organization</th>
+      <th>Golf</th>
+      <th>Course</th>
+      <th>Rules</th>
       <th>Comments</th>
       <th></th>
       <% if current_user %>
@@ -25,7 +28,10 @@
         <td><%= link_to caddie.first_name, caddie %></td>
         <td><%= build_phone_number(caddie.phone) %></td>
         <td><%= mail_to caddie.email, caddie.email, :encode => "javascript" %></td>
-        <td><%= caddie.school %></td>
+        <td><%= caddie.organization.try(:name) %></td>
+        <td><%= caddie.golf ? 'Yes' : 'No' %></td>
+        <td><%= caddie.course %></td>
+        <td><%= caddie.rules %></td>
         <td><%= caddie.comments %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, caddie, :class => 'btn btn-small' %></td>
         <% if current_user %>

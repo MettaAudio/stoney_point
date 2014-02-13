@@ -1,6 +1,16 @@
 <h1>Editing caddie</h1>
-
-<%= render 'form' %>
+<div class="row">
+  <div class="span6">
+    <%= render 'form' %>
+  </div>
+  <div class="span6">
+    <%= simple_form_for(@caddie, html: {class: 'form-inline' }, :url => add_caddie_organization_path, method: 'post') do |f| %>
+      <%= f.input :id, :as => :hidden, :input_html => { :value => @caddie.id } %>
+      <%= f.association :organization, :prompt => 'Choose One' %>
+      <%= f.button :submit, 'Update' %>
+      <a href="#new_organization_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Organization</a>
+    <% end %>
+  </div>
 
 <%= link_to '<i class="icon-eye-open"></i>'.html_safe, @caddie, :class => 'btn btn-small' %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, caddies_path, :class => 'btn btn-small' %>

@@ -1,23 +1,67 @@
-<h1><%= @caddie.full_name %> <small>Caddie</small></h1>
-<p>
-  <strong>Phone:</strong>
-  <%= build_phone_number(@caddie.phone) %>
-</p>
+<div class="row">
+  <div class="span12">
+    <h1><%= @caddie.full_name %> <small><%= @caddie.organization.try(:name) %></small> </h1>
+    <%= link_to '<i class="icon-list"></i>'.html_safe, caddies_path, :class => 'btn btn-small' %>
+    <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddie_path(@caddie), :class => 'btn btn-small' if current_user %>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="span3">
+    <h5>Email</h5>
+    <p><%= mail_to @caddie.email, @caddie.email, :encode => "javascript" %></p>
+  </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= mail_to @caddie.email, @caddie.email, :encode => "javascript" %>
-</p>
+  <div class="span3">
+  <h5>Phone</h5>
+  <p><%= build_phone_number(@caddie.phone) %></p>
+  </div>
 
-<p>
-  <strong>School:</strong>
-  <%= @caddie.school %>
-</p>
+  <div class='span3'>
+    <h5>Organization</h5>
+    <p><%= @caddie.organization.try(:name) %></p>
+  </div>
 
-<p>
-  <strong>Comments:</strong>
-  <%= build_phone_number(@caddie.phone) %>
-</p>
+  <div class='span3'>
+    <h5>School</h5>
+    <p><%= @caddie.school %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span3">
+    <h5>Golf</h5>
+    <p><%= @caddie.golf ? "Yes" : "No" %></p>
+  </div>
+
+  <div class="span3">
+    <h5>Course</h5>
+    <p><%= @caddie.course %></p>
+  </div>
+
+  <div class="span3">
+    <h5>Rules</h5>
+    <p><%= @caddie.rules %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class='span6'>
+    <h5>Comments:</h5>
+    <p><%= @caddie.comments %></p>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="span3">
+    <div class="well">
+      <h5>Golfer</h5>
+      <p><%= link_to @caddie.golfer.full_name, @caddie.golfer if @caddie.golfer %></p>
+    </div>
+  </div>
+</div>
+
 
 
 <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddie_path(@caddie), :class => 'btn btn-small' if current_user %>

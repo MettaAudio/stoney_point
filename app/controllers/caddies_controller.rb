@@ -58,14 +58,28 @@ class CaddiesController < ApplicationController
     end
   end
 
+  def add_organization
+    organization_id = params[:caddie][:organization_id]
+    @caddie = Caddie.find(association_params[:id])
+    if @caddie.update_attributes(:organization_id => organization_id )
+      redirect_to :back, notice: "#{@caddie.full_name}'s organization was updated."
+    else
+      redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_caddie
       @caddie = Caddie.find(params[:id])
     end
 
+    def association_params
+      params.require(:caddie).permit(:id)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def caddie_params
-      params.require(:caddie).permit(:first_name, :last_name, :phone, :school, :email, :comments)
+      params.require(:caddie).permit(:first_name, :last_name, :phone, :school, :email, :comments, :golf, :rules, :course)
     end
 end
