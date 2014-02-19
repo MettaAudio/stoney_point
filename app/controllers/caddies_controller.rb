@@ -80,6 +80,6 @@ class CaddiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caddie_params
-      params.require(:caddie).permit(:first_name, :last_name, :phone, :school, :email, :comments, :golf, :rules, :course)
+      params.require(:caddie).permit(:first_name, :last_name, :phone, :email, :comments, :golf, :rules, :course)
     end
 end
