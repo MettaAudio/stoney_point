@@ -49,6 +49,7 @@ class VolunteersController < ApplicationController
     @committees = Committee.all
     @committee = Committee.new
     @job = Job.new
+    @shift = Shift.new
     @organization = Organization.new
     @housing = Housing.new
   end
@@ -94,6 +95,16 @@ class VolunteersController < ApplicationController
     job_ids = params[:volunteer][:job_ids]
     if @volunteer.update_attributes(:job_ids => job_ids)
       redirect_to :back, notice: "#{@volunteer.full_name}'s jobs were updated."
+    else
+      redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."
+    end
+  end
+
+  def add_shift
+    @volunteer = Volunteer.find(association_params[:id])
+    shift_ids = params[:volunteer][:shift_ids]
+    if @volunteer.update_attributes(:shift_ids => shift_ids)
+      redirect_to :back, notice: "#{@volunteer.full_name}'s shifts were updated."
     else
       redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."
     end
