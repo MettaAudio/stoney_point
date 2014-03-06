@@ -12,12 +12,13 @@
     <tr>
       <th>Last</th>
       <th>First</th>
-      <th>Physical?</th>
-      <th>Golfer?</th>
+      <th>Phys</th>
+      <th>Golf</th>
       <th>Days</th>
       <th>Sessions</th>
       <th>Comments</th>
       <th>Job</th>
+      <th>Shift</th>
       <th></th>
       <% if current_user %>
         <th></th>
@@ -31,12 +32,13 @@
       <tr>
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
-        <td><%= volunteer.physical_activity ? 'Yes' : 'No' %></td>
-        <td><%= volunteer.golfer ? 'Yes' : 'No' %></td>
+        <td><%= volunteer.physical_activity ? 'Y' : 'N' %></td>
+        <td><%= volunteer.golfer ? 'Y' : 'N' %></td>
         <td><%= volunteer.availability %></td>
         <td><%= volunteer.sessions %></td>
         <td><%= volunteer.comments %></td>
         <td><%= jobs_for(volunteer) %></td>
+        <td><%= shifts_for(volunteer) %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
         <% if current_user %>
           <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small' %></td>

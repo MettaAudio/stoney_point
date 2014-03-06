@@ -23,6 +23,15 @@ module VolunteersHelper
     golfers.join(', ').html_safe
   end
 
+  def shifts_for(volunteer)
+    shifts = []
+    return unless volunteer.shifts
+    volunteer.shifts.each do |shift|
+      shifts << link_to(shift.time, shift)
+    end
+    shifts.join(', ').html_safe
+  end
+
   def jobs_for(volunteer)
     jobs = []
     return unless volunteer.jobs

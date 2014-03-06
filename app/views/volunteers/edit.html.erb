@@ -13,19 +13,19 @@
     <% end %>
   </div>
   <div class="span6">
-    <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_shift_path, method: 'post') do |f| %>
-      <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
-      <%= f.association :shifts, label_method: :time %>
-      <%= f.button :submit, 'Update' %>
-      <a href="#new_shift_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Shift</a>
-    <% end %>
-  </div>
-  <div class="span6">
     <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_job_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
       <%= f.association :jobs %>
       <%= f.button :submit, 'Update' %>
       <a href="#new_job_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Job</a>
+    <% end %>
+  </div>
+  <div class="span6">
+    <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_shift_path, method: 'post') do |f| %>
+      <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
+      <%= f.association :shifts, label_method: :time %>
+      <%= f.button :submit, 'Update' %>
+      <a href="#new_shift_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Shift</a>
     <% end %>
   </div>
   <div class="span6">
