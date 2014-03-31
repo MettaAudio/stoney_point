@@ -9,6 +9,7 @@
     <tr>
       <th>Last</th>
       <th>First</th>
+      <th>Email</th>
       <th>Host</th>
       <th>Preferences</th>
       <th>Caddie name</th>
@@ -25,6 +26,7 @@
       <tr>
         <td><%= link_to golfer.last_name, golfer %></td>
         <td><%= link_to golfer.first_name, golfer %></td>
+        <td><%= mail_to golfer.email, golfer.email, :encode => "javascript" %></td>
         <td><%= volunteer_housing_for(golfer) %></td>
         <td><%= golfer.caddie_preferences %></td>
         <td><%= caddies_for(golfer) %></td>

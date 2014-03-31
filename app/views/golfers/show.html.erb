@@ -1,5 +1,6 @@
 <div class="row">
   <h1><%= @golfer.full_name %> <small>Golfer</small></h1>
+  <h4><%= mail_to @golfer.email, @golfer.email, :encode => "javascript" %></td></h4>
 </div>
 <div class="row">
   <div class="span3">

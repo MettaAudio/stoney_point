@@ -86,6 +86,6 @@ class GolfersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def golfer_params
-      params.require(:golfer).permit(:first_name, :last_name, :caddie_preferences)
+      params.require(:golfer).permit(:first_name, :last_name, :email, :caddie_preferences)
     end
 end
