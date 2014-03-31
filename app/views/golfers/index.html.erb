@@ -10,8 +10,8 @@
       <th>Last</th>
       <th>First</th>
       <th>Email</th>
-      <th>Host</th>
       <th>Preferences</th>
+      <th>Host</th>
       <th>Caddie name</th>
       <th></th>
       <% if current_user %>
@@ -27,8 +27,8 @@
         <td><%= link_to golfer.last_name, golfer %></td>
         <td><%= link_to golfer.first_name, golfer %></td>
         <td><%= mail_to golfer.email, golfer.email, :encode => "javascript" %></td>
-        <td><%= volunteer_housing_for(golfer) %></td>
         <td><%= golfer.caddie_preferences %></td>
+        <td><%= volunteer_housing_for(golfer) %></td>
         <td><%= caddies_for(golfer) %></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, golfer, :class => 'btn btn-small' %></td>
         <% if current_user %>
