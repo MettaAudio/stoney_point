@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305143103) do
+ActiveRecord::Schema.define(version: 20140331151034) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20140305143103) do
     t.text     "caddie_preferences"
   end
 
+  create_table "golfers_housings", id: false, force: true do |t|
+    t.integer "housing_id"
+    t.integer "golfer_id"
+  end
+
+  add_index "golfers_housings", ["golfer_id"], name: "index_golfers_housings_on_golfer_id"
+  add_index "golfers_housings", ["housing_id", "golfer_id"], name: "index_golfers_housings_on_housing_id_and_golfer_id"
+
   create_table "housings", force: true do |t|
     t.date     "available"
     t.integer  "number_of_bedrooms"
@@ -57,7 +65,6 @@ ActiveRecord::Schema.define(version: 20140305143103) do
     t.boolean  "pets"
     t.boolean  "smoking"
     t.text     "comments"
-    t.integer  "golfer_id"
   end
 
   create_table "jobs", force: true do |t|

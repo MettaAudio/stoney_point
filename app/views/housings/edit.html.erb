@@ -9,12 +9,5 @@
   </div>
 <% end %>
 
-  <%= simple_form_for(@housing, html: {class: 'form-inline' }, :url => add_golfer_to_housing_path, method: 'post') do |f| %>
-    <%= f.input :id, :as => :hidden, :input_html => { :value => @housing.id } %>
-    <%= f.association :golfer, :label_method => :full_name %>
-    <%= f.button :submit, 'Add' %>
-  <% end %>
-
-
 <%= link_to '<i class="icon-eye-open"></i>'.html_safe, @housing, :class => 'btn btn-small' %>
 <%= link_to '<i class="icon-list"></i>'.html_safe, housings_path, :class => 'btn btn-small' %>

@@ -1,9 +1,9 @@
 module GolfersHelper
 
   def volunteer_housing_for(golfer)
-    return unless golfer.housing
+    return unless golfer.housings
     houses = []
-    golfer.housing.each do |house|
+    golfer.housings.each do |house|
       houses << link_to(house.volunteer.full_name, house.volunteer)
     end
     houses.join(', ').html_safe

@@ -1,6 +1,6 @@
 class Golfer < ActiveRecord::Base
   has_many :caddies
-  has_many :housing
+  has_and_belongs_to_many :housings
   validates :first_name, presence: true
   validates :last_name,  presence: true
 

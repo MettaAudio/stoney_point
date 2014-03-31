@@ -7,4 +7,5 @@
   <%= f.input :pets, label: 'Pets?' %>
   <%= f.input :smoking, label: 'Smoking?' %>
   <%= f.input :comments %>
+  <%= f.association :golfers, :label_method => :full_name %>
 </div>

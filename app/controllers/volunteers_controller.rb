@@ -178,6 +178,6 @@ class VolunteersController < ApplicationController
     end
 
     def housing_params
-      params.require(:housing).permit(:volunteer_id, :available, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoking, :comments)
+      params.require(:housing).permit(:volunteer_id, :available, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoking, :comments, :golfer_ids => [])
     end
 end
