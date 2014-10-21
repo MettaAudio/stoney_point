@@ -1,48 +1,48 @@
 <h1>Editing volunteer</h1>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-xs-6">
     <%= render 'form' %>
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_committee_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
       <%= f.association :committees %>
       <%= f.button :submit, 'Update' %>
-      <a href="#new_committee_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Committee</a>
+      <a href="#new_committee_modal" role="button" class="btn btn-mini" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> New Committee</a>
     <% end %>
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_job_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
       <%= f.association :jobs %>
       <%= f.button :submit, 'Update' %>
-      <a href="#new_job_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Job</a>
+      <a href="#new_job_modal" role="button" class="btn btn-mini" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> New Job</a>
     <% end %>
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_shift_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
       <%= f.association :shifts, label_method: :time %>
       <%= f.button :submit, 'Update' %>
-      <a href="#new_shift_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Shift</a>
+      <a href="#new_shift_modal" role="button" class="btn btn-mini" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> New Shift</a>
     <% end %>
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <%= simple_form_for(@volunteer, html: {class: 'form-inline' }, :url => add_volunteer_organization_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer.id } %>
       <%= f.association :organization, :prompt => 'Choose One' %>
       <%= f.button :submit, 'Update' %>
-      <a href="#new_organization_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Organization</a>
+      <a href="#new_organization_modal" role="button" class="btn btn-mini" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> New Organization</a>
     <% end %>
   </div>
 
-  <div class="span6">
-    <%= link_to('<i class="icon-user"></i> Add Spouse'.html_safe, duplicate_volunteer_path(:volunteer_id => @volunteer.id), method: :post, data: { confirm: 'Duplicate this volunteer?' }, :class => 'btn') %>
+  <div class="col-xs-6">
+    <%= link_to('<span class="glyphicon glyphicon-user"></span> Add Spouse'.html_safe, duplicate_volunteer_path(:volunteer_id => @volunteer.id), method: :post, data: { confirm: 'Duplicate this volunteer?' }, :class => 'btn') %>
     <br>
     <br>
     <!-- Button to trigger modal -->
-    <a href="#myModal" role="button" class="btn" data-toggle="modal"><i class="icon-home"></i> Add Housing</a>
+    <a href="#myModal" role="button" class="btn" data-toggle="modal"><span class="glyphicon glyphicon-home"></span> Add Housing</a>
   </div>
 
   <!-- Modal -->
@@ -109,5 +109,5 @@
 
 </div>
 
-<%= link_to '<i class="icon-eye-open"></i>'.html_safe, @volunteer, :class => 'btn btn-small' %>
-<%= link_to '<i class="icon-list"></i>'.html_safe, volunteers_path, :class => 'btn btn-small' %>
+<%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, @volunteer, :class => 'btn btn-small' %>
+<%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, volunteers_path, :class => 'btn btn-small' %>

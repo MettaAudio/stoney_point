@@ -2,16 +2,16 @@
   <h1>Editing golfer</h1>
 </div>
 <div class="row">
-  <div class="span6">
+  <div class="col-xs-6">
     <%= render 'form' %>
   </div>
 
-  <div class="span6">
+  <div class="col-xs-6">
     <%= simple_form_for(@golfer, html: {class: 'form-inline' }, :url => add_golfer_caddie_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @golfer.id } %>
       <%= f.association :caddies, :label_method => :full_name %>
       <%= f.button :submit, 'Update' %>
-      <a href="#new_caddie_modal" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-plus"></i> New Caddie</a>
+      <a href="#new_caddie_modal" role="button" class="btn btn-mini" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> New Caddie</a>
     <% end %>
   </div>
 </div>
@@ -28,5 +28,5 @@
 </div>
 
 
-<%= link_to '<i class="icon-eye-open"></i>'.html_safe, @golfer, :class => 'btn btn-small' %>
-<%= link_to '<i class="icon-list"></i>'.html_safe, golfers_path, :class => 'btn btn-small' %>
+<%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, @golfer, :class => 'btn btn-small' %>
+<%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, golfers_path, :class => 'btn btn-small' %>

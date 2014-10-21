@@ -33,10 +33,10 @@
         <td><%= caddie.course %></td>
         <td><%= caddie.rules %></td>
         <td><%= caddie.comments %></td>
-        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, caddie, :class => 'btn btn-small' %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie, :class => 'btn btn-small' %></td>
         <% if current_user %>
-          <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_caddie_path(caddie), :class => 'btn btn-small' %></td>
-          <td><%= link_to '<i class="icon-trash"></i>'.html_safe, caddie, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_caddie_path(caddie), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, caddie, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>
     <% end %>

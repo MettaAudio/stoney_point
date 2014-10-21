@@ -13,7 +13,7 @@ class Volunteer < ActiveRecord::Base
 
   default_scope { order('last_name ASC') }
 
-  scope :with_committees, joins(:committees)
+  scope :with_committees, -> { joins(:committees) }
   scope :receiving_shirts, -> { where("shirt_size <> ''") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
   scope :with_shirts_paid, -> { where('paid = ?', true)}

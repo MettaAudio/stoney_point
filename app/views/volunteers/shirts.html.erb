@@ -1,19 +1,19 @@
 <h1>Shirts</h1>
 <hr>
 <div class="row">
-  <div class="span4">
+  <div class="col-xs-4">
     <div class="well">
       <h4>Paid</h4>
       <p><%= @shirts_paid %></p>
     </div>
   </div>
-  <div class="span4">
+  <div class="col-xs-4">
     <div class="well">
       <h4>Unpaid</h4>
       <p><%= @shirts_unpaid %></p>
     </div>
   </div>
-  <div class="span4">
+  <div class="col-xs-4">
     <div class="well">
       <h4>Receipts to Date <small><%= Date.today.strftime('%m/%d/%Y') %></small></h4>
       <p><%= number_to_currency(@shirts_paid * 30) %></p>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="span6">
+  <div class="col-xs-6">
     <div class="well">
       <h3>Men</h3>
       <table class='table'>
@@ -47,7 +47,7 @@
       </table>
     </div>
   </div>
-  <div class="span5">
+  <div class="col-xs-5">
     <div class="well">
       <h3>Women</h3>
       <table class='table'>
@@ -70,7 +70,7 @@
       </table>
     </div>
   </div>
-  <div class="span1">
+  <div class="col-xs-1">
     <div class="well">
       <h3>&nbsp;</h3>
       <table class='table'>
