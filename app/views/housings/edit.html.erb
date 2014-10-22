@@ -1,6 +1,6 @@
 <h1>Editing housing for <%= link_to @housing.volunteer.full_name, @housing.volunteer %></h1>
 
-<%= simple_form_for(@housing, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@housing, html: {class: 'form-vertical' }) do |f| %>
   <div class="form-inputs">
     <%= render :partial => "form", locals: {f: f} %>
   </div>

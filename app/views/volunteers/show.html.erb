@@ -69,7 +69,7 @@
   <div class="col-xs-4">
     <div class="well">
       <h4>Committees</h4>
-      <ul class='unstyled'>
+      <ul class='list-unstyled'>
         <% @volunteer.committees.each do |committee| %>
           <li><%= link_to "#{committee.name} Committee", committee %> </li>
         <% end %>
@@ -79,7 +79,7 @@
   <div class="col-xs-4">
     <div class="well">
       <h4>Job</h4>
-      <ul class='unstyled'>
+      <ul class='list-unstyled'>
         <% @volunteer.jobs.each do |job| %>
           <li><%= link_to "#{job.title} job", job %> </li>
         <% end %>
@@ -91,7 +91,7 @@
     <div class="col-xs-4">
       <div class="well">
         <h4>Housing</h4>
-        <ul class='unstyled'>
+        <ul class='list-unstyled'>
           <% @volunteer.housing.each do |housing| %>
           <li><strong>Date Available:</strong> <%= housing.available %></li>
           <li><strong>Bedrooms:</strong> <%= housing.number_of_bedrooms %></li>

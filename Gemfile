@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'bootstrap-sass'
-gem 'simple_form'
+gem 'simple_form', '>= 3.1.0.rc2'
 gem 'thin'
 gem 'devise'
 

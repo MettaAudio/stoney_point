@@ -1,7 +1,7 @@
-<%= simple_form_for(@volunteer, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@volunteer, html: {class: 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-group">
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :street %>
@@ -11,14 +11,14 @@
     <%= f.input :primary_phone, as: :string, input_html: { value: primary_phone_placeholder } %>
     <%= f.input :secondary_phone, as: :string, input_html: { value: secondary_phone_placeholder } %>
     <%= f.input :email %>
-    <%= f.input :waiver %>
+    <%= f.input :waiver, wrapper: :vertical_boolean %>
     <hr>
     <%= f.input :shirt_size, :collection => shirt_sizes, label: 'Shirt Size' %>
     <%= f.input :number_of_shirts, label: 'Quantity'%>
-    <%= f.input :paid, label: 'Paid?' %>
+    <%= f.input :paid, label: 'Paid?', wrapper: :vertical_boolean %>
     <hr>
-    <%= f.input :physical_activity, label: 'Physical Activity?' %>
-    <%= f.input :golfer, label: 'Golfer?' %>
+    <%= f.input :physical_activity, label: 'Physical Activity?', wrapper: :vertical_boolean %>
+    <%= f.input :golfer, label: 'Golfer?', wrapper: :vertical_boolean %>
     <hr>
     <%= f.input :availability, :collection => availability %>
     <%= f.input :sessions, :collection => sessions %>

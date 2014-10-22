@@ -7,6 +7,17 @@ header {
 }
 
 h5 {
-margin-bottom: 0px;
-border-bottom: 1px solid #EEE
+  margin-bottom: 7px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #EEE
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  background-color: green;
+  border-color: green;
 }
