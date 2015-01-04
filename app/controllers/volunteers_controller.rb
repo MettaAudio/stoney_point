@@ -5,11 +5,19 @@ class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
   def index
-    @volunteers = Volunteer.active.working
+    if params[:show_all] == 'true'
+      @volunteers = Volunteer.all
+    else
+      @volunteers = Volunteer.active.working
+    end
   end
 
   def address_list
-    @volunteers = Volunteer.active
+    if params[:show_all] == 'true'
+      @volunteers = Volunteer.all
+    else
+      @volunteers = Volunteer.active
+    end
   end
 
   def duplicate

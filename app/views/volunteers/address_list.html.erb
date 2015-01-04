@@ -1,5 +1,8 @@
 <h1>Volunteers <small>Contact list</small></h1>
-<%= link_to 'Add New Volunteer', new_volunteer_path if current_user %>
+<% if current_user %>
+  <%= link_to 'Add New Volunteer', new_volunteer_path %>
+  | <%= link_to 'Show all', :show_all => true %>
+<% end %>
 <hr>
 <table id='data_table' class ='table table-striped'>
   <thead>
