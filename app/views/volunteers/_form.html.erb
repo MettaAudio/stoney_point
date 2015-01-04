@@ -12,6 +12,7 @@
     <%= f.input :secondary_phone, as: :string, input_html: { value: secondary_phone_placeholder } %>
     <%= f.input :email %>
     <%= f.input :waiver, wrapper: :vertical_boolean %>
+    <%= f.input :is_active, label: 'Active?', wrapper: :vertical_boolean %>
     <hr>
     <%= f.input :shirt_size, :collection => shirt_sizes, label: 'Shirt Size' %>
     <%= f.input :number_of_shirts, label: 'Quantity'%>
