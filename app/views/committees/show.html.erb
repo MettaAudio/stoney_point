@@ -28,7 +28,7 @@
   </thead>
 
   <tbody>
-    <% @committee.volunteers.each do |volunteer| %>
+    <% @committee.volunteers.active.each do |volunteer| %>
       <tr>
         <td><%= link_to(volunteer.last_name, volunteer) %></td>
         <td><%= link_to(volunteer.first_name, volunteer) %></td>

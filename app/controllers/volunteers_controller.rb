@@ -5,11 +5,11 @@ class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
   def index
-    @volunteers = Volunteer.working
+    @volunteers = Volunteer.active.working
   end
 
   def address_list
-    @volunteers = Volunteer.all
+    @volunteers = Volunteer.active
   end
 
   def duplicate
@@ -28,10 +28,10 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.receiving_shirts
-    @shirts_paid = Volunteer.number_of_shirts_paid
-    @shirts_unpaid = Volunteer.number_of_shirts_unpaid
-    @shirts_unknown = Volunteer.number_of_shirts_unknown
+    @volunteers = Volunteer.active.receiving_shirts
+    @shirts_paid = Volunteer.active.number_of_shirts_paid
+    @shirts_unpaid = Volunteer.active.number_of_shirts_unpaid
+    @shirts_unknown = Volunteer.active.number_of_shirts_unknown
   end
 
   # GET /volunteers/1

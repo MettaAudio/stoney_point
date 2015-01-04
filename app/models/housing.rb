@@ -6,7 +6,7 @@ class Housing < ActiveRecord::Base
   validates :number_of_bathrooms, presence: true
   validates :volunteer_id, presence: true
 
-  default_scope { includes(:volunteer).order('volunteers.last_name ASC') }
+  default_scope { includes(:volunteer).where('volunteers.is_active = ?', true).order('volunteers.last_name ASC') }
 
   def self.total_number_of_beds
     count = 0

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331190931) do
+ActiveRecord::Schema.define(version: 20150104151045) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20140331190931) do
     t.string   "availability"
     t.string   "sessions"
     t.boolean  "waiver"
+    t.boolean  "is_active"
   end
 
   create_table "work_days", force: true do |t|
