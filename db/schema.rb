@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104151045) do
+ActiveRecord::Schema.define(version: 20150109073455) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150104151045) do
     t.boolean  "golf"
     t.string   "course"
     t.string   "rules"
+    t.boolean  "is_active"
   end
 
   create_table "committees", force: true do |t|
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150104151045) do
     t.datetime "updated_at"
     t.text     "caddie_preferences"
     t.string   "email"
+    t.boolean  "is_active"
   end
 
   create_table "golfers_housings", id: false, force: true do |t|

@@ -1,5 +1,8 @@
 <h1>Caddies</h1>
-<%= link_to 'New Caddie', new_caddie_path if current_user %>
+<% if current_user %>
+  <%= link_to 'New Caddie', new_caddie_path if current_user %> |
+  <%= link_to 'Show all', :show_all => true %>
+<% end %>
 <hr>
 <table class ='table table-striped' id='data_table'>
   <thead>

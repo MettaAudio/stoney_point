@@ -5,7 +5,11 @@ class CaddiesController < ApplicationController
   # GET /caddies
   # GET /caddies.json
   def index
-    @caddies = Caddie.all
+    if params[:show_all] == 'true'
+      @caddies = Caddie.all
+    else
+      @caddies = Caddie.active
+    end
   end
 
   # GET /caddies/1
@@ -80,6 +84,6 @@ class CaddiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caddie_params
-      params.require(:caddie).permit(:first_name, :last_name, :phone, :email, :comments, :golf, :rules, :course)
+      params.require(:caddie).permit(:first_name, :last_name, :phone, :email, :comments, :golf, :rules, :course, :is_active)
     end
 end

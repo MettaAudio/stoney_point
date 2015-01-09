@@ -5,7 +5,11 @@ class GolfersController < ApplicationController
   # GET /golfers
   # GET /golfers.json
   def index
-    @golfers = Golfer.all
+    if params[:show_all] == 'true'
+      @golfers = Golfer.all
+    else
+      @golfers = Golfer.active
+    end
   end
 
   # GET /golfers/1
@@ -86,6 +90,6 @@ class GolfersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def golfer_params
-      params.require(:golfer).permit(:first_name, :last_name, :email, :caddie_preferences)
+      params.require(:golfer).permit(:first_name, :last_name, :email, :caddie_preferences, :is_active)
     end
 end
