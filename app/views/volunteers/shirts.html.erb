@@ -37,11 +37,11 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= shirt_count_for('MS') %></td>
-            <td><%= shirt_count_for('MM') %></td>
-            <td><%= shirt_count_for('ML') %></td>
-            <td><%= shirt_count_for('MXL') %></td>
-            <td><%= shirt_count_for('MXXL') %></td>
+            <td><%= shirt_count_for('MS', @volunteers) %></td>
+            <td><%= shirt_count_for('MM', @volunteers) %></td>
+            <td><%= shirt_count_for('ML', @volunteers) %></td>
+            <td><%= shirt_count_for('MXL', @volunteers) %></td>
+            <td><%= shirt_count_for('MXXL', @volunteers) %></td>
           </tr>
         </tbody>
       </table>
@@ -61,10 +61,10 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= shirt_count_for('WS') %></td>
-            <td><%= shirt_count_for('WM') %></td>
-            <td><%= shirt_count_for('WL') %></td>
-            <td><%= shirt_count_for('WXL') %></td>
+            <td><%= shirt_count_for('WS', @volunteers) %></td>
+            <td><%= shirt_count_for('WM', @volunteers) %></td>
+            <td><%= shirt_count_for('WL', @volunteers) %></td>
+            <td><%= shirt_count_for('WXL', @volunteers) %></td>
           </tr>
         </tbody>
       </table>
