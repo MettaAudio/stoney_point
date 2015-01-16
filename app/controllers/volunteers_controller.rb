@@ -36,10 +36,10 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.active.receiving_shirts
-    @shirts_paid = Volunteer.active.number_of_shirts_paid
-    @shirts_unpaid = Volunteer.active.number_of_shirts_unpaid
-    @shirts_unknown = Volunteer.active.number_of_shirts_unknown
+    @volunteers = Volunteer.all.receiving_shirts
+    @shirts_paid = Volunteer.all.number_of_shirts_paid
+    @shirts_unpaid = Volunteer.all.number_of_shirts_unpaid
+    @shirts_unknown = Volunteer.all.number_of_shirts_unknown
   end
 
   # GET /volunteers/1
