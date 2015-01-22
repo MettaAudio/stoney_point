@@ -3,6 +3,7 @@ class Volunteer < ActiveRecord::Base
   has_and_belongs_to_many :jobs
   has_and_belongs_to_many :shifts
   belongs_to :organization
+  belongs_to :person
   has_many :housing,    dependent: :destroy
   has_many :work_days
 
@@ -10,8 +11,6 @@ class Volunteer < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
-
-  default_scope { order('last_name ASC') }
 
   scope :active, -> { where(:is_active => true) }
   scope :with_committees, -> { joins(:committees) }
@@ -57,7 +56,7 @@ class Volunteer < ActiveRecord::Base
   end
 
   def formatted_number(val)
-    return val if val == nil
+    return val if val == nil || val.is_a?(Integer)
     val == '(864)' ? nil : val.gsub(/\D/, '')
   end
 

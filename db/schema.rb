@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109073455) do
+ActiveRecord::Schema.define(version: 20150120064616) do
 
   create_table "caddies", force: true do |t|
     t.string   "first_name"
@@ -87,6 +87,20 @@ ActiveRecord::Schema.define(version: 20150109073455) do
     t.datetime "updated_at"
   end
 
+  create_table "people", force: true do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "street"
+    t.string  "city"
+    t.string  "state"
+    t.integer "zip"
+    t.integer "phone"
+    t.integer "organization_id"
+  end
+
+  add_index "people", ["organization_id"], name: "index_people_on_organization_id"
+
   create_table "shifts", force: true do |t|
     t.string   "time"
     t.integer  "volunteer_id"
@@ -118,15 +132,6 @@ ActiveRecord::Schema.define(version: 20150109073455) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "volunteers", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip"
-    t.string   "primary_phone"
-    t.string   "secondary_phone"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
@@ -140,7 +145,10 @@ ActiveRecord::Schema.define(version: 20150109073455) do
     t.string   "sessions"
     t.boolean  "waiver"
     t.boolean  "is_active"
+    t.integer  "person_id"
   end
+
+  add_index "volunteers", ["person_id"], name: "index_volunteers_on_person_id"
 
   create_table "work_days", force: true do |t|
     t.datetime "time"
