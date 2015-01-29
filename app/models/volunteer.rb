@@ -9,10 +9,19 @@ class Volunteer < ActiveRecord::Base
 
   accepts_nested_attributes_for :committees
 
-  validates :first_name, presence: true
-  validates :last_name,  presence: true
+  delegate  :first_name,
+            :last_name,
+            :full_name,
+            :street,
+            :city,
+            :state,
+            :zip,
+            :phone,
+            :email,
+            :is_active,
+            to: :person
 
-  scope :active, -> { where(:is_active => true) }
+  scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }
   scope :receiving_shirts, -> { where("shirt_size <> ''") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
@@ -47,19 +56,6 @@ class Volunteer < ActiveRecord::Base
     count
   end
 
-  def primary_phone=(val)
-    write_attribute(:primary_phone, formatted_number(val))
-  end
-
-  def secondary_phone=(val)
-    write_attribute(:secondary_phone, formatted_number(val))
-  end
-
-  def formatted_number(val)
-    return val if val == nil || val.is_a?(Integer)
-    val == '(864)' ? nil : val.gsub(/\D/, '')
-  end
-
   def duplicate!
     duplicate_attributes = {}
     usable_attributes.each do |usable_attribute|
@@ -86,12 +82,5 @@ class Volunteer < ActiveRecord::Base
       "availability",
       "sessions"
     ]
-  end
-
-  def full_name
-    full_name = []
-    full_name << first_name
-    full_name << last_name
-    full_name.join(' ')
   end
 end

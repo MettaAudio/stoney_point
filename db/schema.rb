@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150120064616) do
     t.integer "zip"
     t.integer "phone"
     t.integer "organization_id"
+    t.boolean "is_active"
   end
 
   add_index "people", ["organization_id"], name: "index_people_on_organization_id"
@@ -144,7 +145,6 @@ ActiveRecord::Schema.define(version: 20150120064616) do
     t.string   "availability"
     t.string   "sessions"
     t.boolean  "waiver"
-    t.boolean  "is_active"
     t.integer  "person_id"
   end
 

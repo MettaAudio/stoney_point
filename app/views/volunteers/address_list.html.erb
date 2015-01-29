@@ -29,7 +29,7 @@
         <td><%= link_to(volunteer.first_name, volunteer) %></td>
         <td><%= volunteer.organization.try(:name) %></td>
         <td><%= volunteer.street %></td>
-        <td><%= build_phone_number(volunteer.primary_phone) %></td>
+        <td><%= build_phone_number(volunteer.phone) %></td>
         <td><%= mail_to volunteer.email, volunteer.email, :encode => "javascript" %></td>
         <td><%= committees_for(volunteer) %></td>
         <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small' %></td>

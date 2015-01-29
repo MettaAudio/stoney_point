@@ -11,6 +11,7 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
       t.integer :zip
       t.integer :phone
       t.integer :organization_id
+      t.boolean :is_active
     end
       # add link
       add_index       :people, :organization_id
@@ -29,7 +30,8 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
           :zip             => volunteer.zip,
           :phone           => volunteer.primary_phone,
           :email           => volunteer.email,
-          :organization_id => volunteer.organization_id
+          :organization_id => volunteer.organization_id,
+          :is_active       => volunteer.is_active
           )
 
         person.save!
@@ -47,6 +49,7 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
       remove_column :volunteers, :primary_phone, :integer
       remove_column :volunteers, :secondary_phone, :integer
       remove_column :volunteers, :email, :string
+      remove_column :volunteers, :is_active, :boolean
   end
 
   def down
@@ -60,6 +63,7 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
       add_column :volunteers, :primary_phone, :integer
       add_column :volunteers, :secondary_phone, :integer
       add_column :volunteers, :email, :string
+      add_column :volunteers, :is_active, :boolean
     # migrate data
 
     Person.all.each do |person|
@@ -73,7 +77,8 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
           :zip             => person.zip,
           :primary_phone   => person.phone,
           :email           => person.email,
-          :organization_id => person.organization_id
+          :organization_id => person.organization_id,
+          :is_active       => person.is_active
         )
     end
 
