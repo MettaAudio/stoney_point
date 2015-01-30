@@ -11,6 +11,7 @@ gem 'bootstrap-sass'
 gem 'simple_form', '>= 3.1.0.rc2'
 gem 'thin'
 gem 'devise'
+gem 'slim'
 
 group :production do
   gem 'pg'

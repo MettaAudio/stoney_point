@@ -1,9 +1,7 @@
 class VolunteersController < ApplicationController
-  before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
+  before_action :set_volunteer, only: [:show, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  # GET /volunteers
-  # GET /volunteers.json
   def index
     if params[:show_all] == 'true'
       @volunteers = Volunteer.all
@@ -42,18 +40,18 @@ class VolunteersController < ApplicationController
     @shirts_unknown = Volunteer.all.number_of_shirts_unknown
   end
 
-  # GET /volunteers/1
-  # GET /volunteers/1.json
   def show
   end
 
-  # GET /volunteers/new
   def new
     @volunteer = Volunteer.new
   end
 
-  # GET /volunteers/1/edit
   def edit
+    @volunteer_form = VolunteerForm.new(
+      page_params: params,
+      form_params: params["volunteer_form"]
+    )
     @committees = Committee.all
     @committee = Committee.new
     @job = Job.new
@@ -62,8 +60,6 @@ class VolunteersController < ApplicationController
     @housing = Housing.new
   end
 
-  # POST /volunteers
-  # POST /volunteers.json
   def create
     @volunteer = Volunteer.new(volunteer_params)
 
@@ -78,13 +74,21 @@ class VolunteersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /volunteers/1
-  # PATCH/PUT /volunteers/1.json
   def update
-    if @volunteer.update(volunteer_params)
+    @volunteer_form = VolunteerForm.new(
+      page_params: params,
+      form_params: params[:volunteer_form]
+    )
+    if @volunteer_form.save
       redirect_to :back, notice: 'Volunteer was successfully updated.'
     else
-      render action: 'edit'
+      @committees = Committee.all
+      @committee = Committee.new
+      @job = Job.new
+      @shift = Shift.new
+      @organization = Organization.new
+      @housing = Housing.new
+      render action: 'edit', notice: "There was a problem saving."
     end
   end
 
@@ -140,8 +144,6 @@ class VolunteersController < ApplicationController
     end
   end
 
-  # DELETE /volunteers/1
-  # DELETE /volunteers/1.json
   def destroy
     @volunteer.destroy
     respond_to do |format|

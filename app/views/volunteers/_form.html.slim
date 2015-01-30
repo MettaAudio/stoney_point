@@ -1,0 +1,65 @@
+= form_for(@volunteer_form, url: volunteer_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+
+  .form-group
+    = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+  .form-group
+    = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+  .form-group
+    = f.text_field :street, class: "form-control", placeholder: "Street Address"
+  .form-group
+    = f.text_field :city, class: "form-control", value: (f.object.city || 'Greenwood'), placeholder: "City"
+  .form-group
+    = f.text_field :state, class: "form-control", value: (f.object.state || 'SC'), placeholder: "State"
+  .form-group
+    = f.text_field :zip, class: "form-control", value: (f.object.zip || 29649), placeholder: "Zipcode"
+  .form-group
+    = f.text_field :phone, class: "form-control", value: phone_placeholder(@volunteer_form.volunteer)
+  .form-group
+    = f.text_field :email, class: "form-control", placeholder: "Email Address"
+  .form-group
+    .checkbox
+      = f.label :waiver do
+        = f.check_box :waiver
+        | Waiver
+  .form-group
+    .checkbox
+      = f.label :is_active do
+        = f.check_box :is_active
+        | Is Active?
+  hr
+  .form-group
+    = f.label :shirt_size
+    = f.select :shirt_size, shirt_sizes, {}, class: "form-control"
+  .form-group
+    = f.label :number_of_shirts
+    = f.number_field :number_of_shirts, class: "form-control"
+  .form-group
+    .checkbox
+      = f.label :paid do
+        = f.check_box :paid
+        | Paid?
+  hr
+  .form-group
+    .checkbox
+      = f.label :physical_activity do
+        = f.check_box :physical_activity
+        | Physical Activity?
+  .form-group
+    .checkbox
+      = f.label :golfer do
+        = f.check_box :golfer
+        | Golfer?
+  hr
+  .form-group
+    = f.label :availability
+    = f.select :availability,  availability, {}, class: "form-control"
+  .form-group
+    = f.label :sessions
+    = f.select :sessions,  sessions, {}, class: "form-control"
+  hr
+  .form-group
+    =f.label :comments
+    = f.text_area :comments, class: 'form-control'
+
+  form-actions
+    = f.button :submit, :class => 'btn btn-primary btn-large'
