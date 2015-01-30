@@ -2,7 +2,9 @@
 
 <div class="row">
   <div class="col-xs-6">
-    <%= render 'form' %>
+    <%= form_for(@volunteer_form, url: volunteer_url, method: :patch, html: {class: 'form-vertical' }) do |f| %>
+      <%= render partial: 'form', locals: {f: f} %>
+    <%- end %>
   </div>
   <div class="col-xs-6">
     <%= simple_form_for(@volunteer_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_committee_path, method: 'post') do |f| %>

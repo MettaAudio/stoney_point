@@ -24,13 +24,13 @@ class VolunteerForm < FormBuilder
               :comments,
               :id
 
-  def initialize(args)
-    @page_params = args[:page_params]
+  def initialize(args={})
+    @page_params = args[:page_params] || {}
     @form_params = args[:form_params] || {}
     @volunteer   = find_volunteer
     @person      = find_person
-    create_person_methods
     create_volunteer_methods
+    create_person_methods
   end
 
   def save
@@ -49,7 +49,7 @@ class VolunteerForm < FormBuilder
 
   def find_person
     @_person ||= begin
-      volunteer.person || Person.new
+      volunteer.person || volunteer.person = Person.new
     end
   end
 

@@ -44,7 +44,7 @@ class VolunteersController < ApplicationController
   end
 
   def new
-    @volunteer = Volunteer.new
+    @volunteer_form = VolunteerForm.new
   end
 
   def edit
@@ -61,16 +61,15 @@ class VolunteersController < ApplicationController
   end
 
   def create
-    @volunteer = Volunteer.new(volunteer_params)
+    @volunteer_form = VolunteerForm.new(
+      page_params: params,
+      form_params: params["volunteer_form"]
+    )
 
-    respond_to do |format|
-      if @volunteer.save
-        format.html { redirect_to @volunteer, notice: 'Volunteer was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @volunteer }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @volunteer.errors, status: :unprocessable_entity }
-      end
+    if @volunteer_form.save
+      redirect_to @volunteer_form.volunteer, notice: 'Volunteer was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
