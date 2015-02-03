@@ -1,5 +1,8 @@
 class Person < ActiveRecord::Base
   has_one :volunteer
+  has_one :caddie
+  has_one :golfer
+  has_one :housing
   belongs_to :organization
 
   validates :first_name, presence: true

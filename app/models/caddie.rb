@@ -3,18 +3,14 @@ class Caddie < ActiveRecord::Base
   belongs_to :organization
   belongs_to :person
 
-  # scope :active, -> { where(:is_active => true) }
+  delegate  :first_name,
+            :last_name,
+            :full_name,
+            :phone,
+            :email,
+            :is_active,
+            to: :person
 
-  def full_name
-    [first_name, last_name].join(' ')
-  end
-
-  # def phone=(val)
-  #   write_attribute(:phone, formatted_number(val))
-  # end
-
-  # def formatted_number(val)
-  #   return val if val == nil
-  #   val == '(864)' ? nil : val.gsub(/\D/, '')
-  # end
+  default_scope { includes(:person).order('people.last_name ASC') }
+  scope :active, -> { includes(:person).where('people.is_active = ?', true) }
 end

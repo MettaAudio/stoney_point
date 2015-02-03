@@ -3,13 +3,13 @@ class Golfer < ActiveRecord::Base
   has_and_belongs_to_many :housings
   belongs_to :person
 
-  # validates :first_name, presence: true
-  # validates :last_name,  presence: true
+  delegate  :first_name,
+            :last_name,
+            :full_name,
+            :email,
+            :is_active,
+            to: :person
 
-  # default_scope { order('last_name ASC') }
-  # scope :active, -> { where(:is_active => true) }
-
-  def full_name
-    [first_name, last_name].join(' ')
-  end
+  default_scope { includes(:person).order('people.last_name ASC') }
+  scope :active, -> { includes(:person).where('people.is_active = ?', true) }
 end

@@ -23,8 +23,8 @@
   <tbody>
     <% @housings.each do |housing| %>
       <tr>
-        <td><%= link_to housing.volunteer.last_name, housing.volunteer %></td>
-        <td><%= link_to housing.volunteer.first_name, housing.volunteer %></td>
+        <td><%= link_to housing.person.last_name, housing.person.volunteer %></td>
+        <td><%= link_to housing.person.first_name, housing.person.volunteer %></td>
         <td><%= housing.available.strftime('%A') %></td>
         <td><%= housing.number_of_bedrooms %></td>
         <td><%= housing.number_of_bathrooms %></td>
