@@ -33,7 +33,7 @@
   <div class="col-xs-6">
     <%= simple_form_for(@volunteer_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_organization_path, method: 'post') do |f| %>
       <%= f.input :id, :as => :hidden, :input_html => { :value => @volunteer_form.volunteer.id } %>
-      <%= f.association :organization, :prompt => 'Choose One' %>
+      <p>Org here</p>
       <%= f.button :submit, 'Update' %>
       <a href="#new_organization_modal" role="button" class="btn btn-mini" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> New Organization</a>
     <% end %>

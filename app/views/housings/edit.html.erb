@@ -1,4 +1,4 @@
-<h1>Editing housing for <%= link_to @housing.volunteer.full_name, @housing.volunteer %></h1>
+<h1>Editing housing for <%= link_to @housing.person.full_name, @housing.person.volunteer %></h1>
 
 <%= simple_form_for(@housing, html: {class: 'form-vertical' }) do |f| %>
   <div class="form-inputs">
