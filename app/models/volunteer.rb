@@ -19,6 +19,7 @@ class Volunteer < ActiveRecord::Base
             :phone,
             :email,
             :is_active,
+            :organization,
             to: :person
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }

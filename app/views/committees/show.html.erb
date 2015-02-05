@@ -30,8 +30,8 @@
   <tbody>
     <% @committee.volunteers.active.each do |volunteer| %>
       <tr>
-        <td><%= link_to(volunteer.last_name, volunteer) %></td>
-        <td><%= link_to(volunteer.first_name, volunteer) %></td>
+        <td><%= link_to(volunteer.last_name, volunteer.person) %></td>
+        <td><%= link_to(volunteer.first_name, volunteer.person) %></td>
         <td><%= volunteer.physical_activity ? 'Y' : 'N' %></td>
         <td><%= volunteer.golfer ? 'Y' : 'N' %></td>
         <td><%= volunteer.availability %></td>
@@ -41,7 +41,7 @@
         <td><%= shifts_for(volunteer) %></td>
         <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
         <% if current_user %>
-          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_person_path(volunteer.person), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>

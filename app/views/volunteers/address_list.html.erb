@@ -25,16 +25,16 @@
   <tbody>
     <% @volunteers.each do |volunteer| %>
       <tr>
-        <td><%= link_to(volunteer.last_name, volunteer) %></td>
-        <td><%= link_to(volunteer.first_name, volunteer) %></td>
+        <td><%= link_to(volunteer.last_name, volunteer.person) %></td>
+        <td><%= link_to(volunteer.first_name, volunteer.person) %></td>
         <td><%= volunteer.organization.try(:name) %></td>
         <td><%= volunteer.street %></td>
         <td><%= build_phone_number(volunteer.phone) %></td>
         <td><%= mail_to volunteer.email, volunteer.email, :encode => "javascript" %></td>
         <td><%= committees_for(volunteer) %></td>
-        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small' %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer.person, :class => 'btn btn-small' %></td>
         <% if current_user %>
-          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_person_path(volunteer.person), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>
