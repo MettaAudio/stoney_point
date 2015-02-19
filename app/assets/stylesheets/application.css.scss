@@ -11,3 +11,18 @@
  *= require_self
  *= require_tree .
  */
+
+
+input {
+  &.city {
+    width: 50%;
+  }
+  &.state {
+    width: 15%;
+    margin-left: 5%;
+  }
+  &.zip {
+    width: 25%;
+    margin-left: 5%;
+  }
+}

@@ -12,9 +12,26 @@ class PeopleController < ApplicationController
   end
 
   def edit
+    @person_form = PersonForm.new(
+      page_params: params
+    )
+    @committees   = Committee.all
+    @committee    = Committee.new
+    @job          = Job.new
+    @shift        = Shift.new
+    @organization = Organization.new
+    @housing      = Housing.new
   end
 
   def update
+    @person_form = PersonForm.new(
+      page_params: params
+    )
+    if @person_form.update
+      redirect_to @person_form.person, notice: 'Person was successfully created.'
+    else
+      render action: 'edit'
+    end
   end
 
   def destroy

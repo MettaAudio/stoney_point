@@ -1,0 +1,11 @@
+.row
+  .col-xs-12
+    h1
+      ' Editing
+      '
+      = @person_form.person.full_name
+
+.row
+  .col-xs-12
+    = form_for(@person_form, url: person_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'form', locals: {f: f}

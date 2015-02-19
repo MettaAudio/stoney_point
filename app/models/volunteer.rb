@@ -4,7 +4,6 @@ class Volunteer < ActiveRecord::Base
   has_and_belongs_to_many :shifts
   belongs_to :organization
   belongs_to :person
-  has_many :housing,    dependent: :destroy
   has_many :work_days
 
   accepts_nested_attributes_for :committees

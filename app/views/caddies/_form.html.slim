@@ -1,0 +1,35 @@
+
+- if @person_form.caddie.new_record?
+  hr
+  .row
+    .col-xs-12
+      button.btn type="button"  class="js-caddie-btn"
+        span.glyphicon.glyphicon-plus
+        |  Caddie
+
+br
+.js-caddie-form data-caddie-present="#{@person_form.caddie.persisted?}"
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Caddie
+    .panel-body
+      = f.fields_for @person_form.caddie do |caddie|
+        .row
+          .col-xs-4
+            .form-group
+              .checkbox
+                = caddie.label :golf do
+                  = caddie.check_box :golf
+                  | Golf?
+          .col-xs-4
+            .form-group
+              = caddie.label "Do they know the course?"
+              = caddie.select :course, courses_list, { prompt: "Choose one..." }, class: "form-control"
+          .col-xs-4
+            .form-group
+              = caddie.label "Do they know the rules?"
+              = caddie.select :rules, rules_list, { prompt: "Choose one..." }, class: "form-control"
+        hr
+        .form-group
+          = caddie.label :comments
+          = caddie.text_area :comments, class: 'form-control'

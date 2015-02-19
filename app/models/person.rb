@@ -1,8 +1,8 @@
 class Person < ActiveRecord::Base
-  has_one :volunteer
-  has_one :caddie
-  has_one :golfer
-  has_many :housings
+  has_one :volunteer, dependent: :destroy
+  has_one :caddie, dependent: :destroy
+  has_one :golfer, dependent: :destroy
+  has_many :housings, dependent: :destroy
   belongs_to :organization
 
   validates :first_name, presence: true
