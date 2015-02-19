@@ -1,7 +1,7 @@
 <%# add navigation links to this file %>
-<li><%= link_to 'Volunteers', volunteers_address_list_path %></li>
-<li><%= link_to 'Committees', committees_path %></li>
-<li><%= link_to 'Housing', housings_path %></li>
-<li><%= link_to 'Shirts', shirts_path %></li>
-<li><%= link_to 'Golfers', golfers_path %></li>
-<li><%= link_to 'Caddies', caddies_path %></li>
+<li class="<%= nav_class('volunteers', request.path) %>"><%= link_to 'Volunteers', volunteers_address_list_path %></li>
+<li class="<%= nav_class('committees', request.path) %>"><%= link_to 'Committees', committees_path %></li>
+<li class="<%= nav_class('housing', request.path) %>"><%= link_to 'Housing', housings_path %></li>
+<li class="<%= nav_class('shirts', request.path) %>"><%= link_to 'Shirts', shirts_path %></li>
+<li class="<%= nav_class('golfers', request.path) %>"><%= link_to 'Golfers', golfers_path %></li>
+<li class="<%= nav_class('caddies', request.path) %>"><%= link_to 'Caddies', caddies_path %></li>
