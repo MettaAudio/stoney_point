@@ -9,7 +9,7 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.integer :zip
-      t.integer :phone
+      t.string :phone
       t.integer :organization_id
       t.boolean :is_active
     end
@@ -47,8 +47,8 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
     remove_column :volunteers, :city, :string
     remove_column :volunteers, :state, :string
     remove_column :volunteers, :zip, :integer
-    remove_column :volunteers, :primary_phone, :integer
-    remove_column :volunteers, :secondary_phone, :integer
+    remove_column :volunteers, :primary_phone, :string
+    remove_column :volunteers, :secondary_phone, :string
     remove_column :volunteers, :email, :string
     remove_column :volunteers, :organization_id, :boolean
     remove_column :volunteers, :is_active, :boolean
@@ -62,8 +62,8 @@ class CreatePersonAndMigrateVolunteers < ActiveRecord::Migration
     add_column :volunteers, :city, :string
     add_column :volunteers, :state, :string
     add_column :volunteers, :zip, :integer
-    add_column :volunteers, :primary_phone, :integer
-    add_column :volunteers, :secondary_phone, :integer
+    add_column :volunteers, :primary_phone, :string
+    add_column :volunteers, :secondary_phone, :string
     add_column :volunteers, :email, :string
     add_column :volunteers, :organization_id, :boolean
     add_column :volunteers, :is_active, :boolean
