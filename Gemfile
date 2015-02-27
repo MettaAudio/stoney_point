@@ -11,6 +11,7 @@ gem 'simple_form', '>= 3.1.0.rc2'
 gem 'thin'
 gem 'devise'
 gem 'slim'
+gem 'chosen-sass-bootstrap-rails'
 
 group :production do
   gem 'pg'

@@ -9,7 +9,7 @@ h1 Editing caddie
         = select_tag :organization,
           options_from_collection_for_select(Organization.all, "id", "name", selected: @person_form.person.organization),
           include_blank: true,
-          class: "form-control",
+          class: "form-control chosen-select",
           id: "person_form_person_organization_id",
           name: "person_form[person_organization_id]"
 

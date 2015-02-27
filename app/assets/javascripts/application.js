@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require jquery.dataTables.js
 //= require dataTables.bootstrap.js
+//= require chosen-jquery
 //= require_tree .

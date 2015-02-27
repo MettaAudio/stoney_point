@@ -4,7 +4,7 @@ h3 Additional Volunteer Information
   .col-xs-6
     = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_committee_path, method: 'post') do |f|
       = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
-      = f.association :committees
+      = f.association :committees, :input_html => { :class => "chosen-select" }
       = f.button :submit, 'Update', class: 'btn btn-default'
       | &nbsp;&nbsp;&nbsp;
       a href="#new_committee_modal" role="button" class="btn btn-xs" data-toggle="modal"
@@ -14,7 +14,7 @@ h3 Additional Volunteer Information
   .col-xs-6
     = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_job_path, method: 'post') do |f|
       = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
-      = f.association :jobs
+      = f.association :jobs, :input_html => { :class => "chosen-select" }
       = f.button :submit, 'Update', class: 'btn btn-default'
       | &nbsp;&nbsp;&nbsp;
       a href="#new_job_modal" role="button" class="btn btn-xs" data-toggle="modal"
@@ -26,7 +26,7 @@ br
   .col-xs-6
     = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_shift_path, method: 'post') do |f|
       = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
-      = f.association :shifts, label_method: :time
+      = f.association :shifts, label_method: :time, :input_html => { :class => "chosen-select" }
       = f.button :submit, 'Update', class: 'btn btn-default'
       | &nbsp;&nbsp;&nbsp;
       a href="#new_shift_modal" role="button" class="btn btn-xs" data-toggle="modal"
@@ -36,7 +36,7 @@ br
   .col-xs-6
     = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_organization_path, method: 'post') do |f|
       = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
-      = f.association :organization
+      = f.association :organization, :input_html => { :class => "chosen-select" }
       = f.button :submit, 'Update', class: 'btn btn-default'
       | &nbsp;&nbsp;&nbsp;
       a href="#new_organization_modal" role="button" class="btn btn-xs" data-toggle="modal"
