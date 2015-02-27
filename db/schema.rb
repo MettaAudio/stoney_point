@@ -11,20 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203064333) do
+ActiveRecord::Schema.define(version: 20150120064616) do
 
   create_table "caddies", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
     t.integer  "golfer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
     t.text     "comments"
+    t.integer  "organization_id"
     t.boolean  "golf"
     t.string   "course"
     t.string   "rules"
-    t.integer  "person_id"
+    t.boolean  "is_active"
   end
-
-  add_index "caddies", ["person_id"], name: "index_caddies_on_person_id"
 
   create_table "committees", force: true do |t|
     t.string   "name"
@@ -38,13 +41,14 @@ ActiveRecord::Schema.define(version: 20150203064333) do
   end
 
   create_table "golfers", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "caddie_preferences"
-    t.integer  "person_id"
+    t.string   "email"
+    t.boolean  "is_active"
   end
-
-  add_index "golfers", ["person_id"], name: "index_golfers_on_person_id"
 
   create_table "golfers_housings", id: false, force: true do |t|
     t.integer "housing_id"
@@ -58,15 +62,13 @@ ActiveRecord::Schema.define(version: 20150203064333) do
     t.date     "available"
     t.integer  "number_of_bedrooms"
     t.string   "number_of_bathrooms"
+    t.integer  "volunteer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "pets"
     t.boolean  "smoking"
     t.text     "comments"
-    t.integer  "person_id"
   end
-
-  add_index "housings", ["person_id"], name: "index_housings_on_person_id"
 
   create_table "jobs", force: true do |t|
     t.string   "title"
@@ -133,6 +135,7 @@ ActiveRecord::Schema.define(version: 20150203064333) do
   create_table "volunteers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
     t.boolean  "paid"
     t.boolean  "physical_activity"
     t.string   "shirt_size"
