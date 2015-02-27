@@ -1,0 +1,30 @@
+.row.well
+  .col-xs-4
+    h5 Shirts
+    p
+      = volunteer.shirt_size.present? ? "#{volunteer.number_of_shirts} #{volunteer.shirt_size}" : 'Not specified'
+      |&nbsp;
+      |&mdash;
+      |&nbsp;
+      = volunteer.paid ? 'Paid' : 'Not Paid'
+
+  .col-xs-2
+    h5 Physical Activity?
+    p = volunteer.physical_activity ? 'Yes' : 'No'
+
+  .col-xs-2
+    h5 Golfer?
+    p = volunteer.golfer ? 'Yes' : 'No'
+
+  .col-xs-2
+    h5 Availability?
+    p = volunteer.availability
+
+  .col-xs-2
+    h5 Session?
+    p = volunteer.sessions
+
+  - if volunteer.comments.present?
+    .col-xs-12
+      h5 Comments
+      = volunteer.comments

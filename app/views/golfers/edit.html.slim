@@ -1,0 +1,16 @@
+h1 Editing golfer
+.row
+  .col-xs-12
+    = form_for(@person_form, url: golfer_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'people/form', locals: {f: f}
+      = render partial: 'form', locals: {f: f}
+      = f.simple_fields_for @golfer do |f|
+        = f.input :id, :as => :hidden, :input_html => { :value => @golfer.id }
+        = f.association :caddies, :label_method => :full_name, input_html: { class: 'chosen-select' }
+        br
+        form-actions
+          = f.button :submit, 'Save', class: "btn btn-primary"
+
+
+= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, @golfer, :class => 'btn btn-small'
+= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, golfers_path, :class => 'btn btn-small'

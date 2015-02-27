@@ -9,5 +9,21 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require chosen_bootstrap
  *= require_tree .
  */
+
+
+input {
+  &.city {
+    width: 50%;
+  }
+  &.state {
+    width: 15%;
+    margin-left: 5%;
+  }
+  &.zip {
+    width: 25%;
+    margin-left: 5%;
+  }
+}

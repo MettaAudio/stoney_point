@@ -1,0 +1,22 @@
+h1 Editing housing for #{@housing.person.full_name}
+.row
+  .col-xs-12
+    = form_for(@person_form, url: housing_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'people/form', locals: {f: f}
+      .row
+        .col-xs-12
+          form-actions
+            = f.button "Save", :class => 'btn btn-primary btn-large'
+
+hr
+.row
+  .col-xs-12
+    h3 Housing Details
+    = simple_form_for(@housing, html: {class: 'form-vertical' }) do |f|
+      .form-inputs
+        = render :partial => "form", locals: {f: f}
+      .form-actions
+        = f.button :submit
+
+= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, @housing, :class => 'btn btn-small'
+= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, housings_path, :class => 'btn btn-small'

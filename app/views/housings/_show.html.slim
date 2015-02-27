@@ -1,0 +1,30 @@
+.row.well
+  .col-xs-4
+    h5 Date Available:
+    p = house.available.strftime('%A, %B %e %Y')
+
+  .col-xs-2
+    h5 Bedrooms:
+    p = house.number_of_bedrooms
+
+  .col-xs-2
+    h5 Bathrooms:
+    p = house.number_of_bathrooms
+
+  .col-xs-2
+    h5 Pets?
+    p = house.pets ? "Yes" : "No"
+
+  .col-xs-2
+    h5 Smoking?
+    p = house.smoking ? "Yes" : "No"
+
+  - if house.comments.present?
+    .col-xs-12
+      h5 Comments:
+      p = house.comments
+
+  - if house.golfers.present?
+    h5 Golfers:
+    p
+      = house.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe

@@ -1,0 +1,23 @@
+h1 Editing caddie
+.row
+  .col-xs-12
+    = form_for(@person_form, url: caddie_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'people/form', locals: { f: f }
+      = render partial: 'form', locals: { f: f }
+      .form-group
+        = f.label :organization,  for: "person_form_person_organization_id"
+        = select_tag :organization,
+          options_from_collection_for_select(Organization.all, "id", "name", selected: @person_form.person.organization),
+          include_blank: true,
+          class: "form-control chosen-select",
+          id: "person_form_person_organization_id",
+          name: "person_form[person_organization_id]"
+
+      .form_actions
+        = f.button :save, class: 'btn btn-primary'
+
+.row
+  .col-xs-12
+    = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, @caddie, :class => 'btn btn-small'
+    = link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, caddies_path, :class => 'btn btn-small'
+

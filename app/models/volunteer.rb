@@ -4,22 +4,23 @@ class Volunteer < ActiveRecord::Base
   has_and_belongs_to_many :shifts
   belongs_to :organization
   belongs_to :person
-  has_many :housing,    dependent: :destroy
   has_many :work_days
 
   accepts_nested_attributes_for :committees
 
-  # delegate  :first_name,
-  #           :last_name,
-  #           :full_name,
-  #           :street,
-  #           :city,
-  #           :state,
-  #           :zip,
-  #           :phone,
-  #           :email,
-  #           :is_active,
-  #           to: :person
+  delegate  :first_name,
+            :last_name,
+            :full_name,
+            :street,
+            :city,
+            :state,
+            :zip,
+            :phone,
+            :email,
+            :is_active,
+            :organization,
+            :organization_id,
+            to: :person
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }

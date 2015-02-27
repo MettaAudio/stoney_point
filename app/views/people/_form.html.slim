@@ -1,0 +1,31 @@
+.row
+  .col-xs-6
+    .form-group
+      = f.text_field :person_first_name, class: "form-control", placeholder: "First Name"
+  .col-xs-6
+    .form-group
+      = f.text_field :person_last_name, class: "form-control", placeholder: "Last Name"
+.row
+  .col-xs-12
+    .form-group
+      = f.text_field :person_street, class: "form-control", placeholder: "Street Address"
+.form-group
+  = f.text_field :person_city, class: "form-control pull-left city", value: (f.object.person_city || 'Greenwood'), placeholder: "City"
+  = f.text_field :person_state, class: "form-control pull-left state", value: (f.object.person_state || 'SC'), placeholder: "State"
+  = f.text_field :person_zip, class: "form-control pull-left zip", value: (f.object.person_zip || 29649), placeholder: "Zipcode"
+  .clearfix
+.row
+  .col-xs-4
+    .form-group
+      = f.text_field :person_phone, class: "form-control", value: phone_placeholder(@person_form.person)
+  .col-xs-8
+    .form-group
+      = f.text_field :person_email, class: "form-control", placeholder: "Email Address"
+.row
+  .col-xs-12
+    .form-group
+      .checkbox
+        = f.label :person_is_active do
+          = f.check_box :person_is_active
+          | Is Active?
+

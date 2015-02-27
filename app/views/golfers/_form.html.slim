@@ -1,0 +1,6 @@
+
+= f.fields_for @person_form.golfer do |golfer|
+  .row
+    .col-xs-12
+      .form-group
+        = golfer.text_field :caddie_preferences, class: "form-control", placeholder: "Caddie Preferences"

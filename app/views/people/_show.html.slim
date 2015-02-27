@@ -1,0 +1,24 @@
+.row
+  .col-xs-12
+    h1
+      = person.full_name
+      small
+        '
+        = person.organization.try(:name)
+        '
+        = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_path, :class => 'btn btn-small' if current_user
+.row
+  .col-xs-4
+    h5 Address
+    p
+      = person.street
+      br
+      = "#{[person.city, person.state].compact.join(' ')} #{person.zip}"
+
+  .col-xs-4
+    h5 Phone
+    p = build_phone_number(person.phone)
+
+  .col-xs-4
+    h5 Email
+    p = mail_to person.email, person.email, :encode => "javascript"

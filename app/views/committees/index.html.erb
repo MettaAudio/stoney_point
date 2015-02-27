@@ -1,9 +1,10 @@
-<h1>committees</h1>
+<h1>Committees</h1>
+<%= link_to 'New Committee', new_committee_path if current_user %>
 <hr>
 <table class ='table table-striped'>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Committee Name</th>
       <% if current_user %>
         <th></th>
         <th></th>
@@ -26,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Committee', new_committee_path if current_user %>

@@ -2,32 +2,30 @@ class CaddiesController < ApplicationController
   before_action :set_caddie, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  # GET /caddies
-  # GET /caddies.json
   def index
     if params[:show_all] == 'true'
-      @caddies = Caddie.all
+      @caddies = Caddie.by_last_name
     else
-      @caddies = Caddie.active
+      @caddies = Caddie.active.by_last_name
     end
   end
 
-  # GET /caddies/1
-  # GET /caddies/1.json
   def show
   end
 
-  # GET /caddies/new
   def new
-    @caddie = Caddie.new
+    @person_form = PersonForm.new()
   end
 
-  # GET /caddies/1/edit
   def edit
+    @person = @caddie.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      caddie:      @caddie,
+      person:      @person
+    )
   end
 
-  # POST /caddies
-  # POST /caddies.json
   def create
     @caddie = Caddie.new(caddie_params)
 
@@ -38,34 +36,29 @@ class CaddiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /caddies/1
-  # PATCH/PUT /caddies/1.json
   def update
-    respond_to do |format|
-      if @caddie.update(caddie_params)
-        format.html { redirect_to @caddie, notice: 'Caddie was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @caddie.errors, status: :unprocessable_entity }
-      end
+    @person = @caddie.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      caddie:      @caddie,
+      person:      @person
+    )
+    if @person_form.update
+       redirect_to @caddie, notice: 'Caddie was successfully updated.'
+    else
+       render action: 'edit'
     end
   end
 
-  # DELETE /caddies/1
-  # DELETE /caddies/1.json
   def destroy
-    @caddie.destroy
-    respond_to do |format|
-      format.html { redirect_to caddies_url }
-      format.json { head :no_content }
-    end
+    @caddie.person.destroy
+    redirect_to caddies_url
   end
 
   def add_organization
     organization_id = params[:caddie][:organization_id]
     @caddie = Caddie.find(association_params[:id])
-    if @caddie.update_attributes(:organization_id => organization_id )
+    if @caddie.person.update_attributes(:organization_id => organization_id )
       redirect_to :back, notice: "#{@caddie.full_name}'s organization was updated."
     else
       redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."

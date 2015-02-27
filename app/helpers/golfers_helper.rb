@@ -4,9 +4,9 @@ module GolfersHelper
     return unless golfer.housings
     houses = []
     golfer.housings.each do |house|
-      houses << link_to(house.volunteer.full_name, house.volunteer)
+      houses << link_to(house.person.full_name, house.person.volunteer)
     end
-    houses.join(', ').html_safe
+    houses.join(' ').html_safe
   end
 
   def caddies_for(golfer)
@@ -15,6 +15,6 @@ module GolfersHelper
     golfer.caddies.each do |caddie|
       caddies << link_to(caddie.full_name, caddie)
     end
-    caddies.join(', ').html_safe
+    caddies.join(' ').html_safe
   end
 end

@@ -1,0 +1,119 @@
+hr
+h3 Additional Volunteer Information
+.row
+  .col-xs-6
+    = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_committee_path, method: 'post') do |f|
+      = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
+      = f.association :committees, :input_html => { :class => "chosen-select" }
+      = f.button :submit, 'Update', class: 'btn btn-default'
+      | &nbsp;&nbsp;&nbsp;
+      a href="#new_committee_modal" role="button" class="btn btn-xs" data-toggle="modal"
+        span.glyphicon.glyphicon-plus
+        |  New Committee
+
+  .col-xs-6
+    = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_job_path, method: 'post') do |f|
+      = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
+      = f.association :jobs, :input_html => { :class => "chosen-select" }
+      = f.button :submit, 'Update', class: 'btn btn-default'
+      | &nbsp;&nbsp;&nbsp;
+      a href="#new_job_modal" role="button" class="btn btn-xs" data-toggle="modal"
+        span.glyphicon.glyphicon-plus
+        |  New Job
+
+br
+.row
+  .col-xs-6
+    = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_shift_path, method: 'post') do |f|
+      = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
+      = f.association :shifts, label_method: :time, :input_html => { :class => "chosen-select" }
+      = f.button :submit, 'Update', class: 'btn btn-default'
+      | &nbsp;&nbsp;&nbsp;
+      a href="#new_shift_modal" role="button" class="btn btn-xs" data-toggle="modal"
+        span.glyphicon.glyphicon-plus
+        |  New Shift
+
+  .col-xs-6
+    = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_organization_path, method: 'post') do |f|
+      = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
+      = f.association :organization, :input_html => { :class => "chosen-select" }
+      = f.button :submit, 'Update', class: 'btn btn-default'
+      | &nbsp;&nbsp;&nbsp;
+      a href="#new_organization_modal" role="button" class="btn btn-xs" data-toggle="modal"
+        span.glyphicon.glyphicon-plus
+        |  New Organization
+
+br
+.row
+  .col-xs-12
+    / Button to trigger modal
+    a href="#myModal" role="button" class="btn btn-default" data-toggle="modal"
+      span.glyphicon.glyphicon-home
+      | Add Housing
+
+
+/ Housing Modal
+#myModal.modal.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h3#myModalLabel Add Housing
+      = simple_form_for(@housing, html: {class: 'form-vertical' }, :url => add_volunteer_housing_path, method: 'post') do |f|
+        .modal-body
+          = f.input :volunteer_id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
+          = render :partial => "housings/form", locals: {f: f}
+        .modal-footer
+          button.btn aria-hidden="true" data-dismiss="modal"  Close
+          = f.button :submit, class: 'btn btn-primary'
+
+
+/ Jobs Modal
+#new_job_modal.modal.fade aria-hidden="true" aria-labelledby="add_job" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h3#add_committee Add Job
+      .modal-body
+        = render 'jobs/form'
+
+/ Shifts Modal
+#new_shift_modal.modal.fade aria-hidden="true" aria-labelledby="add_shift" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h3#add_shift Add Shift
+      .modal-body
+        = render 'shifts/form'
+
+/ Organization Modal
+#new_organization_modal.modal.fade aria-hidden="true" aria-labelledby="add_organization" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h3#add_organization Add Organization
+      .modal-body
+        = render 'organizations/form'
+
+/ Committee Modal
+#new_committee_modal.modal.fade aria-hidden="true" aria-labelledby="add_committee" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h3#add_committee Add Committee
+      .modal-body
+        = render 'committees/form'

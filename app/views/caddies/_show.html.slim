@@ -1,0 +1,21 @@
+.row.well
+  .col-xs-3
+    h5 Golf
+    p = caddie.golf ? "Yes" : "No"
+
+  .col-xs-3
+    h5 Course
+    p = caddie.course
+
+  .col-xs-3
+    h5 Rules
+    p = caddie.rules
+
+  .col-xs-12
+    h5 Comments:
+    p = caddie.comments
+
+  - if caddie.golfer.present?
+    .col-xs-3
+      h5 Golfer
+      p = link_to caddie.golfer.full_name, caddie.golfer
