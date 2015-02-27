@@ -4,6 +4,7 @@ class MoveHousingToPerson < ActiveRecord::Migration
     add_index  :housings, :person_id
 
     Housing.all.each do |housing|
+      next unless housing.volunteer.present?
       housing.person_id = housing.volunteer.person_id
       housing.save!
     end
@@ -15,6 +16,7 @@ class MoveHousingToPerson < ActiveRecord::Migration
     add_column :housings, :volunteer_id, :integer
 
     Housing.all.each do |housing|
+      next unless housing.person.present?
       housing.volunteer_id = housing.person.volunteer.id
       housing.save!
     end
