@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150203064333) do
     t.string  "city"
     t.string  "state"
     t.integer "zip"
-    t.integer "phone"
+    t.string  "phone"
     t.integer "organization_id"
     t.boolean "is_active"
   end
