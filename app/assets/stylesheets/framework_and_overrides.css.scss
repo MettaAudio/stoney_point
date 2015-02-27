@@ -21,3 +21,13 @@ h5 {
   background-color: green;
   border-color: green;
 }
+
+
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus,
+.pagination > li > a,
+.pagination > li > span {
+  color: green;
+}
