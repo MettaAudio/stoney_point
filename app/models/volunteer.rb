@@ -9,17 +9,17 @@ class Volunteer < ActiveRecord::Base
 
   accepts_nested_attributes_for :committees
 
-  delegate  :first_name,
-            :last_name,
-            :full_name,
-            :street,
-            :city,
-            :state,
-            :zip,
-            :phone,
-            :email,
-            :is_active,
-            to: :person
+  # delegate  :first_name,
+  #           :last_name,
+  #           :full_name,
+  #           :street,
+  #           :city,
+  #           :state,
+  #           :zip,
+  #           :phone,
+  #           :email,
+  #           :is_active,
+  #           to: :person
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }
