@@ -2,8 +2,6 @@ class GolfersController < ApplicationController
   before_action :set_golfer, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  # GET /golfers
-  # GET /golfers.json
   def index
     if params[:show_all] == 'true'
       @golfers = Golfer.all
@@ -12,34 +10,29 @@ class GolfersController < ApplicationController
     end
   end
 
-  # GET /golfers/1
-  # GET /golfers/1.json
   def show
   end
 
-  # GET /golfers/new
   def new
-    @golfer = Golfer.new
+    @person_form = PersonForm.new()
   end
 
-  # GET /golfers/1/edit
   def edit
-    @caddie = Caddie.new
+    @person = @golfer.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      golfer:      @golfer,
+      person:      @person
+    )
   end
 
-  # POST /golfers
-  # POST /golfers.json
   def create
     @golfer = Golfer.new(golfer_params)
 
-    respond_to do |format|
-      if @golfer.save
-        format.html { redirect_to @golfer, notice: 'Golfer was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @golfer }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @golfer.errors, status: :unprocessable_entity }
-      end
+    if @golfer.save
+      redirect_to @golfer, notice: 'Golfer was successfully created.'
+    else
+       render action: 'new'
     end
   end
 
@@ -53,28 +46,23 @@ class GolfersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /golfers/1
-  # PATCH/PUT /golfers/1.json
   def update
-    respond_to do |format|
-      if @golfer.update(golfer_params)
-        format.html { redirect_to @golfer, notice: 'Golfer was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @golfer.errors, status: :unprocessable_entity }
-      end
+    @person = @golfer.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      golfer:      @golfer,
+      person:      @person
+    )
+    if @person_form.update
+      redirect_to @golfer, notice: 'Housing was successfully updated.'
+    else
+      render action: 'edit', notice: "Sorry, there was a problem saving your housing selection."
     end
   end
 
-  # DELETE /golfers/1
-  # DELETE /golfers/1.json
   def destroy
-    @golfer.destroy
-    respond_to do |format|
-      format.html { redirect_to golfers_url }
-      format.json { head :no_content }
-    end
+    @golfer.person.destroy
+    redirect_to golfers_url
   end
 
   private

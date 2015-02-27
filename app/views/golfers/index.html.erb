@@ -25,15 +25,15 @@
   <tbody>
     <% @golfers.each do |golfer| %>
       <tr>
-        <td><%= link_to golfer.last_name, golfer.person %></td>
-        <td><%= link_to golfer.first_name, golfer.person %></td>
+        <td><%= link_to golfer.last_name, golfer %></td>
+        <td><%= link_to golfer.first_name, golfer %></td>
         <td><%= mail_to golfer.email, golfer.email, :encode => "javascript" %></td>
         <td><%= golfer.caddie_preferences %></td>
         <td><%= volunteer_housing_for(golfer) %></td>
         <td><%= caddies_for(golfer) %></td>
-        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, golfer.person, :class => 'btn btn-small' %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, golfer, :class => 'btn btn-small' %></td>
         <% if current_user %>
-          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_person_path(golfer.person), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_golfer_path(golfer), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, golfer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>

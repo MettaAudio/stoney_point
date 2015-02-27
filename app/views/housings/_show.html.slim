@@ -27,4 +27,4 @@
   - if house.golfers.present?
     h5 Golfers:
     p
-      = house.golfers.collect{ |g| link_to g.full_name, g.person }.join(', ').html_safe
+      = house.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe

@@ -12,7 +12,7 @@ module VolunteersHelper
     volunteer.housing.each do |house|
       golfers << link_to(house.golfer.full_name, house.golfer) if house.golfer
     end
-    golfers.join(', ').html_safe
+    golfers.join(' ').html_safe
   end
 
   def shifts_for(volunteer)
@@ -21,7 +21,7 @@ module VolunteersHelper
     volunteer.shifts.each do |shift|
       shifts << link_to(shift.time, shift)
     end
-    shifts.join(', ').html_safe
+    shifts.join(' ').html_safe
   end
 
   def jobs_for(volunteer)
@@ -30,7 +30,7 @@ module VolunteersHelper
     volunteer.jobs.each do |job|
       jobs << link_to(job.title, job)
     end
-    jobs.join(', ').html_safe
+    jobs.join(' ').html_safe
   end
 
   def housing_for(volunteer)
@@ -48,7 +48,7 @@ module VolunteersHelper
     volunteer.committees.each do |committee|
       committees << link_to(committee.name, committee)
     end
-    committees.join(', ').html_safe
+    committees.join(' ').html_safe
   end
 
   def shirt_sizes

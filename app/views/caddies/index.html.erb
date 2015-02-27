@@ -27,8 +27,8 @@
   <tbody>
     <% @caddies.each do |caddie| %>
       <tr>
-        <td><%= link_to caddie.last_name, caddie.person %></td>
-        <td><%= link_to caddie.first_name, caddie.person %></td>
+        <td><%= link_to caddie.last_name, caddie %></td>
+        <td><%= link_to caddie.first_name, caddie %></td>
         <td><%= build_phone_number(caddie.phone) %></td>
         <td><%= mail_to caddie.email, caddie.email, :encode => "javascript" %></td>
         <td><%= caddie.organization.try(:name) %></td>
@@ -36,9 +36,9 @@
         <td><%= caddie.course %></td>
         <td><%= caddie.rules %></td>
         <td><%= caddie.comments %></td>
-        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie.person, :class => 'btn btn-small' %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie, :class => 'btn btn-small' %></td>
         <% if current_user %>
-          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_person_path(caddie.person), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_caddie_path(caddie), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, caddie, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>

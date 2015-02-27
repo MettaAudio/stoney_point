@@ -1,5 +1,5 @@
 class VolunteersController < ApplicationController
-  before_action :set_volunteer, only: [:show, :destroy]
+  before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
@@ -34,30 +34,32 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.all.receiving_shirts
-    @shirts_paid = Volunteer.all.number_of_shirts_paid
-    @shirts_unpaid = Volunteer.all.number_of_shirts_unpaid
-    @shirts_unknown = Volunteer.all.number_of_shirts_unknown
+    @volunteers = Volunteer.active.receiving_shirts
+    @shirts_paid = Volunteer.active.number_of_shirts_paid
+    @shirts_unpaid = Volunteer.active.number_of_shirts_unpaid
+    @shirts_unknown = Volunteer.active.number_of_shirts_unknown
   end
 
   def show
   end
 
   def new
-    @volunteer_form = VolunteerForm.new
+    @person_form = PersonForm.new()
   end
 
   def edit
-    @volunteer_form = VolunteerForm.new(
+    @person = @volunteer.person
+    @person_form = PersonForm.new(
       page_params: params,
-      form_params: params["volunteer_form"]
+      volunteer:   @volunteer,
+      person:      @person
     )
-    @committees = Committee.all
-    @committee = Committee.new
-    @job = Job.new
-    @shift = Shift.new
+    @committees   = Committee.all
+    @committee    = Committee.new
+    @job          = Job.new
+    @shift        = Shift.new
     @organization = Organization.new
-    @housing = Housing.new
+    @housing      = Housing.new
   end
 
   def create
@@ -74,19 +76,21 @@ class VolunteersController < ApplicationController
   end
 
   def update
-    @volunteer_form = VolunteerForm.new(
+    @person = @volunteer.person
+    @person_form = PersonForm.new(
       page_params: params,
-      form_params: params[:volunteer_form]
+      volunteer:   @volunteer,
+      person:      @person
     )
-    if @volunteer_form.save
-      redirect_to :back, notice: 'Volunteer was successfully updated.'
+    if @person_form.update
+      redirect_to @person_form.volunteer, notice: 'Person was successfully created.'
     else
-      @committees = Committee.all
-      @committee = Committee.new
-      @job = Job.new
-      @shift = Shift.new
+      @committees   = Committee.all
+      @committee    = Committee.new
+      @job          = Job.new
+      @shift        = Shift.new
       @organization = Organization.new
-      @housing = Housing.new
+      @housing      = Housing.new
       render action: 'edit', notice: "There was a problem saving."
     end
   end
@@ -124,7 +128,7 @@ class VolunteersController < ApplicationController
   def add_organization
     organization_id = params[:volunteer][:organization_id]
     @volunteer = Volunteer.find(association_params[:id])
-    if @volunteer.update_attributes(:organization_id => organization_id )
+    if @volunteer.person.update_attributes(:organization_id => organization_id )
       redirect_to :back, notice: "#{@volunteer.full_name}'s organization was updated."
     else
       redirect_to :back, notice: "We're sorry, an error has occurred. Please try again."
@@ -132,9 +136,13 @@ class VolunteersController < ApplicationController
   end
 
   def add_housing
-    @volunteer = Volunteer.find(housing_params[:volunteer_id])
-    @housing = Housing.new( housing_params )
-    if @housing.save
+    @volunteer   = Volunteer.find(housing_params[:volunteer_id])
+    @person      = @volunteer.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      person:      @person
+    )
+    if @person_form.update
       redirect_to :back, notice: "#{@volunteer.full_name}'s housing was added."
     else
       @committees = Committee.all
@@ -144,11 +152,8 @@ class VolunteersController < ApplicationController
   end
 
   def destroy
-    @volunteer.destroy
-    respond_to do |format|
-      format.html { redirect_to volunteers_url }
-      format.json { head :no_content }
-    end
+    @volunteer.person.destroy
+    redirect_to volunteers_url
   end
 
   private

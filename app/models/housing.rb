@@ -4,7 +4,7 @@ class Housing < ActiveRecord::Base
   validates :available, presence: true
   validates :number_of_bedrooms, presence: true
   validates :number_of_bathrooms, presence: true
-  validates :volunteer_id, presence: true
+  validates :person_id, presence: true
 
   default_scope { includes(:person).order('people.last_name ASC') }
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }

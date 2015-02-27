@@ -2,58 +2,53 @@ class HousingsController < ApplicationController
   before_action :set_housing, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  # GET /housings
-  # GET /housings.json
   def index
     @housings = Housing.all
   end
 
-  # GET /housings/1
-  # GET /housings/1.json
   def show
+    @housings = @housing.person.housings
   end
 
-  # GET /housings/new
   def new
-    @housing = Housing.new
+    @person_form = PersonForm.new()
   end
 
-  # GET /housings/1/edit
   def edit
+    @person = @housing.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      housing:     @housing,
+      person:      @person
+    )
   end
 
-  # POST /housings
-  # POST /housings.json
   def create
-    @housing = Housing.new(housing_params)
+    @person_form = PersonForm.new(
+      page_params: params
+    )
 
-    respond_to do |format|
-      if @housing.save
-        format.html { redirect_to @housing, notice: 'Housing was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @housing }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @housing.errors, status: :unprocessable_entity }
-      end
+    if @person_form.update
+      redirect_to @person_form.housing, notice: 'Housing was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
-  # PATCH/PUT /housings/1
-  # PATCH/PUT /housings/1.json
   def update
-    respond_to do |format|
-      if @housing.update(housing_params)
-        format.html { redirect_to @housing, notice: 'Housing was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @housing.errors, status: :unprocessable_entity }
-      end
+    @person = @housing.person
+    @person_form = PersonForm.new(
+      page_params: params,
+      housing:     @housing,
+      person:      @person
+    )
+    if @person_form.update
+      redirect_to @housing, notice: 'Housing was successfully updated.'
+    else
+      render action: 'edit', notice: "Sorry, there was a problem saving your housing selection."
     end
   end
 
-  # DELETE /housings/1
-  # DELETE /housings/1.json
   def destroy
     @housing.destroy
     respond_to do |format|
@@ -82,6 +77,21 @@ class HousingsController < ApplicationController
     def housing_params
       params.require(:housing).permit(:available, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoking, :comments, :golfer_ids => [])
     end
+
+  def person_params
+    params.require(:person_form).permit(
+      :person_first_name,
+      :person_last_name,
+      :person_email,
+      :person_street,
+      :person_city,
+      :person_state,
+      :person_zip,
+      :person_phone,
+      :person_organization_id,
+      :person_is_active
+      )
+  end
 
     def association_params
       params.require(:housing).permit(:id)

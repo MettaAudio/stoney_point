@@ -1,0 +1,7 @@
+= render partial: "people/show", locals: { person: @housing.person, edit_path: edit_housing_path(@housing) }
+- if @housings.present?
+  .row
+    .col-xs-12
+      h3 Housing Information
+      - @housings.each do |house|
+        = render partial: 'show', locals: { house: house }

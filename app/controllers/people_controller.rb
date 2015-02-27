@@ -3,24 +3,9 @@ class PeopleController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def new
-  end
-
-  def create
-  end
-
-  def show
-  end
-
-  def edit
     @person_form = PersonForm.new(
       page_params: params
     )
-    @committees   = Committee.all
-    @committee    = Committee.new
-    @job          = Job.new
-    @shift        = Shift.new
-    @organization = Organization.new
-    @housing      = Housing.new
   end
 
   def update
@@ -28,13 +13,11 @@ class PeopleController < ApplicationController
       page_params: params
     )
     if @person_form.update
-      redirect_to @person_form.person, notice: 'Person was successfully created.'
+      person_type = params[:return_to]
+      redirect_to @person_form.send(person_type), notice: "#{person_type.capitalize} was successfully created."
     else
       render action: 'edit'
     end
-  end
-
-  def destroy
   end
 
   private

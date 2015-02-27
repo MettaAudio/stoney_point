@@ -103,8 +103,8 @@
   <tbody>
     <% @volunteers.each do |volunteer| %>
       <tr>
-        <td><%= link_to(volunteer.last_name, volunteer.person) %></td>
-        <td><%= link_to(volunteer.first_name, volunteer.person) %></td>
+        <td><%= link_to(volunteer.last_name, volunteer) %></td>
+        <td><%= link_to(volunteer.first_name, volunteer) %></td>
         <td><%= volunteer.shirt_size %></td>
         <td><%= volunteer.number_of_shirts %></td>
         <td><%= volunteer.paid ? "Yes" : "No" %></td>

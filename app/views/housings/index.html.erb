@@ -1,4 +1,5 @@
 <h1>Housing <small><%= Housing.total_number_of_beds %> Beds Total</small></h1>
+<%= link_to 'New Housing', new_housing_path if current_user %>
 <hr>
 <table class ='table table-striped' id='data_table'>
   <thead>
@@ -23,18 +24,18 @@
   <tbody>
     <% @housings.each do |housing| %>
       <tr>
-        <td><%= link_to housing.person.last_name, housing.person %></td>
-        <td><%= link_to housing.person.first_name, housing.person %></td>
+        <td><%= link_to housing.person.last_name, housing %></td>
+        <td><%= link_to housing.person.first_name, housing %></td>
         <td><%= housing.available.strftime('%A') %></td>
         <td><%= housing.number_of_bedrooms %></td>
         <td><%= housing.number_of_bathrooms %></td>
         <td><%= housing.smoking ? "Yes" : "No" %></td>
         <td><%= housing.pets ? "Yes" : "No" %></td>
         <td><%= housing.comments %></td>
-        <td><%= housing.golfers.collect{ |g| link_to g.full_name, g.person }.join(', ').html_safe %></td>
-        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing.person, :class => 'btn btn-small' %></td>
+        <td><%= housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing, :class => 'btn btn-small' %></td>
         <% if current_user %>
-          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_person_path(housing.person), :class => 'btn btn-small' %></td>
+          <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, housing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
       </tr>

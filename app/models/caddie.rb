@@ -11,6 +11,6 @@ class Caddie < ActiveRecord::Base
             :organization,
             to: :person
 
-  default_scope { includes(:person).order('people.last_name ASC') }
-  scope :active, -> { includes(:person).where('people.is_active = ?', true) }
+  scope :by_last_name, -> { includes(:person).order('people.last_name ASC') }
+  scope :active, -> { joins(:person).where('people.is_active = ?', true) }
 end

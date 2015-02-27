@@ -5,7 +5,8 @@ class PersonForm < FormBuilder
               :person,
               :volunteer,
               :golfer,
-              :caddie
+              :caddie,
+              :housing
 
   delegate  :first_name,
             :last_name,
@@ -30,6 +31,14 @@ class PersonForm < FormBuilder
             :paid,
             to: :volunteer, prefix: true, allow_nil: true
 
+  delegate  :available,
+            :number_of_bedrooms,
+            :number_of_bathrooms,
+            :pets,
+            :smoking,
+            :comments,
+            to: :housing, prefix: true, allow_nil: true
+
   delegate  :golf,
             :course,
             :rules,
@@ -45,17 +54,21 @@ class PersonForm < FormBuilder
     @volunteer_params = @person_params[:volunteer]
     @caddie_params    = @person_params[:caddie]
     @golfer_params    = @person_params[:golfer]
-    @person           = find_person
-    @volunteer        = find_volunteer
-    @caddie           = find_caddie
-    @golfer           = find_golfer
+    @housing_params   = @page_params[:housing] || @person_params[:housing]
+
+    @person           = args[:person]    || Person.new
+    @volunteer        = args[:volunteer] || Volunteer.new
+    @caddie           = args[:caddie]    || Caddie.new
+    @golfer           = args[:golfer]    || Golfer.new
+    @housing          = args[:housing]   || Housing.new
   end
 
   def update
-    update_person && update_volunteer && update_caddie && update_golfer
+    update_person && update_volunteer && update_caddie && update_golfer && update_housing
   end
 
   def update_person
+    return true unless @person_params.present?
     person.first_name      = @person_params[:person_first_name]
     person.last_name       = @person_params[:person_last_name]
     person.email           = @person_params[:person_email]
@@ -88,42 +101,35 @@ class PersonForm < FormBuilder
 
   def update_caddie
     return true unless @caddie_params.present?
-    caddie.golf     = @caddie_params[:golf]
-    caddie.course   = @caddie_params[:course]
-    caddie.rules    = @caddie_params[:rules]
-    caddie.comments = @caddie_params[:comments]
+    caddie.golf            = @caddie_params[:golf]
+    caddie.course          = @caddie_params[:course]
+    caddie.rules           = @caddie_params[:rules]
+    caddie.comments        = @caddie_params[:comments]
+    caddie.person          = person
 
     caddie.save
+  end
+
+  def update_housing
+    return true unless @housing_params.present?
+    housing.available           = @housing_params[:available]
+    housing.number_of_bedrooms  = @housing_params[:number_of_bedrooms]
+    housing.number_of_bathrooms = @housing_params[:number_of_bathrooms]
+    housing.pets                = @housing_params[:pets]
+    housing.smoking             = @housing_params[:smoking]
+    housing.comments            = @housing_params[:comments]
+    housing.golfer_ids          = @housing_params[:golfer_ids]
+    housing.person              = person
+
+    housing.save
   end
 
   def update_golfer
     return true unless @golfer_params.present?
     golfer.caddie_preferences = @golfer_params[:caddie_preferences]
+    golfer.caddie_ids         = @golfer_params[:caddie_ids]
+    golfer.person             = person
 
     golfer.save
-  end
-
-  def find_person
-    @_person ||= begin
-      page_params[:id] ? Person.find(page_params[:id]) : Person.new
-    end
-  end
-
-  def find_volunteer
-    @_volunteer ||= begin
-      person.volunteer || Volunteer.new
-    end
-  end
-
-  def find_caddie
-    @_caddie ||= begin
-      person.caddie || Caddie.new
-    end
-  end
-
-  def find_golfer
-    @_golfer ||= begin
-      person.golfer || Golfer.new
-    end
   end
 end

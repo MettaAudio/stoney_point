@@ -29,18 +29,3 @@
           = f.check_box :person_is_active
           | Is Active?
 
-- roles = ['volunteer', 'caddie', 'golfer']
-- roles.each do |role|
-  - if @person_form.person.send(role).present?
-    = render partial: "#{role.pluralize}/form", locals: { f: f, person_form: @person_form }
-    - roles -= [role]
-
-- roles.each do |role|
-  = render partial: "#{role.pluralize}/form", locals: { f: f, person_form: @person_form }
-
-hr
-.row
-  .col-xs-12
-    form-actions
-      = f.button "Save", :class => 'btn btn-primary btn-large'
-

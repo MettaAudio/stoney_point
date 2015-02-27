@@ -1,7 +1,7 @@
   .row.well
     .col-xs-12
       h5 Caddies
-      p = golfer.caddies.collect{ |c| link_to c.full_name, c.person }.join(', ').html_safe
+      p = golfer.caddies.collect{ |c| link_to c.full_name, c }.join(' ').html_safe
 
     - if golfer.caddie_preferences.present?
       .col-xs-12

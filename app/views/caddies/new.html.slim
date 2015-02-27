@@ -1,0 +1,21 @@
+.row
+  .col-xs-12
+    h1
+      ' New Caddie
+.row
+  .col-xs-12
+    = form_for(@person_form, url: new_person_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'people/form', locals: {f: f}
+      = render partial: "form", locals: { f: f, person_form: @person_form }
+      = hidden_field_tag "return_to", "caddie"
+      .form-group
+        = f.label :organization,  for: "person_form_person_organization_id"
+        = select_tag :organization,
+          options_from_collection_for_select(Organization.all, "id", "name", selected: @person_form.person.organization),
+          include_blank: true,
+          class: "form-control",
+          id: "person_form_person_organization_id",
+          name: "person_form[person_organization_id]"
+
+      form-actions
+        = f.button "Save", :class => 'btn btn-primary btn-large'
