@@ -28,8 +28,8 @@ class Volunteer < ActiveRecord::Base
   scope :with_committees, -> { joins(:committees) }
   scope :receiving_shirts, -> { where("shirt_size <> ''") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
-  scope :with_shirts_paid, -> { where(:paid)}
-  scope :with_shirts_unpaid, -> { where(paid: [false, nil])}
+  scope :with_shirts_paid, -> { where(:paid) }
+  scope :with_shirts_unpaid, -> { where(paid: [false, nil]) }
 
   def self.working
     Volunteer.with_committees.distinct

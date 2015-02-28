@@ -12,6 +12,7 @@ gem 'thin'
 gem 'devise'
 gem 'slim'
 gem 'chosen-sass-bootstrap-rails'
+gem 'rails_12factor'
 
 group :production do
   gem 'pg'
