@@ -16,7 +16,7 @@
   <div class="col-xs-4">
     <div class="well">
       <h4>Receipts to Date <small><%= Date.today.strftime('%m/%d/%Y') %></small></h4>
-      <p><%= number_to_currency(@shirts_paid * 30) %></p>
+      <p><%= number_to_currency(@shirts_paid * Volunteer::SHIRT_PRICE) %></p>
       <p></p>
     </div>
   </div>
