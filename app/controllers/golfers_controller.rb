@@ -27,9 +27,15 @@ class GolfersController < ApplicationController
   end
 
   def create
-    @golfer = Golfer.new(golfer_params)
+    @golfer = Golfer.new
+    @person = Person.new
 
-    if @golfer.save
+    @person_form = PersonForm.new(
+      page_params: params,
+      golfer:      @golfer,
+      person:      @person
+    )
+    if @person_form.update
       redirect_to @golfer, notice: 'Golfer was successfully created.'
     else
        render action: 'new'

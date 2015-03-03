@@ -27,9 +27,15 @@ class CaddiesController < ApplicationController
   end
 
   def create
-    @caddie = Caddie.new(caddie_params)
+    @caddie = Caddie.new
+    @person = Person.new
+    @person_form = PersonForm.new(
+      page_params: params,
+      caddie:      @caddie,
+      person:      @person
+    )
 
-    if @caddie.save
+    if @person_form.update
       redirect_to :back, notice: 'Caddie was successfully created.'
     else
       render action: 'new'

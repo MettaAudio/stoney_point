@@ -63,12 +63,16 @@ class VolunteersController < ApplicationController
   end
 
   def create
-    @volunteer_form = VolunteerForm.new(
+    @volunteer = Volunteer.new
+    @person    = Person.new
+
+    @person_form = PersonForm.new(
       page_params: params,
-      form_params: params["volunteer_form"]
+      volunteer:   @volunteer,
+      person:      @person
     )
 
-    if @volunteer_form.save
+    if @person_form.update
       redirect_to @volunteer_form.volunteer, notice: 'Volunteer was successfully created.'
     else
       render action: 'new'

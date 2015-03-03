@@ -4,7 +4,7 @@
       ' New Golfer
 .row
   .col-xs-12
-    = form_for(@person_form, url: new_person_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+    = form_for(@person_form, url: golfers_url, method: :post, html: {class: 'form-vertical' }) do |f|
       = render partial: 'people/form', locals: {f: f}
       = render partial: "form", locals: { f: f, person_form: @person_form }
       = hidden_field_tag "return_to", "golfer"
