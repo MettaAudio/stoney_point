@@ -1,10 +1,14 @@
 .row
   .col-xs-6
-    .form-group
+    .form-group class="#{'has-error' if f.object.person.errors[:first_name].present?}"
       = f.text_field :person_first_name, class: "form-control", placeholder: "First Name"
+      .help-block.has-error
+        = f.object.person.errors[:first_name].join(", ")
   .col-xs-6
-    .form-group
+    .form-group class="#{'has-error' if f.object.person.errors[:last_name].present?}"
       = f.text_field :person_last_name, class: "form-control", placeholder: "Last Name"
+      .help-block.has-error
+        = f.object.person.errors[:last_name].join(", ")
 .row
   .col-xs-12
     .form-group
@@ -21,11 +25,12 @@
   .col-xs-8
     .form-group
       = f.text_field :person_email, class: "form-control", placeholder: "Email Address"
-.row
-  .col-xs-12
-    .form-group
-      .checkbox
-        = f.label :person_is_active do
-          = f.check_box :person_is_active
-          | Is Active?
+- unless public_controllers.include?(params[:controller])
+  .row
+    .col-xs-12
+      .form-group
+        .checkbox
+          = f.label :person_is_active do
+            = f.check_box :person_is_active
+            | Is Active?
 

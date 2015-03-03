@@ -1,0 +1,15 @@
+.row
+  .col-xs-12
+    h1 This is a welcome for NEW people
+    p We're happy you're here. Let me tell you why...
+
+.row
+  .col-xs-12
+    = form_for(@person_form, url: welcome_volunteers_url, method: :post, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'form', locals: { f: f }
+
+      hr
+      .row
+        .col-xs-12
+          form-actions
+            = f.button "Please accept the waiver...", :class => 'btn btn-primary btn-large disabled js-submit'

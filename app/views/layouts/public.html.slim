@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title
+      = content_for?(:title) ? yield(:title) : "Stoney Point"
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : "Stoney Point"}"
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  body
+    main role="main"
+      .container
+        .content
+          .row
+            .col-xs-12
+              = render 'layouts/messages'
+              = yield
+          footer
+            .row
+              .col-xs-12 &nbsp;

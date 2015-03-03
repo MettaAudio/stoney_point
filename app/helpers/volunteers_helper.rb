@@ -53,16 +53,15 @@ module VolunteersHelper
 
   def shirt_sizes
     [
-      '?',
-      'MS',
-      'MM',
-      'ML',
-      'MXL',
-      'MXXL',
-      'WS',
-      'WM',
-      'WL',
-      'WXL'
+      ["Men's Small", "MS"],
+      ["Men's Medium", "MM"],
+      ["Men's Large", "ML"],
+      ["Men's X-Large", "MXL"],
+      ["Men's XX-Large", "MXXL"],
+      ["Women's Small", "WS"],
+      ["Women's Medium", "WM"],
+      ["Women's Large", "WL"],
+      ["Women's X-Large", "WXL"]
     ]
   end
 
