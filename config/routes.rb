@@ -18,7 +18,7 @@ StoneyPoint::Application.routes.draw do
 
   resources :volunteers
 
-  resources :people, only: [:new, :create, :update]
+  resources :people, only: [:new, :create, :update, :index]
 
   resources :welcome_volunteers, except: [:index]
 

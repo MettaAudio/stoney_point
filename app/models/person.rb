@@ -11,6 +11,10 @@ class Person < ActiveRecord::Base
   after_initialize :init
 
   default_scope { order('last_name ASC') }
+  scope :active, -> { where("is_active = ?", true) }
+  scope :volunteers, -> { joins(:volunteer) }
+  scope :housing, -> { joins(:housing) }
+  scope :caddies, -> { joins(:caddie) }
 
   def phone=(val)
     write_attribute(:phone, formatted_number(val))

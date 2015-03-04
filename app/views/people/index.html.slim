@@ -1,0 +1,32 @@
+h1
+  | People List
+  small
+    '  #{@people.count} total
+
+- if current_user
+  = params[:show_all] == 'true' ? "Show all" : link_to('Show all', :show_all => true)
+  ||&nbsp;
+  = params[:show_volunteers] == 'true' ? "Show volunteers" : link_to('Show volunteers', :show_volunteers => true)
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th Last
+      th First
+      th Email
+      th Volunteer link
+      th Housing link
+      th Caddie link
+      th Active
+
+  tbody
+    - @people.each do |person|
+      tr
+        td = link_to(person.last_name, person)
+        td = link_to(person.first_name, person)
+        td = mail_to person.email, person.email, :encode => "javascript"
+        td = volunteer_link(person)
+        td = housing_link(person)
+        td = caddie_link(person)
+        td = person.is_active? ? "Y" : "N"
+= render 'shared/datatable_js'

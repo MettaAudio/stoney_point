@@ -2,6 +2,16 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
+  def index
+    if params[:show_all] == 'true'
+      @people = Person.all
+    elsif params[:show_volunteers] == 'true'
+      @people = Person.active.volunteers
+    else
+      @people = Person.active
+    end
+  end
+
   def new
     @person_form = PersonForm.new(
       page_params: params
