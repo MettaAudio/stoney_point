@@ -73,7 +73,7 @@ class VolunteersController < ApplicationController
     )
 
     if @person_form.update
-      redirect_to @volunteer_form.volunteer, notice: 'Volunteer was successfully created.'
+      redirect_to @person_form.volunteer, notice: 'Volunteer was successfully created.'
     else
       render action: 'new'
     end
