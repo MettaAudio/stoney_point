@@ -1,0 +1,44 @@
+h1
+  | Volunteers
+  small
+    '  #{@volunteers.count} total
+
+- if current_user
+  = link_to 'Add New Volunteer', new_volunteer_path
+  ||&nbsp;
+  = params[:show_active] == 'true' ? "Show All Active" : link_to('Show all active', :show_active => true)
+  ||&nbsp;
+  = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th Last
+      th First
+      th Street Address
+      th City
+      th Email
+      th Phone
+      th Organization
+      th Waiver
+      th
+      - if current_user
+        th
+        th
+
+  tbody
+    - @volunteers.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        td = volunteer.street
+        td = volunteer.city
+        td = mail_to volunteer.email, volunteer.email, :encode => "javascript"
+        td = build_phone_number(volunteer.phone)
+        td = volunteer.organization.try(:name)
+        td = volunteer.waiver ? 'Y' : 'N'
+        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
+        - if current_user
+          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
+          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+= render 'shared/datatable_js'

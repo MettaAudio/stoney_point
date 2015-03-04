@@ -5,16 +5,10 @@ class VolunteersController < ApplicationController
   def index
     if params[:show_all] == 'true'
       @volunteers = Volunteer.all
+    elsif params[:show_active] == 'true'
+      @volunteers = Volunteer.active
     else
       @volunteers = Volunteer.active.working
-    end
-  end
-
-  def address_list
-    if params[:show_all] == 'true'
-      @volunteers = Volunteer.all
-    else
-      @volunteers = Volunteer.active
     end
   end
 

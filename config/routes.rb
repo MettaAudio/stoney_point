@@ -33,7 +33,6 @@ StoneyPoint::Application.routes.draw do
   post "/add_golfer_to_housing", to: "housings#add_golfer", as: 'add_golfer_to_housing'
 
   get "/shirts", to: "volunteers#shirts", as: 'shirts'
-  get "/address_list", to: "volunteers#address_list", as: 'volunteers_address_list'
 
   root :to => 'volunteers#index'
 

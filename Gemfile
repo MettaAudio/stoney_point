@@ -25,6 +25,7 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :mri_21, :rbx]
   gem 'rails_layout'
   gem 'pry-rails'
+  gem 'quiet_assets'
 end
 group :development, :test do
   gem 'rspec-rails'
