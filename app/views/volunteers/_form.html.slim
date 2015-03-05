@@ -29,7 +29,7 @@ hr
     .col-xs-6
       .form-group
         = volunteer.label :shirt_size
-        = volunteer.select :shirt_size, shirt_sizes, {}, class: "form-control chosen-select"
+        = volunteer.select :shirt_size, shirt_sizes, { include_blank: true }, class: "form-control chosen-select"
     .col-xs-6
       .form-group
         = volunteer.label :number_of_shirts
@@ -39,11 +39,11 @@ hr
     .col-xs-6
       .form-group
         = volunteer.label :availability
-        = volunteer.select :availability,  availability, {}, class: "form-control chosen-select"
+        = volunteer.select :availability,  availability, { include_blank: true }, class: "form-control chosen-select"
     .col-xs-6
       .form-group
         = volunteer.label :sessions
-        = volunteer.select :sessions,  sessions, {}, class: "form-control chosen-select"
+        = volunteer.select :sessions,  sessions, { include_blank: true }, class: "form-control chosen-select"
 
   .form-group
     = volunteer.label :comments
