@@ -9,11 +9,11 @@
     .col-xs-4
       .form-group
         = caddie.label "Do they know the course?"
-        = caddie.select :course, courses_list, { prompt: "Choose one..." }, class: "form-control chosen-select"
+        = caddie.select :course, courses_list, { include_blank: true, prompt: "Choose one..." }, class: "form-control chosen-select"
     .col-xs-4
       .form-group
         = caddie.label "Do they know the rules?"
-        = caddie.select :rules, rules_list, { prompt: "Choose one..." }, class: "form-control chosen-select"
+        = caddie.select :rules, rules_list, { include_blank: true, prompt: "Choose one..." }, class: "form-control chosen-select"
   .form-group
     = caddie.label :comments
     = caddie.text_area :comments, class: 'form-control'

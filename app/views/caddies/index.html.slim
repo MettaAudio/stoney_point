@@ -1,0 +1,35 @@
+h1 Caddies
+- if current_user
+  = link_to 'New Caddie', new_caddie_path if current_user
+  '  |
+  = link_to 'Show all', :show_all => true
+hr
+table.table.table-striped#data_table
+  thead
+    tr
+      th Last
+      th First
+      th Know Golf?
+      th Know the Course?
+      th Know the Rules?
+      th Comments
+      th
+      - if current_user
+        th
+        th
+
+  tbody
+    - @caddies.each do |caddie|
+      tr
+        td = link_to caddie.last_name, caddie
+        td = link_to caddie.first_name, caddie
+        td = caddie.golf ? 'Yes' : 'No'
+        td = caddie.course
+        td = caddie.rules
+        td = caddie.comments
+        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie, :class => 'btn btn-small'
+        - if current_user
+          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_caddie_path(caddie), :class => 'btn btn-small'
+          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, caddie, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+= render 'shared/datatable_js'
