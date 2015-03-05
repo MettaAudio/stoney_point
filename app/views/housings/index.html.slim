@@ -1,0 +1,39 @@
+h1
+  | Housing
+  small
+    | #{Housing.total_number_of_beds}  Beds Total
+= link_to 'New Housing', new_housing_path if current_user
+hr
+table.table.table-striped#data_table
+  thead
+    tr
+      th Last
+      th First
+      th Available
+      th Beds
+      th Baths
+      th Pets
+      th Comments
+      th Golfers
+      th
+      - if current_user
+        th
+        th
+
+  tbody
+    - @housings.each do |housing|
+      tr
+        td = link_to housing.person.last_name, housing
+        td = link_to housing.person.first_name, housing
+        td = housing.available.strftime('%A')
+        td = housing.number_of_bedrooms
+        td = housing.number_of_bathrooms
+        td = housing.pets ? "Yes" : "No"
+        td = housing.comments
+        td = housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
+        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing, :class => 'btn btn-small'
+        - if current_user
+          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small'
+          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, housing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+= render 'shared/datatable_js'
