@@ -1,0 +1,89 @@
+h1 Shirts
+hr
+.row
+  .col-xs-4
+    .well
+      h4 Paid
+      p = @shirts_paid
+  .col-xs-4
+    .well
+      h4 Unpaid
+      p = @shirts_unpaid
+  .col-xs-4
+    .well
+      h4
+       | Receipts to Date
+       | &nbsp;
+       small = Date.today.strftime('%m/%d/%Y')
+      p = number_to_currency(@shirts_paid * Volunteer::SHIRT_PRICE)
+      p
+.row
+  .col-xs-5
+    .well
+      h3 Men
+      table.table
+        thead
+          tr
+            th MS
+            th MM
+            th ML
+            th MXL
+            th MXXL
+        tbody
+          tr
+            td = shirt_count_for('MS', @volunteers)
+            td = shirt_count_for('MM', @volunteers)
+            td = shirt_count_for('ML', @volunteers)
+            td = shirt_count_for('MXL', @volunteers)
+            td = shirt_count_for('MXXL', @volunteers)
+  .col-xs-5
+    .well
+      h3 Women
+      table.table
+        thead
+          tr
+            th WS
+            th WM
+            th WL
+            th WXL
+        tbody
+          tr
+            td = shirt_count_for('WS', @volunteers)
+            td = shirt_count_for('WM', @volunteers)
+            td = shirt_count_for('WL', @volunteers)
+            td = shirt_count_for('WXL', @volunteers)
+  .col-xs-2
+    .well
+      h3 &nbsp;
+      table.table
+        thead
+          tr
+            th Visor
+            th ?
+        tbody
+          tr
+            td ?
+            td = @shirts_unknown
+table#data_table.table.table-striped
+  thead
+    tr
+      th Last
+      th First
+      th Size
+      th # Ordered
+      th Visor
+      th Paid?
+      th Committee
+
+  tbody
+    - @volunteers.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        td = volunteer.shirt_size
+        td = volunteer.number_of_shirts
+        td ?
+        td = volunteer.paid ? "Yes" : "No"
+        td = committees_for(volunteer)
+
+= render 'shared/datatable_js'
