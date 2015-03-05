@@ -2,29 +2,21 @@ class CommitteesController < ApplicationController
   before_action :set_committee, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
-  # GET /committees
-  # GET /committees.json
   def index
-    @committees = Committee.all
+    @volunteers = Volunteer.active.working
   end
 
-  # GET /committees/1
-  # GET /committees/1.json
   def show
     @volunteers = @committee.volunteers.active
   end
 
-  # GET /committees/new
   def new
     @committee = Committee.new
   end
 
-  # GET /committees/1/edit
   def edit
   end
 
-  # POST /committees
-  # POST /committees.json
   def create
     @committee = Committee.new(committee_params)
     if @committee.save
@@ -34,28 +26,17 @@ class CommitteesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /committees/1
-  # PATCH/PUT /committees/1.json
   def update
-    respond_to do |format|
-      if @committee.update(committee_params)
-        format.html { redirect_to @committee, notice: 'Committee was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @committee.errors, status: :unprocessable_entity }
-      end
+    if @committee.update(committee_params)
+       redirect_to @committee, notice: 'Committee was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
-  # DELETE /committees/1
-  # DELETE /committees/1.json
   def destroy
     @committee.destroy
-    respond_to do |format|
-      format.html { redirect_to committees_url }
-      format.json { head :no_content }
-    end
+    redirect_to committees_url
   end
 
   private

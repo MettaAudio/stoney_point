@@ -1,0 +1,35 @@
+h1
+  | Committee Work Availability
+  | &nbsp;
+  small
+    '  #{@volunteers.count} volunteers
+= link_to 'New Committee', new_committee_path if current_user
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th Last
+      th First
+      th Physical?
+      th Golf?
+      th Comments
+      th Committees
+      th
+      - if current_user
+        th
+        th
+
+  tbody
+    - @volunteers.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        td = volunteer.physical_activity
+        td = volunteer.golfer
+        td = volunteer.comments
+        td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
+        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
+        - if current_user
+          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
+          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+= render 'shared/datatable_js'
