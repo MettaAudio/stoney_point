@@ -1,0 +1,45 @@
+p#notice = notice
+h2
+  | #{@committee.name} Scheduling
+  | &nbsp;
+  small
+    | #{@volunteers.count} Volunteers
+  | &nbsp;
+  = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-xs' if current_user
+  | &nbsp;
+  = link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, committees_path, :class => 'btn btn-xs'
+
+table#volunteers_table.table.table-striped
+  thead
+    tr
+      th Last
+      th First
+      th Job
+      th Days
+      th Sessions
+      th Hours
+      th Holes
+      th
+      - if current_user
+        th
+        th
+
+  tbody
+    - @committee.volunteers.active.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        td ?
+        td = volunteer.availability
+        td = volunteer.sessions
+        td ?
+        td ?
+        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
+        - if current_user
+          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
+          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+javascript:
+  $(document).ready(function() {
+    $('#volunteers_table').dataTable();
+  });

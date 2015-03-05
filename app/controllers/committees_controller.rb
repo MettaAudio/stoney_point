@@ -11,6 +11,7 @@ class CommitteesController < ApplicationController
   # GET /committees/1
   # GET /committees/1.json
   def show
+    @volunteers = @committee.volunteers.active
   end
 
   # GET /committees/new
