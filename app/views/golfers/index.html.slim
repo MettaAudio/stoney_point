@@ -1,0 +1,44 @@
+
+h1 Golfers
+- if current_user
+  = link_to 'New Golfer', new_golfer_path if current_user
+  '  |
+  = link_to 'New Caddie', new_caddie_path if current_user
+  '  |
+  = link_to 'Show all', :show_all => true
+hr
+table.table.table-striped#data_table
+  thead
+    tr
+      th Last
+      th First
+      th Email
+      th Day
+      th Nation
+      th School
+      th Preferences
+      th Host
+      th Caddie name
+      th
+      - if current_user
+        th
+        th
+
+  tbody
+    - @golfers.each do |golfer|
+      tr
+        td = link_to golfer.last_name, golfer
+        td = link_to golfer.first_name, golfer
+        td = mail_to golfer.email, golfer.email, :encode => "javascript"
+        td ?
+        td ?
+        td ?
+        td = golfer.caddie_preferences
+        td = volunteer_housing_for(golfer)
+        td = caddies_for(golfer)
+        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, golfer, :class => 'btn btn-small'
+        - if current_user
+          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_golfer_path(golfer), :class => 'btn btn-small'
+          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, golfer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+= render 'shared/datatable_js'
