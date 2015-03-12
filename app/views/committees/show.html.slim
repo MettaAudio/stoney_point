@@ -15,8 +15,6 @@ table#volunteers_table.table.table-striped
       th Last
       th First
       th Job
-      th Days
-      th Sessions
       th Hours
       th Holes
       th
@@ -30,8 +28,6 @@ table#volunteers_table.table.table-striped
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
         td ?
-        td = volunteer.availability
-        td = volunteer.sessions
         td ?
         td ?
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'

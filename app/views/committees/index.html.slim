@@ -10,10 +10,14 @@ table#data_table.table.table-striped
     tr
       th Last
       th First
-      th Physical?
-      th Golf?
       th Comments
       th Committees
+      th Job
+      th Wed
+      th Thur
+      th Fri
+      th Sat
+      th Sun
       th
       - if current_user
         th
@@ -24,10 +28,14 @@ table#data_table.table.table-striped
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
-        td = volunteer.physical_activity
-        td = volunteer.golfer
         td = volunteer.comments
         td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
+        td ?
+        td = volunteer.wednesday
+        td = volunteer.thursday
+        td = volunteer.friday
+        td = volunteer.saturday
+        td = volunteer.sunday
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
         - if current_user
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'

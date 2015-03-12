@@ -26,14 +26,27 @@ hr
         = volunteer.number_field :number_of_shirts, class: "form-control"
 
   .row
-    .col-xs-6
+    .col-xs-4
       .form-group
-        = volunteer.label "What days are you available?"
-        = volunteer.select :availability,  availability, {include_blank: true}, class: "form-control chosen-select"
-    .col-xs-6
+        = volunteer.label :wednesday
+        = volunteer.select :wednesday,  wednesday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-4
       .form-group
-        = volunteer.label "What time of day to you prefer?"
-        = volunteer.select :sessions,  sessions, {include_blank: true}, class: "form-control chosen-select"
+        = volunteer.label :thursday
+        = volunteer.select :thursday,  thursday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-4
+      .form-group
+        = volunteer.label :friday
+        = volunteer.select :friday,  friday_options, { include_blank: true }, class: "form-control chosen-select"
+  .row
+    .col-xs-4
+      .form-group
+        = volunteer.label :saturday
+        = volunteer.select :saturday,  saturday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-4
+      .form-group
+        = volunteer.label :sunday
+        = volunteer.select :sunday,  sunday_options, { include_blank: true }, class: "form-control chosen-select"
 
   .form-group
     = volunteer.label :comments

@@ -73,11 +73,53 @@ module VolunteersHelper
     count
   end
 
-  def sessions
-    ['AM', 'PM', 'Both', 'AM or PM only']
+  def wednesday_options
+    [
+      "Morning",
+      "Afternoon",
+      "Either",
+      "Both",
+      "Not available",
+    ]
   end
 
-  def availability
-    ['Mon-Sun', 'Thur-Sun', 'Weekend Only']
+  def thursday_options
+    [
+      "Morning start (7-9:30)",
+      "Afternoon start (11:30-2)",
+      "Either",
+      "Both",
+      "Not available",
+    ]
+  end
+
+  def friday_options
+    [
+      "Morning start (7-9:30)",
+      "Afternoon start (11:30-2)",
+      "Either",
+      "Both",
+      "Evening (5-8 special activity)",
+      "Not available",
+    ]
+  end
+
+  def saturday_options
+    [
+      "Early morning start (7-9:30)",
+      "Late morning start (9-11:30)",
+      "Either",
+      "Evening (6-10 special activity)",
+      "Not available",
+    ]
+  end
+
+  def sunday_options
+    [
+      "Early morning start (7-9:30)",
+      "Late morning start (9-11:30)",
+      "Either",
+      "Not available",
+    ]
   end
 end

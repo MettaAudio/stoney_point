@@ -82,8 +82,11 @@ class Volunteer < ActiveRecord::Base
       "email",
       "organization_id",
       "paid",
-      "availability",
-      "sessions"
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday",
     ]
   end
 end

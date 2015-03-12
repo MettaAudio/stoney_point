@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203064333) do
+ActiveRecord::Schema.define(version: 20150311003752) do
 
   create_table "caddies", force: true do |t|
     t.integer  "golfer_id"
@@ -139,10 +139,14 @@ ActiveRecord::Schema.define(version: 20150203064333) do
     t.text     "comments"
     t.integer  "number_of_shirts"
     t.boolean  "golfer"
-    t.string   "availability"
-    t.string   "sessions"
     t.boolean  "waiver"
     t.integer  "person_id"
+    t.string   "session"
+    t.string   "wednesday"
+    t.string   "thursday"
+    t.string   "friday"
+    t.string   "saturday"
+    t.string   "sunday"
   end
 
   add_index "volunteers", ["person_id"], name: "index_volunteers_on_person_id"

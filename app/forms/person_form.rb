@@ -23,12 +23,15 @@ class PersonForm < FormBuilder
   delegate  :shirt_size,
             :number_of_shirts,
             :comments,
-            :sessions,
-            :availability,
             :golfer,
             :physical_activity,
             :waiver,
             :paid,
+            :wednesday,
+            :thursday,
+            :friday,
+            :saturday,
+            :sunday,
             to: :volunteer, prefix: true, allow_nil: true
 
   delegate  :available,
@@ -88,12 +91,15 @@ class PersonForm < FormBuilder
     volunteer.shirt_size        = @volunteer_params[:shirt_size]
     volunteer.number_of_shirts  = @volunteer_params[:number_of_shirts]
     volunteer.comments          = @volunteer_params[:comments]
-    volunteer.sessions          = @volunteer_params[:sessions]
-    volunteer.availability      = @volunteer_params[:availability]
     volunteer.golfer            = @volunteer_params[:golfer]
     volunteer.physical_activity = @volunteer_params[:physical_activity]
     volunteer.waiver            = @volunteer_params[:waiver]
     volunteer.paid              = @volunteer_params[:paid]
+    volunteer.wednesday         = @volunteer_params[:wednesday]
+    volunteer.thursday          = @volunteer_params[:thursday]
+    volunteer.friday            = @volunteer_params[:friday]
+    volunteer.saturday          = @volunteer_params[:saturday]
+    volunteer.sunday            = @volunteer_params[:sunday]
     volunteer.person            = person
 
     volunteer.save
