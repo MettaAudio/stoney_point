@@ -51,24 +51,52 @@ module VolunteersHelper
     committees.join(' ').html_safe
   end
 
-  def shirt_sizes
+  def mens_shirt_sizes
     [
-      ["Men's Small", "MS"],
       ["Men's Medium", "MM"],
       ["Men's Large", "ML"],
       ["Men's X-Large", "MXL"],
       ["Men's XX-Large", "MXXL"],
+      ["Men's XXX-Large", "MXXXL"],
+    ]
+  end
+
+  def womens_shirt_sizes
+    [
       ["Women's Small", "WS"],
+      ["Women's Small, Sleeveless", "WS-S"],
       ["Women's Medium", "WM"],
+      ["Women's Medium, Sleeveless", "WM-S"],
       ["Women's Large", "WL"],
+      ["Women's Large, Sleeveless", "WL-S"],
       ["Women's X-Large", "WXL"]
     ]
+  end
+
+  def shirt_sizes
+    mens_shirt_sizes + womens_shirt_sizes
   end
 
   def shirt_count_for(size, volunteers)
     count = 0
     volunteers.shirts_of_size(size).each do |volunteer|
       count += (volunteer.number_of_shirts ? volunteer.number_of_shirts : 1)
+    end
+    count
+  end
+
+  def cap_count_for_men(volunteers)
+    count = 0
+    mens_shirt_sizes.each do |size|
+      count += shirt_count_for(size[1], volunteers)
+    end
+    count
+  end
+
+  def cap_count_for_women(volunteers)
+    count = 0
+    womens_shirt_sizes.each do |size|
+      count += shirt_count_for(size[1], volunteers)
     end
     count
   end
