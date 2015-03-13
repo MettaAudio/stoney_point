@@ -10,6 +10,8 @@ table#data_table.table.table-striped
     tr
       th Last
       th First
+      th Golf
+      th Phys
       th Comments
       th Committees
       th Job
@@ -28,6 +30,8 @@ table#data_table.table.table-striped
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
+        td = volunteer.physical_activity ? "Y" : "N"
+        td = volunteer.golfer ? "Y" : "N"
         td = volunteer.comments
         td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
         td ?
