@@ -27,6 +27,7 @@ class PersonForm < FormBuilder
             :physical_activity,
             :waiver,
             :paid,
+            :uniform_price,
             :wednesday,
             :thursday,
             :friday,
@@ -89,12 +90,13 @@ class PersonForm < FormBuilder
   def update_volunteer
     return true unless @volunteer_params.present?
     volunteer.shirt_size        = @volunteer_params[:shirt_size]
-    volunteer.number_of_shirts  = @volunteer_params[:number_of_shirts]
+    volunteer.number_of_shirts  = @volunteer_params[:number_of_shirts] || 1
     volunteer.comments          = @volunteer_params[:comments]
     volunteer.golfer            = @volunteer_params[:golfer]
     volunteer.physical_activity = @volunteer_params[:physical_activity]
     volunteer.waiver            = @volunteer_params[:waiver]
     volunteer.paid              = @volunteer_params[:paid]
+    volunteer.uniform_price     = @volunteer_params[:uniform_price]
     volunteer.wednesday         = @volunteer_params[:wednesday]
     volunteer.thursday          = @volunteer_params[:thursday]
     volunteer.friday            = @volunteer_params[:friday]

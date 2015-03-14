@@ -1,40 +1,41 @@
 hr
 = f.fields_for @person_form.volunteer do |volunteer|
   .row
-    .col-xs-3
+    .col-xs-4
       .form-group
         .checkbox
           = volunteer.label :waiver do
             = volunteer.check_box :waiver
             | Waiver
-    .col-xs-3
+    .col-xs-4
       .form-group
         .checkbox
           = volunteer.label :physical_activity do
             = volunteer.check_box :physical_activity
             | Physical Activity?
-    .col-xs-3
+    .col-xs-4
       .form-group
         .checkbox
           = volunteer.label :golfer do
             = volunteer.check_box :golfer
             | Golfer?
+  hr
+  .row
+    .col-xs-4
+      .form-group
+        = volunteer.label :shirt_size
+        = volunteer.select :shirt_size, shirt_sizes, { include_blank: true }, class: "form-control chosen-select"
     .col-xs-3
+      .form-group
+        = volunteer.label :uniform_price
+        = volunteer.number_field :uniform_price, class: "form-control"
+    .col-xs-5
       .form-group
         .checkbox
           = volunteer.label :paid do
             = volunteer.check_box :paid
             | Shirts Paid for?
-  .row
-    .col-xs-6
-      .form-group
-        = volunteer.label :shirt_size
-        = volunteer.select :shirt_size, shirt_sizes, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-6
-      .form-group
-        = volunteer.label :number_of_shirts
-        = volunteer.number_field :number_of_shirts, class: "form-control"
-
+  hr
   .row
     .col-xs-4
       .form-group

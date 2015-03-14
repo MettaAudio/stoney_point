@@ -74,7 +74,10 @@ module VolunteersHelper
   end
 
   def shirt_sizes
-    mens_shirt_sizes + womens_shirt_sizes
+    {
+      "Men's Sizes" => mens_shirt_sizes,
+      "Women's Sizes" => womens_shirt_sizes
+    }
   end
 
   def shirt_count_for(size, volunteers)

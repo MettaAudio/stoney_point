@@ -15,7 +15,7 @@ hr
        | Receipts to Date
        | &nbsp;
        small = Date.today.strftime('%m/%d/%Y')
-      p = number_to_currency(@shirts_paid * Volunteer::SHIRT_PRICE)
+      p = number_to_currency(Volunteer.total_receipts)
       p
 .row
   .col-xs-4

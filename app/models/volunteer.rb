@@ -6,7 +6,9 @@ class Volunteer < ActiveRecord::Base
   belongs_to :person
   has_many :work_days
 
-  SHIRT_PRICE = 35
+  after_initialize :init
+
+  UNIFORM_PRICE = 35
 
   accepts_nested_attributes_for :committees
 
@@ -59,6 +61,10 @@ class Volunteer < ActiveRecord::Base
     count
   end
 
+  def self.total_receipts
+    receiving_shirts.with_shirts_paid.collect{ |v| (v.number_of_shirts * v.uniform_price)}.inject(:+)
+  end
+
   def duplicate!
     duplicate_attributes = {}
     usable_attributes.each do |usable_attribute|
@@ -88,5 +94,11 @@ class Volunteer < ActiveRecord::Base
       "saturday",
       "sunday",
     ]
+  end
+
+  private
+  def init
+    self.number_of_shirts  ||= 1
+    self.uniform_price     ||= UNIFORM_PRICE
   end
 end
