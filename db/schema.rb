@@ -13,6 +13,24 @@
 
 ActiveRecord::Schema.define(version: 20150314001901) do
 
+  create_table "_volunteers_old_20150310", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid"
+    t.boolean  "physical_activity"
+    t.string   "shirt_size"
+    t.text     "comments"
+    t.integer  "number_of_shirts"
+    t.boolean  "golfer"
+    t.boolean  "waiver"
+    t.integer  "person_id"
+    t.string   "session"
+    t.string   "wednesday"
+    t.string   "thursday"
+    t.string   "friday"
+    t.string   "saturday"
+    t.string   "sunday"
+  end
 
   create_table "caddies", force: true do |t|
     t.integer  "golfer_id"
