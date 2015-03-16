@@ -33,8 +33,8 @@ class WelcomeVolunteersController < ApplicationController
   def update
     params[:person_form][:person_is_active] = true
 
-    @volunteer = Volunteer.find(params[:id])
-    @person    = @volunteer.person
+    @person    = Person.find(params[:id])
+    @volunteer = @person.volunteer
 
     @person_form = PersonForm.new(
       page_params: params,
