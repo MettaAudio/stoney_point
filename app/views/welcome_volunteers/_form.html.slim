@@ -15,10 +15,14 @@ hr
           = volunteer.label :golfer do
             = volunteer.check_box :golfer
             | Are you a golfer?
-    .col-xs-6
+    .col-xs-3
+      .form-group
+        = volunteer.label "Organization"
+        = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {include_blank: true}, class: "form-control chosen-select"
+    .col-xs-3
       .form-group
         = volunteer.label "What is your shirt size?"
-        = volunteer.select :shirt_size, grouped_options_for_select(shirt_sizes), {include_blank: true}, class: "form-control chosen-select"
+        = volunteer.select :shirt_size, shirt_sizes, {include_blank: true}, class: "form-control chosen-select"
   hr
   h4 When are you available to help?
   .row
