@@ -12,4 +12,7 @@
       .row
         .col-xs-12
           form-actions
-            = f.button "Please accept the waiver...", :class => 'btn btn-primary btn-large disabled js-submit'
+            - if @person.volunteer.waiver == true
+              = f.button "Save", :class => 'btn btn-primary btn-large js-submit'
+            - else
+              = f.button "Please accept the waiver...", :class => 'btn btn-primary btn-large disabled js-submit'
