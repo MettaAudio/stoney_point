@@ -58,6 +58,10 @@ class WelcomeVolunteersController < ApplicationController
     render layout: "public"
   end
 
+  def thank_you
+    render layout: "public"
+  end
+
   private
   def set_person
     @person = Person.find(params[:id])

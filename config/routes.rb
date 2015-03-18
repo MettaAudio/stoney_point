@@ -20,6 +20,7 @@ StoneyPoint::Application.routes.draw do
 
   resources :people, only: [:new, :create, :update, :index]
 
+  get "/welcome_volunteers/thank_you", to: "welcome_volunteers#thank_you"
   resources :welcome_volunteers, except: [:index]
 
   post "/add_volunteer_committee", to: "volunteers#add_committee", as: 'add_volunteer_committee'
