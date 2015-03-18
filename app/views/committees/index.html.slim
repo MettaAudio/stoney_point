@@ -4,6 +4,8 @@ h1
   small
     '  #{@volunteers.count} volunteers
 = link_to 'New Committee', new_committee_path if current_user
+|  |&nbsp;
+= params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr
 table#data_table.table.table-striped
   thead

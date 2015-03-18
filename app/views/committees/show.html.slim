@@ -8,6 +8,8 @@ h2
   = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-xs' if current_user
   | &nbsp;
   = link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, committees_path, :class => 'btn btn-xs'
+= params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
+hr
 
 table#data_table.table.table-striped
   thead

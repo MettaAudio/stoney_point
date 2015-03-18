@@ -3,11 +3,19 @@ class CommitteesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @volunteers = Volunteer.active.working
+    if params[:show_all] == 'true'
+      @volunteers = Volunteer.all
+    else
+      @volunteers = Volunteer.active.working
+    end
   end
 
   def show
-    @volunteers = @committee.volunteers.active
+    if params[:show_all] == 'true'
+      @volunteers = @committee.volunteers
+    else
+      @volunteers = @committee.volunteers.active
+    end
   end
 
   def new
