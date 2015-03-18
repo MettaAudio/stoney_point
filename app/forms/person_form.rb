@@ -96,7 +96,7 @@ class PersonForm < FormBuilder
     volunteer.physical_activity = @volunteer_params[:physical_activity]
     volunteer.waiver            = @volunteer_params[:waiver]
     volunteer.paid              = @volunteer_params[:paid]
-    volunteer.uniform_price     = @volunteer_params[:uniform_price]
+    volunteer.uniform_price     = @volunteer_params[:uniform_price] || uniform_price
     volunteer.wednesday         = @volunteer_params[:wednesday]
     volunteer.thursday          = @volunteer_params[:thursday]
     volunteer.friday            = @volunteer_params[:friday]
@@ -139,5 +139,9 @@ class PersonForm < FormBuilder
     golfer.person             = person
 
     golfer.save
+  end
+
+  def uniform_price
+    return 0 if (person.organization_id || @person_params[:person_organization_id]) == Organization.college_organization_id
   end
 end

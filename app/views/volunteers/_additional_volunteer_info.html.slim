@@ -33,16 +33,6 @@ br
         span.glyphicon.glyphicon-plus
         |  New Shift
 
-  .col-xs-6
-    = simple_form_for(@person_form.volunteer, html: {class: 'form-vertical' }, :url => add_volunteer_organization_path, method: 'post') do |f|
-      = f.input :id, :as => :hidden, :input_html => { :value => @person_form.volunteer.id }
-      = f.association :organization, :input_html => { :class => "chosen-select" }
-      = f.button :submit, 'Update', class: 'btn btn-default'
-      | &nbsp;&nbsp;&nbsp;
-      a href="#new_organization_modal" role="button" class="btn btn-xs" data-toggle="modal"
-        span.glyphicon.glyphicon-plus
-        |  New Organization
-
 br
 .row
   .col-xs-12
@@ -93,18 +83,6 @@ br
         h3#add_shift Add Shift
       .modal-body
         = render 'shifts/form'
-
-/ Organization Modal
-#new_organization_modal.modal.fade aria-hidden="true" aria-labelledby="add_organization" role="dialog" tabindex="-1"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close data-dismiss="modal" type="button"
-          span aria-hidden="true"  &times;
-          span.sr-only Close
-        h3#add_organization Add Organization
-      .modal-body
-        = render 'organizations/form'
 
 / Committee Modal
 #new_committee_modal.modal.fade aria-hidden="true" aria-labelledby="add_committee" role="dialog" tabindex="-1"
