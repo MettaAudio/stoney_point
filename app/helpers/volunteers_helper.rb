@@ -63,20 +63,28 @@ module VolunteersHelper
 
   def womens_shirt_sizes
     [
+      ["Women's X-Small", "WXS"],
       ["Women's Small", "WS"],
-      ["Women's Small, Sleeveless", "WS-S"],
       ["Women's Medium", "WM"],
-      ["Women's Medium, Sleeveless", "WM-S"],
       ["Women's Large", "WL"],
-      ["Women's Large, Sleeveless", "WL-S"],
       ["Women's X-Large", "WXL"]
+    ]
+  end
+
+  def womens_sleeveless_shirt_sizes
+    [
+      ["Women's X-Small, Sleeveless", "WXS-S"],
+      ["Women's Small, Sleeveless", "WS-S"],
+      ["Women's Medium, Sleeveless", "WM-S"],
+      ["Women's Large, Sleeveless", "WL-S"],
     ]
   end
 
   def shirt_sizes
     {
-      "Men's Sizes" => mens_shirt_sizes,
-      "Women's Sizes" => womens_shirt_sizes
+      "Men's Sizes"        => mens_shirt_sizes,
+      "Women's Sizes"      => womens_shirt_sizes,
+      "Women's Sleeveless" => womens_sleeveless_shirt_sizes
     }
   end
 

@@ -18,7 +18,7 @@ hr
       p = number_to_currency(Volunteer.total_receipts)
       p
 .row
-  .col-xs-4
+  .col-xs-3
     .well
       h3 Men
       table.table
@@ -28,38 +28,46 @@ hr
             th ML
             th MXL
             th MXXL
-            th Caps
         tbody
           tr
             td = shirt_count_for('MM', @volunteers)
             td = shirt_count_for('ML', @volunteers)
             td = shirt_count_for('MXL', @volunteers)
             td = shirt_count_for('MXXL', @volunteers)
-            td = cap_count_for_men(@volunteers)
-  .col-xs-7
+  .col-xs-4
     .well
       h3 Women
       table.table
         thead
           tr
+            th WXS
             th WS
-            th WS-S
             th WM
-            th WM-S
             th WL
-            th WL-S
             th WXL
-            th Caps
         tbody
           tr
+            td = shirt_count_for('WXS', @volunteers)
             td = shirt_count_for('WS', @volunteers)
-            td = shirt_count_for('WS-S', @volunteers)
             td = shirt_count_for('WM', @volunteers)
-            td = shirt_count_for('WM-S', @volunteers)
             td = shirt_count_for('WL', @volunteers)
-            td = shirt_count_for('WL-S', @volunteers)
             td = shirt_count_for('WXL', @volunteers)
-            td = cap_count_for_women(@volunteers)
+  .col-xs-4
+    .well
+      h3 Women - Sleeveless
+      table.table
+        thead
+          tr
+            th WXS
+            th WS
+            th WM
+            th WL
+        tbody
+          tr
+            td = shirt_count_for('WXS-S', @volunteers)
+            td = shirt_count_for('WS-S', @volunteers)
+            td = shirt_count_for('WM-S', @volunteers)
+            td = shirt_count_for('WL-S', @volunteers)
   .col-xs-1
     .well
       h3 &nbsp;
