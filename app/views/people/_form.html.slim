@@ -25,10 +25,9 @@
   .col-xs-4
     .form-group
       = f.text_field :person_email, class: "form-control", placeholder: "Email Address"
-  - unless public_controllers.include?(params[:controller])
-    .col-xs-4
-      .form-group
-        = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {include_blank: true}, class: "form-control chosen-select"
+  .col-xs-4
+    .form-group
+      = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {prompt: "Choose an Organization..."}, class: "form-control"
 - unless public_controllers.include?(params[:controller])
   .row
     .col-xs-12

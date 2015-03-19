@@ -68,6 +68,7 @@ module VolunteersHelper
       ["Women's Medium", "WM"],
       ["Women's Large", "WL"],
       ["Women's X-Large", "WXL"]
+      ["Women's XX-Large", "WXXL"]
     ]
   end
 
@@ -77,6 +78,7 @@ module VolunteersHelper
       ["Women's Small, Sleeveless", "WS-S"],
       ["Women's Medium, Sleeveless", "WM-S"],
       ["Women's Large, Sleeveless", "WL-S"],
+      ["Women's X-Large, Sleeveless", "WXL-S"],
     ]
   end
 

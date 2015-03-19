@@ -3,50 +3,47 @@
 hr
 = f.fields_for @person_form.volunteer do |volunteer|
   .row
-    .col-xs-3
+    .col-xs-4
       .form-group
         .checkbox
           = volunteer.label :physical_activity do
             = volunteer.check_box :physical_activity
             | Are you willing to do physical tasks?
-    .col-xs-3
+    .col-xs-4
       .form-group
         .checkbox
           = volunteer.label :golfer do
             = volunteer.check_box :golfer
             | Are you a golfer?
-    .col-xs-3
-      .form-group
-        = volunteer.label "Organization"
-        = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {include_blank: true}, class: "form-control chosen-select"
-    .col-xs-3
-      .form-group
-        = volunteer.label "What is your shirt size?"
-        = volunteer.select :shirt_size, shirt_sizes, {include_blank: true}, class: "form-control chosen-select"
   hr
   h4 When are you available to help?
   .row
     .col-xs-4
       .form-group
         = volunteer.label :wednesday, "Wednesday - Jr. Clinic Only"
-        = volunteer.select :wednesday,  wednesday_options, { include_blank: true }, class: "form-control chosen-select"
+        = volunteer.select :wednesday,  wednesday_options, { prompt: "Choose One..." }, class: "form-control"
     .col-xs-4
       .form-group
         = volunteer.label :thursday
-        = volunteer.select :thursday,  thursday_options, { include_blank: true }, class: "form-control chosen-select"
+        = volunteer.select :thursday,  thursday_options, { prompt: "Choose One..." }, class: "form-control"
     .col-xs-4
       .form-group
         = volunteer.label :friday
-        = volunteer.select :friday,  friday_options, { include_blank: true }, class: "form-control chosen-select"
+        = volunteer.select :friday,  friday_options, { prompt: "Choose One..." }, class: "form-control"
   .row
     .col-xs-4
       .form-group
         = volunteer.label :saturday
-        = volunteer.select :saturday,  saturday_options, { include_blank: true }, class: "form-control chosen-select"
+        = volunteer.select :saturday,  saturday_options, { prompt: "Choose One..." }, class: "form-control"
     .col-xs-4
       .form-group
         = volunteer.label :sunday
-        = volunteer.select :sunday,  sunday_options, { include_blank: true }, class: "form-control chosen-select"
+        = volunteer.select :sunday,  sunday_options, { prompt: "Choose One..." }, class: "form-control"
+  .row
+    .col-xs-4
+      .form-group
+        = volunteer.label "What is your shirt size?"
+        = volunteer.select :shirt_size, shirt_sizes, {prompt: "Choose One..."}, class: "form-control"
 
   .form-group
     = volunteer.label :comments
@@ -54,11 +51,7 @@ hr
 
   .row
     .col-xs-12
-      .form-group
-        .checkbox
-          = volunteer.label :waiver do
-            = volunteer.check_box :waiver, class: 'js-i-accept'
-            | I am at least 18 years of age and I accept these terms and conditions
+      h4 Waiver
     .col-xs-12.js-show-more
       .well.show-more.truncate
         h4 Volunteer Disclosure, Waiver and Release Statement
@@ -76,3 +69,9 @@ hr
 
         p By clicking "I accept these terms and conditions", I affirm that I have read this Volunteer Disclosure, Waiver and Release Statement, understand it, and agree to sign it willingly and accept its terms and conditions.  This form may be released to any third party in order that the volunteer may receive medical care in the event of illness or injury.
       a.pull-right.btn.btn-default.btn-xs.js-more-btn Read More
+    .col-xs-12
+      .form-group
+        .checkbox
+          = volunteer.label :waiver do
+            = volunteer.check_box :waiver, class: 'js-i-accept'
+            | I am at least 18 years of age and I accept these terms and conditions
