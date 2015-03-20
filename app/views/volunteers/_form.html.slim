@@ -21,15 +21,19 @@ hr
             | Golfer?
   hr
   .row
-    .col-xs-4
+    .col-xs-3
       .form-group
         = volunteer.label :shirt_size
         = volunteer.select :shirt_size, shirt_sizes, { include_blank: true }, class: "form-control chosen-select"
     .col-xs-3
       .form-group
+        = volunteer.label :number_of_shirts
+        = volunteer.number_field :number_of_shirts, class: "form-control"
+    .col-xs-3
+      .form-group
         = volunteer.label :uniform_price
         = volunteer.number_field :uniform_price, class: "form-control"
-    .col-xs-5
+    .col-xs-3
       .form-group
         .checkbox
           = volunteer.label :paid do

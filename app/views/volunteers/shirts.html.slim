@@ -85,7 +85,6 @@ table#data_table.table.table-striped
       th First
       th Size
       th # Ordered
-      th Visor
       th Paid?
       th Committee
 
@@ -96,7 +95,6 @@ table#data_table.table.table-striped
         td = link_to(volunteer.first_name, volunteer)
         td = volunteer.shirt_size
         td = volunteer.number_of_shirts
-        td ?
         td = volunteer.paid ? "Yes" : "No"
         td = committees_for(volunteer)
 
