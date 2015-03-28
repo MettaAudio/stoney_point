@@ -12,6 +12,8 @@ table.table.table-striped#data_table
       th Know Golf?
       th Know the Course?
       th Know the Rules?
+      th Exp
+      th Age
       th Comments
       th
       - if current_user
@@ -26,6 +28,8 @@ table.table.table-striped#data_table
         td = caddie.golf ? 'Yes' : 'No'
         td = caddie.course
         td = caddie.rules
+        td = caddie.experience_as_caddie ? "Yes" : "No"
+        td = caddie.age
         td = caddie.comments
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie, :class => 'btn btn-small'
         - if current_user

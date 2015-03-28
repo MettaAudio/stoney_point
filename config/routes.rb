@@ -23,6 +23,9 @@ StoneyPoint::Application.routes.draw do
   get "/welcome_volunteers/thank_you", to: "welcome_volunteers#thank_you"
   resources :welcome_volunteers, except: [:index]
 
+  get "/welcome_caddies/thank_you", to: "welcome_caddies#thank_you"
+  resources :welcome_caddies, except: [:index]
+
   post "/add_volunteer_committee", to: "volunteers#add_committee", as: 'add_volunteer_committee'
   post "/add_volunteer_job", to: "volunteers#add_job", as: 'add_volunteer_job'
   post "/add_volunteer_shift", to: "volunteers#add_shift", as: 'add_volunteer_shift'

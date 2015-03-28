@@ -1,4 +1,4 @@
-class WelcomeVolunteersController < ApplicationController
+class WelcomeCaddiesController < ApplicationController
   layout "public"
 
   def new
@@ -20,12 +20,12 @@ class WelcomeVolunteersController < ApplicationController
 
   def edit
     @person    = Person.find(params[:id])
-    @volunteer = @person.volunteer || Volunteer.new
+    @caddie = @person.caddie || Caddie.new
     @welcome   = true
 
     @person_form = PersonForm.new(
       page_params: params,
-      volunteer:   @volunteer,
+      caddie:      @caddie,
       person:      @person
     )
   end
@@ -33,12 +33,12 @@ class WelcomeVolunteersController < ApplicationController
   def update
     params[:person_form][:person_is_active] = true
 
-    @person    = Person.find(params[:id])
-    @volunteer = @person.volunteer
+    @person = Person.find(params[:id])
+    @caddie = @person.caddie
 
     @person_form = PersonForm.new(
       page_params: params,
-      volunteer:   @volunteer,
+      caddie:      @caddie,
       person:      @person
     )
     if @person_form.update

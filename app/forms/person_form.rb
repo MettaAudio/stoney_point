@@ -109,11 +109,14 @@ class PersonForm < FormBuilder
 
   def update_caddie
     return true unless @caddie_params.present?
-    caddie.golf            = @caddie_params[:golf]
-    caddie.course          = @caddie_params[:course]
-    caddie.rules           = @caddie_params[:rules]
-    caddie.comments        = @caddie_params[:comments]
-    caddie.person          = person
+    caddie.golf                 = @caddie_params[:golf]
+    caddie.course               = @caddie_params[:course]
+    caddie.rules                = @caddie_params[:rules]
+    caddie.experience_as_caddie = @caddie_params[:experience_as_caddie]
+    caddie.waiver               = @caddie_params[:waiver]
+    caddie.age                  = @caddie_params[:age]
+    caddie.comments             = @caddie_params[:comments]
+    caddie.person               = person
 
     caddie.save
   end

@@ -1,11 +1,29 @@
 = f.fields_for @person_form.caddie do |caddie|
   .row
+    hr
+    .col-xs-4
+      .form-group
+        .checkbox
+          = caddie.label :waiver do
+            = caddie.check_box :waiver
+            | Signed waiver?
     .col-xs-4
       .form-group
         .checkbox
           = caddie.label :golf do
             = caddie.check_box :golf
             | Golf?
+    .col-xs-4
+      .form-group
+        .checkbox
+          = caddie.label :experience_as_caddie do
+            = caddie.check_box :experience_as_caddie
+            | Caddie experience?
+  .row
+    .col-xs-4
+      .form-group
+        = caddie.label :age
+        = caddie.number_field :age, class: "form-control"
     .col-xs-4
       .form-group
         = caddie.label "Do they know the course?"
