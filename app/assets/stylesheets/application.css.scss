@@ -34,3 +34,9 @@ input {
     line-height: 20px;
   }
 }
+
+div.hidden-form-field {
+  position:absolute;
+  top: -9999px;
+  visibility:hidden;
+}

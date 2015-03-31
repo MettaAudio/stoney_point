@@ -31,7 +31,6 @@ class VolunteersController < ApplicationController
     @volunteers = Volunteer.active.receiving_shirts
     @shirts_paid = Volunteer.active.number_of_shirts_paid
     @shirts_unpaid = Volunteer.active.number_of_shirts_unpaid
-    @shirts_unknown = Volunteer.active.number_of_shirts_unknown
   end
 
   def show

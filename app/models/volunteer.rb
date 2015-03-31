@@ -28,7 +28,7 @@ class Volunteer < ActiveRecord::Base
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }
-  scope :receiving_shirts, -> { where("number_of_shirts > 0 AND number_of_shirts IS NOT NULL") }
+  scope :receiving_shirts, -> { where("number_of_shirts > 0 AND number_of_shirts IS NOT NULL AND shirt_size <> ''") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
   scope :with_shirts_paid, -> { where(paid: true) }
   scope :with_shirts_unpaid, -> { where(paid: [false, nil]) }
@@ -49,14 +49,6 @@ class Volunteer < ActiveRecord::Base
     count = 0
     receiving_shirts.with_shirts_unpaid.each do |shirt|
       count += shirt.number_of_shirts ? shirt.number_of_shirts : 1
-    end
-    count
-  end
-
-  def self.number_of_shirts_unknown
-    count = 0
-    receiving_shirts.where(:shirt_size => [nil, '']).each do |shirt|
-      count += (shirt.number_of_shirts ? shirt.number_of_shirts : 1)
     end
     count
   end
@@ -98,7 +90,7 @@ class Volunteer < ActiveRecord::Base
 
   private
   def init
-    self.number_of_shirts  ||= 1
+    self.number_of_shirts  ||= 0
     self.uniform_price     ||= UNIFORM_PRICE
   end
 end
