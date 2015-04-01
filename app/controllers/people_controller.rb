@@ -4,6 +4,16 @@ class PeopleController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
+      @people = Person.all.includes(:volunteer, :caddie, :golfer, :housings)
+    elsif params[:show_volunteers] == 'true'
+      @people = Person.active.volunteers.includes(:volunteer, :caddie, :golfer, :housings)
+    else
+      @people = Person.active.includes(:volunteer, :caddie, :golfer, :housings)
+    end
+  end
+
+  def links
+    if params[:show_all] == 'true'
       @people = Person.all
     elsif params[:show_volunteers] == 'true'
       @people = Person.active.volunteers
@@ -28,6 +38,13 @@ class PeopleController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+
+  def destroy
+    @person = Person.find(params[:id])
+    @person.destroy
+
+    redirect_to :back
   end
 
   private

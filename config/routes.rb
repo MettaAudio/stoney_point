@@ -18,7 +18,7 @@ StoneyPoint::Application.routes.draw do
 
   resources :volunteers
 
-  resources :people, only: [:new, :create, :update, :index]
+  resources :people
 
   get "/welcome_volunteers/thank_you", to: "welcome_volunteers#thank_you"
   resources :welcome_volunteers, except: [:index]
@@ -34,6 +34,7 @@ StoneyPoint::Application.routes.draw do
   post "/add_golfer_to_housing", to: "housings#add_golfer", as: 'add_golfer_to_housing'
 
   get "/shirts", to: "volunteers#shirts", as: 'shirts'
+  get "/people/links", to: "people#links", as: 'links'
 
   root :to => 'volunteers#index'
 

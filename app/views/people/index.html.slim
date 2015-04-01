@@ -1,12 +1,10 @@
 h1
-  | People List
+  | People
   small
     '  #{@people.count} total
 
 - if current_user
   = params[:show_all] == 'true' ? "Show all" : link_to('Show all', :show_all => true)
-  ||&nbsp;
-  = params[:show_volunteers] == 'true' ? "Show volunteers" : link_to('Show volunteers', :show_volunteers => true)
 hr
 table#data_table.table.table-striped
   thead
@@ -14,10 +12,12 @@ table#data_table.table.table-striped
       th Last
       th First
       th Email
-      th Volunteer link
-      th Housing link
-      th Caddie link
+      th Volunteer
+      th Housing
+      th Caddie
+      th Golfer
       th Active
+      th Actions
 
   tbody
     - @people.each do |person|
@@ -25,8 +25,16 @@ table#data_table.table.table-striped
         td = link_to(person.last_name, person)
         td = link_to(person.first_name, person)
         td = mail_to person.email, person.email, :encode => "javascript"
-        td = volunteer_link(person)
-        td = housing_link(person)
-        td = caddie_link(person)
+        td = person.volunteer.present? ? existing_link(person.volunteer) : add_link(new_volunteer_path(person_id: person.id))
+        - if person.housings.present?
+          td
+            - person.housings.each do |house|
+              = existing_link(house)
+              | &nbsp;
+        - else
+          td = add_link(new_housing_path(person_id: person.id))
+        td = person.caddie.present? ? existing_link(person.caddie) : add_link(new_caddie_path(person_id: person.id))
+        td = person.golfer.present? ? existing_link(person.golfer) : add_link(new_golfer_path(person_id: person.id))
         td = person.is_active? ? "Y" : "N"
+        td = link_to("<span class='glyphicon glyphicon-trash'></span>".html_safe, person, class: 'delete_link', method: :delete, data: { confirm: 'Are you sure?' })
 = render 'shared/datatable_js'

@@ -40,3 +40,13 @@ div.hidden-form-field {
   top: -9999px;
   visibility:hidden;
 }
+
+a.add_link, a.delete_link {
+  span {
+    color: #CCC;
+  }
+  &:hover, span:hover {
+    color: green;
+    background-color: transparent;
+  }
+}

@@ -5,9 +5,9 @@ h1
 
 - if current_user
   = link_to 'Add New Volunteer', new_volunteer_path
-  ||&nbsp;
+  |  |&nbsp;
   = params[:show_active] == 'true' ? "Show All Active" : link_to('Show all active', :show_active => true)
-  ||&nbsp;
+  |  |&nbsp;
   = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr
 table#data_table.table.table-striped

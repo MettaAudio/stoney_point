@@ -11,7 +11,9 @@ class HousingsController < ApplicationController
   end
 
   def new
-    @person_form = PersonForm.new()
+    @person_form = PersonForm.new(
+      person: Person.find_by_id(params[:person_id])
+    )
   end
 
   def edit
@@ -24,8 +26,11 @@ class HousingsController < ApplicationController
   end
 
   def create
+    @person = Person.find_by_id(params[:person_id]) || Person.new
+
     @person_form = PersonForm.new(
-      page_params: params
+      page_params: params,
+      person:      @person
     )
 
     if @person_form.update
@@ -52,7 +57,7 @@ class HousingsController < ApplicationController
   def destroy
     @housing.destroy
     respond_to do |format|
-      format.html { redirect_to housings_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

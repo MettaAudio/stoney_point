@@ -14,7 +14,9 @@ class GolfersController < ApplicationController
   end
 
   def new
-    @person_form = PersonForm.new()
+    @person_form = PersonForm.new(
+      person: Person.find_by_id(params[:person_id])
+    )
   end
 
   def edit
@@ -28,7 +30,7 @@ class GolfersController < ApplicationController
 
   def create
     @golfer = Golfer.new
-    @person = Person.new
+    @person = Person.find_by_id(params[:person_id]) || Person.new
 
     @person_form = PersonForm.new(
       page_params: params,
@@ -67,8 +69,8 @@ class GolfersController < ApplicationController
   end
 
   def destroy
-    @golfer.person.destroy
-    redirect_to golfers_url
+    @golfer.destroy
+    redirect_to :back
   end
 
   private

@@ -37,7 +37,9 @@ class VolunteersController < ApplicationController
   end
 
   def new
-    @person_form = PersonForm.new()
+    @person_form = PersonForm.new(
+      person: Person.find_by_id(params[:person_id])
+    )
   end
 
   def edit
@@ -57,7 +59,7 @@ class VolunteersController < ApplicationController
 
   def create
     @volunteer = Volunteer.new
-    @person    = Person.new
+    @person    = Person.find_by_id(params[:person_id]) || Person.new
 
     @person_form = PersonForm.new(
       page_params: params,
@@ -149,8 +151,8 @@ class VolunteersController < ApplicationController
   end
 
   def destroy
-    @volunteer.person.destroy
-    redirect_to volunteers_url
+    @volunteer.destroy
+    redirect_to :back
   end
 
   private
