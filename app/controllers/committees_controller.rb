@@ -4,17 +4,17 @@ class CommitteesController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @volunteers = Volunteer.all
+      @volunteers = Volunteer.all.includes(people: :organization)
     else
-      @volunteers = Volunteer.active.working
+      @volunteers = Volunteer.active.working.includes(person: :organization)
     end
   end
 
   def show
     if params[:show_all] == 'true'
-      @volunteers = @committee.volunteers
+      @volunteers = @committee.volunteers.includes(person: :organization)
     else
-      @volunteers = @committee.volunteers.active
+      @volunteers = @committee.volunteers.active.includes(person: :organization)
     end
   end
 

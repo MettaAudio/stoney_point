@@ -4,11 +4,11 @@ class VolunteersController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @volunteers = Volunteer.all
+      @volunteers = Volunteer.all.includes(person: :organization)
     elsif params[:show_active] == 'true'
-      @volunteers = Volunteer.active
+      @volunteers = Volunteer.active.includes(person: :organization)
     else
-      @volunteers = Volunteer.active.working
+      @volunteers = Volunteer.active.working.includes(person: :organization)
     end
   end
 
@@ -28,17 +28,18 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.active.receiving_shirts
-    @shirts_paid = Volunteer.active.number_of_shirts_paid
-    @shirts_unpaid = Volunteer.active.number_of_shirts_unpaid
-    @shirts_unknown = Volunteer.active.number_of_shirts_unknown
+    @volunteers = Volunteer.active.includes(:committees, person: :organization).receiving_shirts
+    @shirts_paid = Volunteer.active.includes(person: :organization).number_of_shirts_paid
+    @shirts_unpaid = Volunteer.active.includes(person: :organization).number_of_shirts_unpaid
   end
 
   def show
   end
 
   def new
-    @person_form = PersonForm.new()
+    @person_form = PersonForm.new(
+      person: Person.find_by_id(params[:person_id])
+    )
   end
 
   def edit
@@ -58,7 +59,7 @@ class VolunteersController < ApplicationController
 
   def create
     @volunteer = Volunteer.new
-    @person    = Person.new
+    @person    = Person.find_by_id(params[:person_id]) || Person.new
 
     @person_form = PersonForm.new(
       page_params: params,
@@ -150,8 +151,8 @@ class VolunteersController < ApplicationController
   end
 
   def destroy
-    @volunteer.person.destroy
-    redirect_to volunteers_url
+    @volunteer.destroy
+    redirect_to :back
   end
 
   private

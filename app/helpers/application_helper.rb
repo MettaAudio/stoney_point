@@ -13,4 +13,8 @@ module ApplicationHelper
       "welcome_volunteers",
     ]
   end
+
+  def hidden_form_class
+    return "hidden-form-field" if !!(controller_name =~ /welcome/)
+  end
 end

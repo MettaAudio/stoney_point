@@ -4,9 +4,9 @@ class CaddiesController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @caddies = Caddie.by_last_name
+      @caddies = Caddie.by_last_name.includes(:person)
     else
-      @caddies = Caddie.active.by_last_name
+      @caddies = Caddie.active.by_last_name.includes(:person)
     end
   end
 
@@ -14,7 +14,9 @@ class CaddiesController < ApplicationController
   end
 
   def new
-    @person_form = PersonForm.new()
+    @person_form = PersonForm.new(
+      person: Person.find_by_id(params[:person_id])
+    )
   end
 
   def edit
@@ -28,7 +30,7 @@ class CaddiesController < ApplicationController
 
   def create
     @caddie = Caddie.new
-    @person = Person.new
+    @person = Person.find_by_id(params[:person_id]) || Person.new
     @person_form = PersonForm.new(
       page_params: params,
       caddie:      @caddie,
@@ -57,8 +59,8 @@ class CaddiesController < ApplicationController
   end
 
   def destroy
-    @caddie.person.destroy
-    redirect_to caddies_url
+    @caddie.destroy
+    redirect_to :back
   end
 
   def add_organization

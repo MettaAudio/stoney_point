@@ -163,4 +163,33 @@ module VolunteersHelper
       "Not available",
     ]
   end
+
+  def public_facing_page?
+    !!(controller_name =~ /welcome/)
+  end
+
+  def shirt_size_label
+    public_facing_page? ? "What is your shirt size?" : "Shirt size"
+  end
+
+  def golfer_label
+    public_facing_page? ? "Are you a golfer?" : "Golfer?"
+  end
+
+  def physical_activity_label
+    public_facing_page? ? "Are you willing to do physical tasks?" : "Physical activity?"
+  end
+
+  def when_are_you_available?
+    public_facing_page? ? "When are you available to help?" : "When are they available to help?"
+  end
+
+  def display_waiver?
+    public_facing_page?
+  end
+
+  def waiver_text
+    display_waiver? ? "I am at least 18 years of age and I accept these terms and conditions" : "Accepted waiver"
+  end
+
 end
