@@ -4,11 +4,11 @@ class VolunteersController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @volunteers = Volunteer.all
+      @volunteers = Volunteer.all.includes(person: :organization)
     elsif params[:show_active] == 'true'
-      @volunteers = Volunteer.active
+      @volunteers = Volunteer.active.includes(person: :organization)
     else
-      @volunteers = Volunteer.active.working
+      @volunteers = Volunteer.active.working.includes(person: :organization)
     end
   end
 
@@ -28,9 +28,9 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.active.receiving_shirts
-    @shirts_paid = Volunteer.active.number_of_shirts_paid
-    @shirts_unpaid = Volunteer.active.number_of_shirts_unpaid
+    @volunteers = Volunteer.active.includes(:committees, person: :organization).receiving_shirts
+    @shirts_paid = Volunteer.active.includes(person: :organization).number_of_shirts_paid
+    @shirts_unpaid = Volunteer.active.includes(person: :organization).number_of_shirts_unpaid
   end
 
   def show

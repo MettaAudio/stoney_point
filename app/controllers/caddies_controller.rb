@@ -4,9 +4,9 @@ class CaddiesController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @caddies = Caddie.by_last_name
+      @caddies = Caddie.by_last_name.includes(:person)
     else
-      @caddies = Caddie.active.by_last_name
+      @caddies = Caddie.active.by_last_name.includes(:person)
     end
   end
 

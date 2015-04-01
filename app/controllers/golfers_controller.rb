@@ -4,9 +4,9 @@ class GolfersController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @golfers = Golfer.all
+      @golfers = Golfer.all.includes(:person, :caddies)
     else
-      @golfers = Golfer.active
+      @golfers = Golfer.active.includes(:person, :caddies)
     end
   end
 

@@ -3,7 +3,7 @@ class HousingsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @housings = Housing.all
+    @housings = Housing.all.includes(:person, golfers: :person)
   end
 
   def show
