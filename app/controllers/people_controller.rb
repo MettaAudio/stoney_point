@@ -14,11 +14,11 @@ class PeopleController < ApplicationController
 
   def links
     if params[:show_all] == 'true'
-      @people = Person.all
+      @people = Person.all.includes(:volunteer, :caddie, :golfer, :housings)
     elsif params[:show_volunteers] == 'true'
-      @people = Person.active.volunteers
+      @people = Person.active.volunteers.includes(:volunteer, :caddie, :golfer, :housings)
     else
-      @people = Person.active
+      @people = Person.active.includes(:volunteer, :caddie, :golfer, :housings)
     end
   end
 
