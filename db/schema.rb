@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324151024) do
+ActiveRecord::Schema.define(version: 20150327163309) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150324151024) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comments"
-    t.boolean  "golf",                 limit: 255
+    t.string   "golf"
     t.string   "course"
     t.string   "rules"
     t.integer  "person_id"

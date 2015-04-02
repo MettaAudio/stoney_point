@@ -1,15 +1,15 @@
 h1 Shirts
 hr
 .row
-  .col-xs-4
+  .col-sm-4
     .well
       h4 Paid
       p = @shirts_paid
-  .col-xs-4
+  .col-sm-4
     .well
       h4 Unpaid
       p = @shirts_unpaid
-  .col-xs-4
+  .col-sm-4
     .well
       h4
        | Receipts to Date
@@ -18,7 +18,7 @@ hr
       p = number_to_currency(Volunteer.total_receipts)
       p
 .row
-  .col-xs-4
+  .col-md-4
     .well
       h3 Men
       table.table
@@ -30,7 +30,7 @@ hr
           tr
           - mens_shirt_sizes.each do |size|
             td = shirt_count_for(size[1], @volunteers)
-  .col-xs-4
+  .col-md-4
     .well
       h3 Women
       table.table
@@ -42,7 +42,7 @@ hr
           tr
           - womens_shirt_sizes.each do |size|
             td = shirt_count_for(size[1], @volunteers)
-  .col-xs-4
+  .col-md-4
     .well
       h3 Women - Sleeveless
       table.table
@@ -54,24 +54,26 @@ hr
           tr
           - womens_sleeveless_shirt_sizes.each do |size|
             td = shirt_count_for(size[1], @volunteers)
-table#data_table.table.table-striped
-  thead
-    tr
-      th Last
-      th First
-      th Size
-      th # Ordered
-      th Paid?
-      th Committee
+.row
+  .col-md-12
+    table#data_table.table.table-striped
+      thead
+        tr
+          th Last
+          th First
+          th Size
+          th # Ordered
+          th Paid?
+          th Committee
 
-  tbody
-    - @volunteers.each do |volunteer|
-      tr
-        td = link_to(volunteer.last_name, volunteer)
-        td = link_to(volunteer.first_name, volunteer)
-        td = volunteer.shirt_size
-        td = volunteer.number_of_shirts
-        td = volunteer.paid ? "Yes" : "No"
-        td = committees_for(volunteer)
+      tbody
+        - @volunteers.each do |volunteer|
+          tr
+            td = link_to(volunteer.last_name, volunteer)
+            td = link_to(volunteer.first_name, volunteer)
+            td = volunteer.shirt_size
+            td = volunteer.number_of_shirts
+            td = volunteer.paid ? "Yes" : "No"
+            td = committees_for(volunteer)
 
-= render 'shared/datatable_js'
+    = render 'shared/datatable_js'

@@ -4,12 +4,8 @@ module PeopleHelper
 
   end
 
-  def housing_link(person)
-    "url for edit or new housing"
-  end
-
   def caddie_link(person)
-    "url for edit or new caddie"
+    person.caddie ? link_to(edit_welcome_caddie_url(person), edit_welcome_caddie_url(person)) : ""
   end
 
   def add_link(path)

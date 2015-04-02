@@ -164,10 +164,6 @@ module VolunteersHelper
     ]
   end
 
-  def public_facing_page?
-    !!(controller_name =~ /welcome/)
-  end
-
   def shirt_size_label
     public_facing_page? ? "What is your shirt size?" : "Shirt size"
   end

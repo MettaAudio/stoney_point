@@ -15,7 +15,6 @@ table#data_table.table.table-striped
       th First
       th Email
       th Volunteer link
-      th Housing link
       th Caddie link
       th Active
 
@@ -26,7 +25,6 @@ table#data_table.table.table-striped
         td = link_to(person.first_name, person)
         td = mail_to person.email, person.email, :encode => "javascript"
         td = volunteer_link(person)
-        td = housing_link(person)
         td = caddie_link(person)
         td = person.is_active? ? "Y" : "N"
 = render 'shared/datatable_js'

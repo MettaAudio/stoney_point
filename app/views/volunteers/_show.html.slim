@@ -1,6 +1,6 @@
 .well
   .row
-    .col-xs-4
+    .col-sm-4
       h5 Shirts
       p
         = volunteer.shirt_size.present? ? "#{volunteer.number_of_shirts} #{volunteer.shirt_size}" : 'Not specified'
@@ -9,34 +9,34 @@
         |&nbsp;
         = volunteer.paid ? 'Paid' : 'Not Paid'
 
-    .col-xs-4
+    .col-sm-4
       h5 Physical Activity?
       p = volunteer.physical_activity ? 'Yes' : 'No'
 
-    .col-xs-4
+    .col-sm-4
       h5 Golfer?
       p = volunteer.golfer ? 'Yes' : 'No'
   .row
-    .col-xs-4
+    .col-sm-4
       h5
         | Wednesday
         small  Jr. Clinic Only
       p = volunteer.wednesday
-    .col-xs-2
+    .col-sm-2
       h5 Thursday
       p = volunteer.thursday
-    .col-xs-2
+    .col-sm-2
       h5 Friday
       p = volunteer.friday
-    .col-xs-2
+    .col-sm-2
       h5 Saturday
       p = volunteer.saturday
-    .col-xs-2
+    .col-sm-2
       h5 Sunday
       p = volunteer.sunday
 
   - if volunteer.comments.present?
     .row
-      .col-xs-12
+      .col-sm-12
         h5 Comments
         = volunteer.comments

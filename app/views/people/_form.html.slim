@@ -29,12 +29,11 @@
   .col-xs-4
     .form-group
       = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {prompt: "Choose an Organization..."}, class: "form-control"
-- unless public_controllers.include?(params[:controller])
-  .row
-    .col-xs-12
-      .form-group
-        .checkbox
-          = f.label :person_is_active do
-            = f.check_box :person_is_active
-            | Is Active?
+.row class="#{hidden_form_class}"
+  .col-xs-12
+    .form-group
+      .checkbox
+        = f.label :person_is_active do
+          = f.check_box :person_is_active
+          | Is Active?
 
