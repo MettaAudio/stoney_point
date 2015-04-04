@@ -47,6 +47,9 @@ class PersonForm < FormBuilder
             :course,
             :rules,
             :comments,
+            :arrival_day,
+            :country,
+            :school,
             to: :caddie, prefix: true, allow_nil: true
 
   delegate  :caddie_preferences,
@@ -142,6 +145,9 @@ class PersonForm < FormBuilder
   def update_golfer
     return true unless @golfer_params.present?
     golfer.caddie_preferences = @golfer_params[:caddie_preferences]
+    golfer.arrival_day        = @golfer_params[:arrival_day]
+    golfer.country            = @golfer_params[:country]
+    golfer.school             = @golfer_params[:school]
     golfer.caddie_ids         = @golfer_params[:caddie_ids]
     golfer.person             = person
 

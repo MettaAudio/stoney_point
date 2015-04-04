@@ -14,7 +14,7 @@ table.table.table-striped#data_table
       th First
       th Email
       th Day
-      th Nation
+      th Country
       th School
       th Preferences
       th Host
@@ -30,9 +30,9 @@ table.table.table-striped#data_table
         td = link_to golfer.last_name, golfer
         td = link_to golfer.first_name, golfer
         td = mail_to golfer.email, golfer.email, :encode => "javascript"
-        td ?
-        td ?
-        td ?
+        td = golfer.arrival_day
+        td = golfer.country
+        td = golfer.school
         td = golfer.caddie_preferences
         td = volunteer_housing_for(golfer)
         td = caddies_for(golfer)

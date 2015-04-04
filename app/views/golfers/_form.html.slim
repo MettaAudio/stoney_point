@@ -1,6 +1,16 @@
 
 = f.fields_for @person_form.golfer do |golfer|
   .row
+    .col-xs-4
+      .form-group
+        = golfer.select :arrival_day, arrival_day_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-4
+      .form-group
+        = golfer.text_field :country, class: "form-control", placeholder: "Country"
+    .col-xs-4
+      .form-group
+        = golfer.text_field :school, class: "form-control", placeholder: "School"
+  .row
     .col-xs-12
       .form-group
         = golfer.text_field :caddie_preferences, class: "form-control", placeholder: "Caddie Preferences"

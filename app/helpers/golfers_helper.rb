@@ -17,4 +17,8 @@ module GolfersHelper
     end
     caddies.join(' ').html_safe
   end
+
+  def arrival_day_options
+    ["Saturday", "Sunday", "Monday", "Tuesday"]
+  end
 end

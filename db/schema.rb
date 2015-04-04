@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327163309) do
+ActiveRecord::Schema.define(version: 20150404003118) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 20150327163309) do
     t.datetime "updated_at"
     t.text     "caddie_preferences"
     t.integer  "person_id"
+    t.string   "arrival_day"
+    t.string   "country"
+    t.string   "school"
   end
 
   add_index "golfers", ["person_id"], name: "index_golfers_on_person_id"
