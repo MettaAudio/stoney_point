@@ -9,9 +9,9 @@ class Housing < ActiveRecord::Base
   default_scope { includes(:person).order('people.last_name ASC') }
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
 
-  def self.total_number_of_beds
+  def self.total_number_of_beds(scope=:active)
     count = 0
-    Housing.all.collect { |h| count += h.number_of_bedrooms.to_i }
+    Housing.send(scope).collect { |h| count += h.number_of_bedrooms.to_i }
     count
   end
 end

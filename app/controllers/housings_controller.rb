@@ -3,7 +3,13 @@ class HousingsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
-    @housings = Housing.all.includes(:person, golfers: :person)
+    if params[:show_all] == 'true'
+      @housings = Housing.all.includes(:person, golfers: :person)
+      @number_of_beds = Housing.total_number_of_beds(:all)
+    else
+      @housings = Housing.active.includes(:person, golfers: :person)
+      @number_of_beds = Housing.total_number_of_beds(:active)
+    end
   end
 
   def show

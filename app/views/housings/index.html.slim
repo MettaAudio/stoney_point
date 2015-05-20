@@ -1,8 +1,14 @@
 h1
   | Housing
   small
-    | #{Housing.total_number_of_beds}  Beds Total
-= link_to 'New Housing', new_housing_path if current_user
+    |  #{@number_of_beds}  Beds Total
+
+- if current_user
+  = link_to 'New Housing', new_housing_path
+  |  |&nbsp;
+  = params[:show_active] == 'true' ? "Show Active" : link_to('Show active', :show_active => true)
+  |  |&nbsp;
+  = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr
 table.table.table-striped#data_table
   thead
