@@ -13,6 +13,7 @@ gem 'devise'
 gem 'slim'
 gem 'chosen-sass-bootstrap-rails'
 gem 'rails_12factor'
+gem "font-awesome-rails"
 
 group :production do
   gem 'pg'

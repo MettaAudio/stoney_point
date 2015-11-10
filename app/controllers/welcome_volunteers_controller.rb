@@ -5,6 +5,22 @@ class WelcomeVolunteersController < ApplicationController
     @person_form = PersonForm.new()
   end
 
+  def new_find
+  end
+
+  def find
+    @person = Person.find_by_first_name_and_last_name(search_params[:first_name], search_params[:last_name])
+    if @person
+      redirect_to edit_welcome_volunteer_path(@person.volunteer)
+    else
+      @name = "#{search_params[:first_name]} #{search_params[:last_name]}"
+      render action: 'welcome'
+    end
+  end
+
+  def welcome
+  end
+
   def create
     params[:person_form][:person_is_active] = true
 
@@ -70,5 +86,12 @@ class WelcomeVolunteersController < ApplicationController
       :organization_id,
       :is_active
       )
+  end
+
+  def search_params
+    params.require(:search).permit(
+      :first_name,
+      :last_name
+    )
   end
 end

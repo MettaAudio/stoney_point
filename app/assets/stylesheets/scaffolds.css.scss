@@ -29,6 +29,9 @@ a {
     color: desaturate($green, 50%);
     background-color: #DDD;
   }
+  &.btn-primary {
+    color: white;
+  }
 }
 
 div {
