@@ -11,7 +11,7 @@ class WelcomeVolunteersController < ApplicationController
   def find
     @person = Person.find_by_first_name_and_last_name(search_params[:first_name], search_params[:last_name])
     if @person
-      redirect_to edit_welcome_volunteer_path(@person.volunteer)
+      redirect_to edit_welcome_volunteer_path(@person)
     else
       @name = "#{search_params[:first_name]} #{search_params[:last_name]}"
       render action: 'welcome'
