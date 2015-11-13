@@ -9,7 +9,9 @@ class WelcomeVolunteersController < ApplicationController
   end
 
   def find
-    @person = Person.find_by_first_name_and_last_name(search_params[:first_name], search_params[:last_name])
+    # Case insensitive search
+    t = Person.arel_table
+    @person = Person.where(t[:first_name].matches(search_params[:first_name]).and(t[:last_name].matches(search_params[:last_name]))).last
     if @person
       redirect_to edit_welcome_volunteer_path(@person)
     else
