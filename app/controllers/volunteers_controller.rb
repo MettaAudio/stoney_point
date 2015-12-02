@@ -155,6 +155,11 @@ class VolunteersController < ApplicationController
     redirect_to :back
   end
 
+  def addresses
+    @volunteers = Volunteer.active.includes(person: :organization)
+    render layout: false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_volunteer

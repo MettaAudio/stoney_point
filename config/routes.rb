@@ -17,6 +17,7 @@ StoneyPoint::Application.routes.draw do
   resources :committees
 
   resources :volunteers
+  get "/volunteer_addresses", to: "volunteers#addresses"
 
   get "/people/links", to: "people#links", as: 'links'
 
