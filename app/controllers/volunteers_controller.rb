@@ -156,7 +156,7 @@ class VolunteersController < ApplicationController
   end
 
   def addresses
-    @people = Person.volunteers
+    @people = Person.active.volunteers
     render layout: false
   end
 
