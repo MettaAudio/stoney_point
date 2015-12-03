@@ -1,11 +1,12 @@
-- @volunteers.each do |volunteer|
-  = volunteer.full_name
+- @people.each do |person|
+  - next if person.street.blank?
+  = person.full_name
   | ,&nbsp;
-  = volunteer.street
+  = person.street
   | ,&nbsp;
-  = volunteer.city
+  = person.city
   | ,&nbsp;
-  = volunteer.state
+  = person.state
   | ,&nbsp;
-  = volunteer.zip
+  = person.zip
   br

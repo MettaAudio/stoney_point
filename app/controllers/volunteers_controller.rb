@@ -156,7 +156,7 @@ class VolunteersController < ApplicationController
   end
 
   def addresses
-    @volunteers = Volunteer.active.includes(person: :organization)
+    @people = Person.volunteers
     render layout: false
   end
 
