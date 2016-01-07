@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    h1 Welcome!
+    p
+      | On behalf of the Self Regional Healthcare Foundation, The Links at Stoney Point Ladies Golf
+      |  Classic LLC, the Ladies Pro Golf Association, and the Symetra Tour – Thank You for volunteering your time
+      |  to assist with a very important part of the Self Regional Healthcare Foundation Women's Health Charity
+      |  Classic tournament, May 5 thru 8, 2016.
+    br
+    br
+    br
+.row
+  .col-md-4.col-md-offset-2
+    .well
+      = fa_icon "search 4x", class: "text-muted pull-left"
+      h4 Search
+      p If you've volunteered with us in the past, please enter your first and last name to search for your account.
+      .clearfix
+      br
+      = form_tag welcome_volunteers_find_path
+        .form-group
+          label for="first_name" First Name
+          = text_field_tag "search[first_name]", nil, class: "form-control", placeholder: 'Enter your first name'
+        .form-group
+          label for="last_name" Last Name
+          = text_field_tag "search[last_name]", nil, class: "form-control", placeholder: 'Enter your last name'
+        = submit_tag :search, class: 'btn btn-primary pull-right'
+      .clearfix
+  .col-md-4
+    .well
+      = fa_icon "user-plus 4x", class: "text-muted pull-left"
+      h4 New Volunteers
+      p
+        | Welcome! We're thrilled you're here. Please take a moment to register through our website so we can stay
+        |  in touch. If you have any questions about volunteering, feel free to contact us at #{mail_to 'info@stoneypoint.com'}
+      = link_to "#{fa_icon('pencil')} Register".html_safe, new_welcome_volunteer_path, class: 'btn btn-primary pull-right'
+      .clearfix

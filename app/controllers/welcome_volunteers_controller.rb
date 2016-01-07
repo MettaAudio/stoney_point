@@ -5,22 +5,32 @@ class WelcomeVolunteersController < ApplicationController
     @person_form = PersonForm.new()
   end
 
-  def new_find
-  end
-
   def find
-    # Case insensitive search
-    t = Person.arel_table
-    @person = Person.where(t[:first_name].matches(search_params[:first_name]).and(t[:last_name].matches(search_params[:last_name]))).last
-    if @person
-      redirect_to edit_welcome_volunteer_path(@person)
+    @attempt = params[:attempt].to_i
+    if @attempt < 1
+      # Case insensitive search
+      t = Person.arel_table
+      @person = Person.where(t[:first_name].matches(search_params[:first_name]).and(t[:last_name].matches(search_params[:last_name]))).last
+      if @person
+        redirect_to edit_welcome_volunteer_path(@person)
+      else
+        @attempt    = @attempt + 1
+        @first_name = search_params[:first_name]
+        @last_name  = search_params[:last_name]
+        render action: 'returning'
+      end
     else
-      @name = "#{search_params[:first_name]} #{search_params[:last_name]}"
-      render action: 'welcome'
+      # Send email
+        flash[:warning] = nil
+      render 'missing'
     end
   end
 
   def welcome
+  end
+
+  def returning
+    @attempt ||= 0
   end
 
   def create

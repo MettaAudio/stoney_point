@@ -1,0 +1,52 @@
+.row.jumbotron
+  .col-md-12
+    h1 Welcome Back!
+.row
+  .col-md-12
+    h3 Returning Volunteers
+    p
+      | Having previously volunteered, your personal data is on file. At the end of this
+      |  message you will be asked to sign in to your account to review and update your information for 2016.
+    h3 Tournament Package
+    p
+      | There is again a $35.00 fee to volunteer for the 2016 Tournament. For your
+      |  investment you will receive a Self Regional Healthcare Foundation Women’s Health Classic shirt and hat,
+      |  complimentary food and beverage during your shift, parking, and a one-day tournament pass.
+    h3 Payment
+    p
+      | Your $35.00 check should be made payable to The Links at Stoney Point Ladies Golf Classic. You
+      |  may leave your payment at the Pro Shop or you may mail it to the address shown on the application.
+    h3 Terms and Conditions
+    p
+      | To volunteer on-line, each person must be over 18 years of age and must agree
+      |  to the terms of the Waiver for 2016. If not, your information will not be updated and you will not be
+      |  registered as a 2016 volunteer.
+
+.row
+- if @attempt > 0
+  .alert.alert-danger
+    button.close type="button" data-dismiss="alert"
+      span aria-hidden="true" &times;
+      span.sr-only Close
+    h3 Sorry
+    div We were unable to match you with a record from previous years. Please check your spelling or the possibility you used a different form of your name and please try again.
+
+.row.well
+  .col-md-6
+    = fa_icon "user 4x", class: "text-muted pull-left"
+    h4 Login Instructions
+    p
+      | To login, enter your first name and last name in the spaces provided. Spouses must
+      |  login separately.
+    .clearfix
+  .col-md-6
+    = form_tag welcome_volunteers_find_path
+      .form-group
+        label for="first_name" First Name
+        = text_field_tag "search[first_name]", @first_name, class: "form-control", placeholder: 'Enter your first name'
+      .form-group
+        label for="last_name" Last Name
+        = text_field_tag "search[last_name]", @last_name, class: "form-control", placeholder: 'Enter your last name'
+      = hidden_field_tag "attempt", @attempt
+      = submit_tag :Login, class: 'btn btn-primary pull-right'
+    .clearfix
