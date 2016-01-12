@@ -1,4 +1,4 @@
-.row.jumbotron
+.row.jumbotron.welcome-header
   .col-md-12
     h1 Welcome!
 .row
@@ -14,15 +14,15 @@
     .well
       h3 Workers
       = link_to "#{fa_icon('user')} Returning Worker".html_safe, welcome_volunteers_returning_path, class: 'btn btn-primary center-block'
-      | &nbsp;&nbsp;&nbsp;
-      = link_to "#{fa_icon('plus')} New Worker".html_safe, '', class: 'btn btn-primary center-block'
-  .col-md-4
-    .well
-      h3 Hosts
-      = link_to "#{fa_icon('user')} Returning Host".html_safe, '', class: 'btn btn-primary center-block'
-      | &nbsp;&nbsp;&nbsp;
-      = link_to "#{fa_icon('plus')} New Host".html_safe, '', class: 'btn btn-primary center-block'
-  .col-md-4
-    .well
-      h3 Caddies
-      = link_to 'Caddie', '', class: 'btn btn-primary center-block'
+      / | &nbsp;&nbsp;&nbsp;
+      / = link_to "#{fa_icon('plus')} New Worker".html_safe, '', class: 'btn btn-primary center-block'
+  / .col-md-4
+  /   .well
+  /     h3 Hosts
+  /     = link_to "#{fa_icon('user')} Returning Host".html_safe, '', class: 'btn btn-primary center-block'
+  /     | &nbsp;&nbsp;&nbsp;
+  /     = link_to "#{fa_icon('plus')} New Host".html_safe, '', class: 'btn btn-primary center-block'
+  / .col-md-4
+  /   .well
+  /     h3 Caddies
+  /     = link_to 'Caddie', '', class: 'btn btn-primary center-block'

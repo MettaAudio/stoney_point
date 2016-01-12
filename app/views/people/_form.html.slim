@@ -11,24 +11,32 @@
       .help-block.has-error
         = f.object.person.errors[:last_name].join(", ")
 .row
-  .col-xs-12
+  .col-xs-4
     .form-group
       = f.text_field :person_street, class: "form-control", placeholder: "Street Address"
-.form-group
-  = f.text_field :person_city, class: "form-control pull-left city", value: (f.object.person_city || 'Greenwood'), placeholder: "City"
-  = f.text_field :person_state, class: "form-control pull-left state", value: (f.object.person_state || 'SC'), placeholder: "State"
-  = f.text_field :person_zip, class: "form-control pull-left zip", value: (f.object.person_zip || 29649), placeholder: "Zipcode"
+  .col-xs-3
+    .form-group
+      = f.text_field :person_city, class: "form-control", value: (f.object.person_city || 'Greenwood'), placeholder: "City"
+  .col-xs-2
+    .form-group
+      = f.text_field :person_state, class: "form-control", value: (f.object.person_state || 'SC'), placeholder: "State"
+  .col-xs-3
+    .form-group
+      = f.text_field :person_zip, class: "form-control", value: (f.object.person_zip || 29649), placeholder: "Zipcode"
   .clearfix
 .row
-  .col-xs-4
+  .col-xs-6
     .form-group
       = f.text_field :person_phone, class: "form-control", value: phone_placeholder(@person_form.person)
-  .col-xs-4
+  .col-xs-6
     .form-group
       = f.text_field :person_email, class: "form-control", placeholder: "Email Address"
-  .col-xs-4
+.row
+  .col-xs-6
     .form-group
       = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {prompt: "Choose an Organization..."}, class: "form-control"
+  button.btn.btn-default.btn-xs type="button" data-toggle="popover" data-placement="right" title="Organization" data-content="In order to summarize our recruitment efforts and to recognize organizations which are participating, please select the listed option that best describes you: College, if you are a full time student; Sponsor, if you are a member/employee of a tournament sponsor; Lake Community, if you live in one of the designated subdivisions; Other, if you are not otherwise covered."
+    span.fa.fa-question
 .row class="#{hidden_form_class}"
   .col-xs-12
     .form-group
@@ -37,3 +45,8 @@
           = f.check_box :person_is_active
           | Is Active?
 
+
+javascript:
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })

@@ -1,4 +1,3 @@
-hr
 = f.fields_for @person_form.volunteer do |volunteer|
   .row
     .col-xs-4
@@ -14,11 +13,54 @@ hr
             = volunteer.check_box :golfer
             = golfer_label
   hr
+  h4 = when_are_you_available?
   .row
     .col-xs-3
       .form-group
+        = volunteer.label :wednesday, "Tuesday - Jr. Clinic"
+        = volunteer.select :wednesday,  wednesday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-2
+      .form-group
+        = volunteer.label :thursday
+        = volunteer.select :thursday,  thursday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-2
+      .form-group
+        = volunteer.label :friday
+        = volunteer.select :friday,  friday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-2
+      .form-group
+        = volunteer.label :saturday
+        = volunteer.select :saturday,  saturday_options, { include_blank: true }, class: "form-control chosen-select"
+    .col-xs-2
+      .form-group
+        = volunteer.label :sunday
+        = volunteer.select :sunday,  sunday_options, { include_blank: true }, class: "form-control chosen-select"
+
+  hr
+  .row
+    .col-xs-6
+      .form-group
         = volunteer.label :shirt_size, shirt_size_label
         = volunteer.select :shirt_size, shirt_sizes, { include_blank: true }, class: "form-control chosen-select"
+  - if public_facing_page?
+    .row
+      .col-xs-12
+        h4
+          | Payment:
+          small Your $35.00 check should be made payable to:
+        strong The Links at Stoney Point Ladies Golf Classic
+        br
+        | You may leave your payment at the Pro Shop, or mail it to:
+        address
+          strong Women's Health Classic
+          br
+          'ATTN: Rose Sells
+          br
+          '709 Swing About
+          br
+          'Greenwood, SC 29649
+
+  .row
     .col-xs-3 class="#{hidden_form_class}"
       .form-group
         = volunteer.label :number_of_shirts
@@ -33,34 +75,9 @@ hr
           = volunteer.label :paid do
             = volunteer.check_box :paid
             | Shirts Paid for?
-  hr
-  h4 = when_are_you_available?
-  .row
-    .col-xs-4
-      .form-group
-        = volunteer.label :wednesday, "Tuesday - Jr. Clinic Only"
-        = volunteer.select :wednesday,  wednesday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-4
-      .form-group
-        = volunteer.label :thursday
-        = volunteer.select :thursday,  thursday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-4
-      .form-group
-        = volunteer.label :friday
-        = volunteer.select :friday,  friday_options, { include_blank: true }, class: "form-control chosen-select"
-  .row
-    .col-xs-4
-      .form-group
-        = volunteer.label :saturday
-        = volunteer.select :saturday,  saturday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-4
-      .form-group
-        = volunteer.label :sunday
-        = volunteer.select :sunday,  sunday_options, { include_blank: true }, class: "form-control chosen-select"
 
   .form-group
-    = volunteer.label :comments
-    = volunteer.text_area :comments, class: 'form-control'
+    = volunteer.text_area :comments, class: 'form-control', placeholder: "Brief Comments"
 
   .row
     - if display_waiver?
