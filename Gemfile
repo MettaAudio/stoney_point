@@ -27,6 +27,7 @@ group :development do
   gem 'rails_layout'
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem 'letter_opener'
 end
 group :development, :test do
   gem 'rspec-rails'
