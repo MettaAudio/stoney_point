@@ -53,6 +53,10 @@ input {
   }
 }
 
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #286090 !important;
+}
+
 .welcome_volunteers, .welcome_caddies, .welcome_golfers {
   label {
     font-size: 16px;

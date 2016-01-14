@@ -10,12 +10,38 @@
       |  Classic tournament, May 5 thru 8, 2016.
     hr
 .row
-  .col-md-4
-    .well
-      h3 Workers
-      = link_to "#{fa_icon('user')} Returning Volunteer".html_safe, welcome_volunteers_returning_path, class: 'btn btn-primary center-block'
-      / | &nbsp;&nbsp;&nbsp;
-      / = link_to "#{fa_icon('plus')} New Worker".html_safe, '', class: 'btn btn-primary center-block'
+  .col-md-3
+    ul.nav.nav-pills
+      li.dropdown role="presentation"
+        a.dropdown-toggle.btn.btn-primary data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+          | Volunteer Workers
+          | &nbsp;
+          span.caret
+        ul.dropdown-menu
+          li = link_to "#{fa_icon('user')} Returning Volunteer".html_safe, welcome_volunteers_returning_path
+          li = link_to "#{fa_icon('plus')} New Volunteer".html_safe, ''
+  .col-md-9
+    p
+    | The heart and soul of The Women's Health Classic is the volunteer base. Without a passionate,
+    |  enthusiastic team of volunteers, professional golf would not be possible
+
+hr
+.row
+  .col-md-3
+    ul.nav.nav-pills
+      li.dropdown role="presentation"
+        a.dropdown-toggle.btn.btn-primary data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+          | Volunteer Housing
+          | &nbsp;
+          span.caret
+        ul.dropdown-menu
+          li = link_to "#{fa_icon('home')} Returning Host".html_safe, welcome_volunteers_returning_path
+          li = link_to "#{fa_icon('plus')} New Host".html_safe, ''
+  .col-md-9
+    p
+    | Opening your home to allow one or more of the Symetra golfers to share in your hospitality
+    |  is a rewarding experience for you and the golfers
+
   / .col-md-4
   /   .well
   /     h3 Hosts
