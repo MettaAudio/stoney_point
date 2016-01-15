@@ -21,8 +21,7 @@ class WelcomeVolunteersController < ApplicationController
       end
     else
       # Send email
-      VolunteerMailer.not_found(search_params[:first_name], search_params[:last_name]).deliver
-        flash[:warning] = nil
+      flash[:warning] = nil
       render 'missing'
     end
   end

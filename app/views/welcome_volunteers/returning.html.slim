@@ -29,7 +29,15 @@
       span aria-hidden="true" &times;
       span.sr-only Close
     h3 Sorry
-    div We were unable to match you with a record from previous years. Please check your spelling or the possibility you used a different form of your name and please try again.
+    | We were unable to match you with a record from previous years. You may take one of two actions:
+    ol
+      li Check your spelling or the possibility you used a different form of your name and please try again. OR
+      li
+        | Send us an email
+        | &nbsp;
+        = mail_to 'stoneypointvolunteer@gmail.com', "here", subject: 'Stoney Point Volunteer  - Help finding my account', body: "I'm a returning volunteer and I've been unable to find my account. Please help me get this sorted out.\n\nHere is my information:\n\nFirst Name: \nLast Name:\nPhone number:\n\nThank you!", class: 'btn btn-default btn-xs'
+        |  and submit your information to our helpdesk. You will be contacted by email about a solution.
+    h4 Thank you for your patience.
 
 .row.well
   .col-md-6
