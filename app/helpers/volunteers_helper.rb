@@ -86,7 +86,6 @@ module VolunteersHelper
     {
       "Men's Sizes"        => mens_shirt_sizes,
       "Women's Sizes"      => womens_shirt_sizes,
-      "Women's Sleeveless" => womens_sleeveless_shirt_sizes
     }
   end
 
