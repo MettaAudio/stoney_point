@@ -176,7 +176,15 @@ module VolunteersHelper
   end
 
   def when_are_you_available?
-    public_facing_page? ? "When are you available to help?" : "When are they available to help?"
+    "Work Availability"
+  end
+
+  def work_availability_text
+    if public_facing_page?
+      'Each day has a series of choices regarding your availability to volunteer during the tournament May 3-8, 2016. Please select an option for each day. Actual shift length will be determined by your Committee chair. NOTE: if you are unsure as to your availability, you may log back in (with your first name/last name) at a later date to update your information.'
+    else
+      ''
+    end
   end
 
   def display_waiver?

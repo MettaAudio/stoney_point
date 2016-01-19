@@ -1,11 +1,11 @@
 $(function(){
   $('.js-show-more').on('click', '.js-more-btn', function() {
     $(this).siblings('.show-more').toggleClass('truncate');
-    if($(this).html() == "Read More") {
-      $(this).html('Read Less')
+    if($(this).html() == "Click to read more") {
+      $(this).html('Click to show less')
     }
     else {
-      $(this).html('Read More')
+      $(this).html('Click to read more')
     }
   });
 
