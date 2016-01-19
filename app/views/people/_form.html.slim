@@ -1,44 +1,44 @@
 = hidden_field_tag :person_id, f.object.person.id
 .row
-  .col-xs-6
+  .col-md-6
     .form-group class="#{'has-error' if f.object.person.errors[:first_name].present?}"
       = f.text_field :person_first_name, class: "form-control", placeholder: "First Name"
       .help-block.has-error
         = f.object.person.errors[:first_name].join(", ")
-  .col-xs-6
+  .col-md-6
     .form-group class="#{'has-error' if f.object.person.errors[:last_name].present?}"
       = f.text_field :person_last_name, class: "form-control", placeholder: "Last Name"
       .help-block.has-error
         = f.object.person.errors[:last_name].join(", ")
 .row
-  .col-xs-4
+  .col-md-4
     .form-group
       = f.text_field :person_street, class: "form-control", placeholder: "Street Address"
-  .col-xs-3
+  .col-md-3
     .form-group
       = f.text_field :person_city, class: "form-control", value: (f.object.person_city || 'Greenwood'), placeholder: "City"
-  .col-xs-2
+  .col-md-2
     .form-group
       = f.text_field :person_state, class: "form-control", value: (f.object.person_state || 'SC'), placeholder: "State"
-  .col-xs-3
+  .col-md-3
     .form-group
       = f.text_field :person_zip, class: "form-control", value: (f.object.person_zip || 29649), placeholder: "Zipcode"
   .clearfix
 .row
-  .col-xs-6
+  .col-md-6
     .form-group
       = f.text_field :person_phone, class: "form-control", value: phone_placeholder(@person_form.person)
-  .col-xs-6
+  .col-md-6
     .form-group
       = f.text_field :person_email, class: "form-control", placeholder: "Email Address"
 .row
-  .col-xs-6
+  .col-md-6
     .form-group
       = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {prompt: "Choose an Organization..."}, class: "form-control"
   button.btn.btn-default.btn-xs type="button" data-toggle="popover" data-placement="right" title="Organization" data-content="In order to summarize our recruitment efforts and to recognize organizations which are participating, please select the listed option that best describes you: College, if you are a full time student; Sponsor, if you are a member/employee of a tournament sponsor; Lake Community, if you live in one of the designated subdivisions; Other, if you are not otherwise covered."
     span.fa.fa-question &nbsp; More info
 .row class="#{hidden_form_class}"
-  .col-xs-12
+  .col-md-12
     .form-group
       .checkbox
         = f.label :person_is_active do

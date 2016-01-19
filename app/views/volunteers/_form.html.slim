@@ -1,12 +1,12 @@
 = f.fields_for @person_form.volunteer do |volunteer|
   .row
-    .col-xs-4
+    .col-md-4
       .form-group
         .checkbox
           = volunteer.label :physical_activity do
             = volunteer.check_box :physical_activity
             = physical_activity_label
-    .col-xs-4
+    .col-md-4
       .form-group
         .checkbox
           = volunteer.label :golfer do
@@ -16,36 +16,36 @@
   h4 = when_are_you_available?
   p = work_availability_text
   .row
-    .col-xs-3
+    .col-md-3
       .form-group
         = volunteer.label :wednesday, "Tuesday - Jr. Clinic"
         = volunteer.select :wednesday,  wednesday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-2
+    .col-md-2
       .form-group
         = volunteer.label :thursday
         = volunteer.select :thursday,  thursday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-2
+    .col-md-2
       .form-group
         = volunteer.label :friday
         = volunteer.select :friday,  friday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-2
+    .col-md-2
       .form-group
         = volunteer.label :saturday
         = volunteer.select :saturday,  saturday_options, { include_blank: true }, class: "form-control chosen-select"
-    .col-xs-2
+    .col-md-2
       .form-group
         = volunteer.label :sunday
         = volunteer.select :sunday,  sunday_options, { include_blank: true }, class: "form-control chosen-select"
 
   hr
   .row
-    .col-xs-6
+    .col-md-6
       .form-group
         = volunteer.label :shirt_size, shirt_size_label
         = volunteer.select :shirt_size, shirt_sizes, { include_blank: true }, class: "form-control chosen-select"
   - if public_facing_page?
     .row
-      .col-xs-12
+      .col-md-12
         h4
           | Payment:
           small Your $35.00 check should be made payable to:
@@ -62,15 +62,15 @@
           'Greenwood, SC 29649
 
   .row
-    .col-xs-3 class="#{hidden_form_class}"
+    .col-md-3 class="#{hidden_form_class}"
       .form-group
         = volunteer.label :number_of_shirts
         = volunteer.number_field :number_of_shirts, class: "form-control"
-    .col-xs-3 class="#{hidden_form_class}"
+    .col-md-3 class="#{hidden_form_class}"
       .form-group
         = volunteer.label :uniform_price
         = volunteer.number_field :uniform_price, class: "form-control"
-    .col-xs-3 class="#{hidden_form_class}"
+    .col-md-3 class="#{hidden_form_class}"
       .form-group
         .checkbox
           = volunteer.label :paid do
@@ -82,9 +82,9 @@
 
   .row
     - if display_waiver?
-      .col-xs-12
+      .col-md-12
         h4 Waiver
-      .col-xs-12.js-show-more
+      .col-md-12.js-show-more
         .well.show-more.truncate
           h4 Volunteer Disclosure, Waiver and Release Statement
           em It is most important that you read the following before signing.
@@ -101,7 +101,7 @@
 
           p By clicking "I accept these terms and conditions", I affirm that I have read this Volunteer Disclosure, Waiver and Release Statement, understand it, and agree to sign it willingly and accept its terms and conditions.  This form may be released to any third party in order that the volunteer may receive medical care in the event of illness or injury.
         a.pull-right.btn.btn-default.btn-xs.js-more-btn Click to read more
-    .col-xs-12
+    .col-md-12
       .form-group
         .checkbox
           = volunteer.label :waiver do
