@@ -10,13 +10,13 @@ class WelcomeVolunteersController < ApplicationController
     if @attempt < 1
       # Case insensitive search
       t = Person.arel_table
-      @person = Person.where(t[:first_name].matches(search_params[:first_name]).and(t[:last_name].matches(search_params[:last_name]))).last
+      @first_name = search_params[:first_name].strip
+      @last_name  = search_params[:last_name].strip
+      @person = Person.where(t[:first_name].matches(@first_name).and(t[:last_name].matches(@last_name))).last
       if @person
         redirect_to edit_welcome_volunteer_path(@person)
       else
         @attempt    = @attempt + 1
-        @first_name = search_params[:first_name]
-        @last_name  = search_params[:last_name]
         render action: 'returning'
       end
     else
