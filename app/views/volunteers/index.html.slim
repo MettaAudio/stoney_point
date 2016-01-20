@@ -6,7 +6,9 @@ h1
 - if current_user
   = link_to 'Add New Volunteer', new_volunteer_path
   |  |&nbsp;
-  = params[:show_active] == 'true' ? "Show All Active" : link_to('Show all active', :show_active => true)
+  = params[:show_active] != 'true' && params[:show_all] != 'true' ? "show working" : link_to('show working')
+  |  |&nbsp;
+  = params[:show_active] == 'true' ? "show all active" : link_to('show all active', :show_active => true)
   |  |&nbsp;
   = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr

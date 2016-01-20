@@ -22,8 +22,8 @@ table#data_table.table.table-striped
   tbody
     - @people.each do |person|
       tr
-        td = link_to(person.last_name, person)
-        td = link_to(person.first_name, person)
+        td = person.last_name
+        td = person.first_name
         td = mail_to person.email, person.email, :encode => "javascript"
         td = person.volunteer.present? ? existing_link(person.volunteer) : add_link(new_volunteer_path(person_id: person.id))
         - if person.housings.present?
