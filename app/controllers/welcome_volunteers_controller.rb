@@ -16,12 +16,8 @@ class WelcomeVolunteersController < ApplicationController
     if @person
       redirect_to edit_welcome_volunteer_path(@person)
     else
-      if @attempt < 1
-        @attempt += 1
-        render action: 'returning'
-      else
-        render 'missing'
-      end
+      @attempt += 1
+      render action: 'returning'
     end
   end
 
