@@ -6,11 +6,11 @@ h1
 - if current_user
   = link_to 'Add New Volunteer', new_volunteer_path
   |  |&nbsp;
-  = params[:show_active] != 'true' && params[:show_all] != 'true' ? "show working" : link_to('show working')
+  = params[:show_active] != 'true' && params[:show_all] != 'true' ? "Show Working" : link_to('Show Working')
   |  |&nbsp;
-  = params[:show_active] == 'true' ? "show all active" : link_to('show all active', :show_active => true)
+  = params[:show_active] == 'true' ? "Show All Active" : link_to('Show All Active', :show_active => true)
   |  |&nbsp;
-  = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
+  = params[:show_all] == 'true' ? "Show All" : link_to('Show All', :show_all => true)
 hr
 table#data_table.table.table-striped
   thead
