@@ -5,6 +5,8 @@ h1
     '  #{@volunteers.count} volunteers
 = link_to 'New Committee', new_committee_path if current_user
 |  |&nbsp;
+= params[:unassigned] == 'true' ? "Show Unassigned" : link_to('Show Unassigned', :unassigned => true)
+|  |&nbsp;
 = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr
 = render partial: 'volunteers_table'

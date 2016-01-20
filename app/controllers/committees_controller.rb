@@ -4,9 +4,11 @@ class CommitteesController < ApplicationController
 
   def index
     if params[:show_all] == 'true'
-      @volunteers = Volunteer.all.includes(person: :organization)
+      @volunteers = Volunteer.all.includes(:committees, person: :organization)
+    elsif params[:unassigned] == 'true'
+      @volunteers = Volunteer.active.includes(:committees, person: :organization) - Volunteer.active.working.includes(:committees, person: :organization)
     else
-      @volunteers = Volunteer.active.working.includes(person: :organization)
+      @volunteers = Volunteer.active.working.includes(:committees, person: :organization)
     end
   end
 
