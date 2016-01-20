@@ -7,22 +7,21 @@ class WelcomeVolunteersController < ApplicationController
 
   def find
     @attempt = params[:attempt].to_i
-    if @attempt < 1
-      # Case insensitive search
-      t = Person.arel_table
-      @first_name = search_params[:first_name].strip
-      @last_name  = search_params[:last_name].strip
-      @person = Person.where(t[:first_name].matches(@first_name).and(t[:last_name].matches(@last_name))).last
-      if @person
-        redirect_to edit_welcome_volunteer_path(@person)
-      else
-        @attempt    = @attempt + 1
-        render action: 'returning'
-      end
+    # Case insensitive search
+    t = Person.arel_table
+    @first_name = search_params[:first_name].strip
+    @last_name  = search_params[:last_name].strip
+    @person = Person.where(t[:first_name].matches(@first_name).and(t[:last_name].matches(@last_name))).last
+
+    if @person
+      redirect_to edit_welcome_volunteer_path(@person)
     else
-      # Send email
-      flash[:warning] = nil
-      render 'missing'
+      if @attempt < 1
+        @attempt += 1
+        render action: 'returning'
+      else
+        render 'missing'
+      end
     end
   end
 
