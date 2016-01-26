@@ -8,6 +8,8 @@ class PersonForm < FormBuilder
               :caddie,
               :housing
 
+  DEFAULT_COMMITTEE_NAME = "*Not Assigned"
+
   delegate  :first_name,
             :last_name,
             :email,
@@ -106,6 +108,8 @@ class PersonForm < FormBuilder
     volunteer.saturday          = @volunteer_params[:saturday]
     volunteer.sunday            = @volunteer_params[:sunday]
     volunteer.person            = person
+
+    volunteer.committees << Committee.find_by_name(DEFAULT_COMMITTEE_NAME) if volunteer.committees.blank?
 
     volunteer.save
   end
