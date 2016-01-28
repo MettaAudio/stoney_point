@@ -66,7 +66,7 @@ class PersonForm < FormBuilder
     @housing_params   = @page_params[:housing] || @person_params[:housing]
 
     @person           = args[:person]    || Person.new
-    @volunteer        = args[:volunteer] || Volunteer.new
+    @volunteer        = args[:volunteer] || Volunteer.new(number_of_shirts: 1)
     @caddie           = args[:caddie]    || Caddie.new
     @golfer           = args[:golfer]    || Golfer.new
     @housing          = args[:housing]   || Housing.new
