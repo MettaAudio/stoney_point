@@ -95,7 +95,7 @@ class PersonForm < FormBuilder
   def update_volunteer
     return true unless @volunteer_params.present?
     volunteer.shirt_size        = @volunteer_params[:shirt_size]
-    volunteer.number_of_shirts  = @volunteer_params[:number_of_shirts] || default_shirt_size
+    volunteer.number_of_shirts  = @volunteer_params[:number_of_shirts] || default_number_of_shirts
     volunteer.comments          = @volunteer_params[:comments]
     volunteer.golfer            = @volunteer_params[:golfer]
     volunteer.physical_activity = @volunteer_params[:physical_activity]
@@ -114,8 +114,8 @@ class PersonForm < FormBuilder
     volunteer.save
   end
 
-  def default_shirt_size
-    (volunteer.shirt_size.present? || @volunteer_params[:shirt_size].present?) ? 1 : 0
+  def default_number_of_shirts
+    1
   end
 
   def update_caddie

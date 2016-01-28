@@ -44,6 +44,8 @@ class WelcomeVolunteersController < ApplicationController
   def edit
     @person    = Person.find(params[:id])
     @volunteer = @person.volunteer || Volunteer.new
+    # Set default number of shirts
+    @volunteer.number_of_shirts = 1
     @welcome   = true
 
     @person_form = PersonForm.new(

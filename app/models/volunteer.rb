@@ -28,8 +28,9 @@ class Volunteer < ActiveRecord::Base
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }
-  scope :receiving_shirts, -> { where("number_of_shirts > 0 AND number_of_shirts IS NOT NULL AND shirt_size <> ''") }
+  scope :receiving_shirts, -> { where("number_of_shirts > 0 AND number_of_shirts IS NOT NULL") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
+  scope :shirts_without_size, -> { where("shirt_size IS NULL OR shirt_size = ''").merge(Volunteer.receiving_shirts) }
   scope :with_shirts_paid, -> { where(paid: true) }
   scope :with_shirts_unpaid, -> { where(paid: [false, nil]) }
 
@@ -54,7 +55,7 @@ class Volunteer < ActiveRecord::Base
   end
 
   def self.total_receipts
-    receiving_shirts.with_shirts_paid.collect{ |v| (v.number_of_shirts * v.uniform_price)}.inject(:+)
+    receiving_shirts.with_shirts_paid.collect{ |v| (v.number_of_shirts * v.uniform_price)}.inject(:+) || 0
   end
 
   def duplicate!

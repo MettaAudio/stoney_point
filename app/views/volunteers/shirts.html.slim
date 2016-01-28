@@ -18,30 +18,41 @@ hr
       p = number_to_currency(Volunteer.total_receipts)
       p
 .row
-  .col-md-6
+  .col-md-5
     .well
       h3 Men
       table.table
         thead
           tr
-          - mens_shirt_sizes.each do |size|
-            th = size[1]
+            - mens_shirt_sizes.each do |size|
+              th = size[1]
         tbody
           tr
-          - mens_shirt_sizes.each do |size|
-            td = shirt_count_for(size[1], @volunteers)
+            - mens_shirt_sizes.each do |size|
+              td = shirt_count_for(size[1], @volunteers)
   .col-md-6
     .well
       h3 Women
       table.table
         thead
           tr
-          - womens_shirt_sizes.each do |size|
-            th = size[1]
+            - womens_shirt_sizes.each do |size|
+              th = size[1]
         tbody
           tr
-          - womens_shirt_sizes.each do |size|
-            td = shirt_count_for(size[1], @volunteers)
+            - womens_shirt_sizes.each do |size|
+              td = shirt_count_for(size[1], @volunteers)
+
+  .col-md-1
+    .well
+      h3 &nbsp;
+      table.table
+        thead
+          tr
+            th ?
+        tbody
+          tr
+            td = Volunteer.shirts_without_size.size
 .row
   .col-md-12
     table#data_table.table.table-striped
