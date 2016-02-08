@@ -29,6 +29,11 @@ input {
   }
 }
 
+hr.fat
+{
+  border-top: 2px solid black;
+}
+
 .jumbotron {
   &.welcome-header {
     background: url('stoney_point.jpg');
