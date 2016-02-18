@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404003118) do
+ActiveRecord::Schema.define(version: 20160217161227) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -85,10 +85,12 @@ ActiveRecord::Schema.define(version: 20150404003118) do
     t.string   "number_of_bathrooms"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "pets"
+    t.string   "pets"
     t.boolean  "smoking"
     t.text     "comments"
     t.integer  "person_id"
+    t.integer  "max_guests"
+    t.boolean  "specific_golfers"
   end
 
   add_index "housings", ["person_id"], name: "index_housings_on_person_id"

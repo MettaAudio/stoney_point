@@ -1,0 +1,10 @@
+  = hidden_field_tag :welcome, true
+  = render partial: 'people/form', locals: { f: f }
+  h3 Host House Information
+  h4
+    em LPGA rules require that a woman be the host
+  p Each bedroom must have ready access to bathroom and laundry facilities. NO smoking.
+  hr
+  = f.simple_fields_for(person_form.housing) do |housing|
+    = render partial: 'housings/form', locals: { f: housing }
+

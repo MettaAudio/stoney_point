@@ -1,0 +1,26 @@
+.row.jumbotron.edit-header
+  .col-md-12
+.row
+  .col-xs-12
+    h1
+      | Welcome back, #{@person.first_name}. Register to be a player host again for the
+      |  2016 Self Regional Healthcare Foundation Women's Health Classic
+    hr
+.row
+  .col-md-12
+    h3 Personal Data
+    p
+      | Please review personal data previously entered. Type any new or corrected
+      |  information into the boxes provided. Your telephone number and email
+      |  address should be the ones that allow us to contact you directly so that
+      |  we may forward vital information before and during the tournament.
+.row
+  .col-xs-12
+      = form_for(@person_form, url: welcome_housing_url, method: :patch, html: {class: 'form-vertical' }) do |f|
+        = render 'form', person_form: @person_form, f: f
+
+        hr
+        .row
+          .col-xs-12
+            form-actions
+              = f.button "Save", :class => 'btn btn-primary btn-large'

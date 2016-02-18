@@ -43,6 +43,8 @@ class PersonForm < FormBuilder
             :pets,
             :smoking,
             :comments,
+            :max_guests,
+            :specific_golfers,
             to: :housing, prefix: true, allow_nil: true
 
   delegate  :golf,
@@ -141,6 +143,8 @@ class PersonForm < FormBuilder
     housing.smoking             = @housing_params[:smoking]
     housing.comments            = @housing_params[:comments]
     housing.golfer_ids          = @housing_params[:golfer_ids]
+    housing.max_guests          = @housing_params[:max_guests]
+    housing.specific_golfers    = @housing_params[:specific_golfers]
     housing.person              = person
 
     housing.save

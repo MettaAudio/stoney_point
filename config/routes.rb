@@ -23,11 +23,18 @@ StoneyPoint::Application.routes.draw do
 
   resources :people
 
-  get "/welcome_volunteers/thank_you", to: "welcome_volunteers#thank_you"
-  post "/welcome_volunteers/find", to: "welcome_volunteers#find"
   get "/welcome_volunteers/welcome", to: "welcome_volunteers#welcome"
+
   get "/welcome_volunteers/returning", to: "welcome_volunteers#returning"
+  post "/welcome_volunteers/find", to: "welcome_volunteers#find"
+  get "/welcome_volunteers/thank_you", to: "welcome_volunteers#thank_you"
+
+  get "/welcome_housing/returning", to: "welcome_housing#returning"
+  post "/welcome_housing/find", to: "welcome_housing#find"
+  # get "/welcome_housing/thank_you", to: "welcome_housing#thank_you"
+
   resources :welcome_volunteers, except: [:index, :show]
+  resources :welcome_housing, except: [:index, :show]
 
   get "/welcome_caddies/thank_you", to: "welcome_caddies#thank_you"
   resources :welcome_caddies, except: [:index]

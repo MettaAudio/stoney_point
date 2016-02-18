@@ -1,0 +1,18 @@
+.row.jumbotron.edit-header
+  .col-md-12
+
+.row
+  .col-xs-12
+    h1 Welcome to the volunteer site for the 2015 Self Regional Healthcare Foundation Women's Health Classic.
+    hr
+
+.row
+  .col-xs-12
+    = form_for(@person_form, url: welcome_volunteers_url, method: :post, html: {class: 'form-vertical' }) do |f|
+      = render partial: 'form', locals: { f: f }
+
+      hr
+      .row
+        .col-xs-12
+          form-actions
+            = f.button "Please accept the waiver...", :class => 'btn btn-primary btn-large disabled js-submit'

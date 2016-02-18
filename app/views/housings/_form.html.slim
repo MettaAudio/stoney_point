@@ -1,0 +1,56 @@
+= f.error_notification
+.row
+  .col-md-6
+    p
+      | Number of bedrooms you are willing to provide for the golfers.
+      br
+      |  If a bedroom has two or more separate beds available, describe in comments.
+  .col-md-6
+    .form-inputs
+      = f.input :number_of_bedrooms
+.row
+  .col-md-6
+    p Number of bathrooms available exclusively for the golfers
+  .col-md-6
+    .form-inputs
+      = f.input :number_of_bathrooms
+.row
+  .col-md-6
+    p Maximum number of golfers you are willing to host
+  .col-md-6
+    .form-inputs
+      = f.input :max_guests, label: 'Number of golfers'
+.row
+  .col-md-6
+    p Do you have indoor pets?
+  .col-md-6
+    .form-inputs
+      = f.input :pets, collection: ["Cats", "Dogs", "Cats & Dogs", "Other"], label: "Indoor Pets"
+
+.row
+  .col-md-6
+    p
+      | Most golfers will arrive late Sunday or early Monday (May 1 or 2) and
+      |  leave the following Sunday or Monday (May 8 or 9), Select the
+      |  earliest date you will be available
+  .col-md-6
+    .form-inputs
+      = f.input :available, :collection => [['Sat, 30 April 2016', '2016-04-30'], ['Sun, 01 May 2016', '2016-05-01'], ['Mon, 02 May 2016', '2016-05-02']]
+
+.row
+  .col-md-6
+    p
+      | Have you already committed to hosting specific golfers this year? If
+      |  so, list names in comments section.
+  .col-md-6
+    .form-inputs
+      = f.input :specific_golfers, collection: [['Yes', true], ['No', false]], label: 'Host specific golfer'
+
+.row
+  .col-md-6
+    .form-inputs
+      div class="#{hidden_form_class}"
+        = f.input :smoking, label: 'Smoking?', wrapper: :vertical_boolean
+      = f.input :comments
+      div class="#{hidden_form_class}"
+        = f.association :golfers, :label_method => :full_name, :input_html => {class: 'chosen-select'}

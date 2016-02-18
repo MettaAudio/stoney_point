@@ -34,7 +34,7 @@ table.table.table-striped#data_table
         td = housing.available.strftime('%A')
         td = housing.number_of_bedrooms
         td = housing.number_of_bathrooms
-        td = housing.pets ? "Yes" : "No"
+        td = housing.pets
         td = housing.comments
         td = housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing, :class => 'btn btn-small'
