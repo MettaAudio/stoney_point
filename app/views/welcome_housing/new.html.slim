@@ -8,7 +8,7 @@
 
 .row
   .col-xs-12
-    = form_for(@person_form, url: welcome_volunteers_url, method: :post, html: {class: 'form-vertical' }) do |f|
+    = form_for(@person_form, url: welcome_housing_index_path, method: :post, html: {class: 'form-vertical' }) do |f|
       = render 'form',  f: f, person_form: @person_form
 
       hr

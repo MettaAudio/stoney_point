@@ -30,6 +30,7 @@ class WelcomeHousingController < ApplicationController
 
   def create
     params[:person_form][:person_is_active] = true
+    params[:person_form][:housing][:is_active] = true
 
     @person_form = PersonForm.new(
       page_params: params
@@ -53,6 +54,7 @@ class WelcomeHousingController < ApplicationController
 
   def update
     params[:person_form][:person_is_active] = true
+    params[:person_form][:housing][:is_active] = true
 
     @person    = Person.find(params[:id])
     @housing   = @person.housings.first

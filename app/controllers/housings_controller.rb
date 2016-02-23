@@ -95,6 +95,7 @@ class HousingsController < ApplicationController
         :comments,
         :max_guests,
         :specific_golfers,
+        :is_active,
         :golfer_ids => []
       )
     end

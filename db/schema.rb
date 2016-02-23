@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217161227) do
+ActiveRecord::Schema.define(version: 20160219161832) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160217161227) do
     t.integer  "person_id"
     t.integer  "max_guests"
     t.boolean  "specific_golfers"
+    t.boolean  "is_active"
   end
 
   add_index "housings", ["person_id"], name: "index_housings_on_person_id"

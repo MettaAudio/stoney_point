@@ -54,3 +54,11 @@
       = f.input :comments
       div class="#{hidden_form_class}"
         = f.association :golfers, :label_method => :full_name, :input_html => {class: 'chosen-select'}
+.row
+  .col-md-6
+    div class="#{hidden_form_class}"
+      .form-group
+        .checkbox
+          = f.label :is_active do
+            = f.check_box :is_active
+            | Housing Is Active?

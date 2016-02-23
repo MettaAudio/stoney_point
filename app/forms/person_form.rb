@@ -45,6 +45,7 @@ class PersonForm < FormBuilder
             :comments,
             :max_guests,
             :specific_golfers,
+            :is_active,
             to: :housing, prefix: true, allow_nil: true
 
   delegate  :golf,
@@ -145,6 +146,7 @@ class PersonForm < FormBuilder
     housing.golfer_ids          = @housing_params[:golfer_ids]
     housing.max_guests          = @housing_params[:max_guests]
     housing.specific_golfers    = @housing_params[:specific_golfers]
+    housing.is_active           = @housing_params[:is_active]
     housing.person              = person
 
     housing.save
