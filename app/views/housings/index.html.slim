@@ -18,6 +18,7 @@ table.table.table-striped#data_table
       th Available
       th Beds
       th Baths
+      th Max #
       th Pets
       th Comments
       th Golfers
@@ -34,6 +35,7 @@ table.table.table-striped#data_table
         td = housing.available.strftime('%A')
         td = housing.number_of_bedrooms
         td = housing.number_of_bathrooms
+        td = housing.max_guests
         td = housing.pets
         td = housing.comments
         td = housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
