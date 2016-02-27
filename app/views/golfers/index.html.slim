@@ -1,9 +1,9 @@
 
 h1 Golfers
-- if current_user
-  = link_to 'New Golfer', new_golfer_path if current_user
+- if current_user.try(:admin?)
+  = link_to 'New Golfer', new_golfer_path if current_user.try(:admin?)
   '  |
-  = link_to 'New Caddie', new_caddie_path if current_user
+  = link_to 'New Caddie', new_caddie_path if current_user.try(:admin?)
   '  |
   = link_to 'Show all', :show_all => true
 hr
@@ -20,7 +20,7 @@ table.table.table-striped#data_table
       th Host
       th Caddie name
       th
-      - if current_user
+      - if current_user.try(:admin?)
         th
         th
 
@@ -37,7 +37,7 @@ table.table.table-striped#data_table
         td = volunteer_housing_for(golfer)
         td = caddies_for(golfer)
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, golfer, :class => 'btn btn-small'
-        - if current_user
+        - if current_user.try(:admin?)
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_golfer_path(golfer), :class => 'btn btn-small'
           td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, golfer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 

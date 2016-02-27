@@ -5,5 +5,5 @@
   <%= @work_day.time %>
 </p>
 
-<%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_work_day_path(@work_day), :class => 'btn btn-small' if current_user %>
+<%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_work_day_path(@work_day), :class => 'btn btn-small' if current_user.try(:admin?) %>
 <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, work_days_path, :class => 'btn btn-small' %>

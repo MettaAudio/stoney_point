@@ -1,0 +1,236 @@
+Searching 272 files for "if current_user"
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/caddies/index.html.slim:
+    1  h1 Caddies
+    2: - if current_user
+    3:   = link_to 'New Caddie', new_caddie_path if current_user
+    4    '  |
+    5    = link_to 'Show all', :show_all => true
+    .
+   17        th Comments
+   18        th
+   19:       - if current_user
+   20          th
+   21          th
+   ..
+   33          td = caddie.comments
+   34          td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie, :class => 'btn btn-small'
+   35:         - if current_user
+   36            td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_caddie_path(caddie), :class => 'btn btn-small'
+   37            td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, caddie, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/committees/_volunteers_table.html.slim:
+   15        th Sun
+   16        th
+   17:       - if current_user
+   18          th
+   19          th
+   ..
+   35          td = volunteer.sunday
+   36          td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
+   37:         - if current_user
+   38            td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
+   39            td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/committees/index.html.slim:
+    4    small
+    5      '  #{@volunteers.count} volunteers
+    6: = link_to 'New Committee', new_committee_path if current_user
+    7  |  |&nbsp;
+    8  = params[:unassigned] == 'true' ? "Show Unassigned" : link_to('Show Unassigned', :unassigned => true)
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/committees/show.html.slim:
+    6      | #{@volunteers.count} Volunteers
+    7    | &nbsp;
+    8:   = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-xs' if current_user
+    9    | &nbsp;
+   10    = link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, committees_path, :class => 'btn btn-xs'
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/golfers/index.html.slim:
+    1
+    2  h1 Golfers
+    3: - if current_user
+    4:   = link_to 'New Golfer', new_golfer_path if current_user
+    5    '  |
+    6:   = link_to 'New Caddie', new_caddie_path if current_user
+    7    '  |
+    8    = link_to 'Show all', :show_all => true
+    .
+   21        th Caddie name
+   22        th
+   23:       - if current_user
+   24          th
+   25          th
+   ..
+   38          td = caddies_for(golfer)
+   39          td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, golfer, :class => 'btn btn-small'
+   40:         - if current_user
+   41            td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_golfer_path(golfer), :class => 'btn btn-small'
+   42            td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, golfer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/housings/index.html.slim:
+    4      |  #{@number_of_beds}  Beds Total
+    5
+    6: - if current_user
+    7    = link_to 'New Housing', new_housing_path
+    8    |  |&nbsp;
+    .
+   24        th Golfers
+   25        th
+   26:       - if current_user
+   27          th
+   28          th
+   ..
+   41          td = housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
+   42          td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing, :class => 'btn btn-small'
+   43:         - if current_user
+   44            td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small'
+   45            td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, housing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/jobs/index.html.erb:
+    5      <tr>
+    6        <th>Title</th>
+    7:       <% if current_user %>
+    8          <th></th>
+    9          <th></th>
+   ..
+   16        <tr>
+   17          <td><%= link_to job.title, job %></td>
+   18:         <% if current_user %>
+   19            <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_job_path(job), :class => 'btn btn-small' %></td>
+   20            <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, job, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+   ..
+   27  <br>
+   28
+   29: <%= link_to 'New Job', new_job_path if current_user %>
+   30
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/jobs/show.html.erb:
+    6  </p>
+    7
+    8: <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_job_path(@job), :class => 'btn btn-small' if current_user %>
+    9  <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, jobs_path, :class => 'btn btn-small' %>
+   10
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/layouts/_navigation_links.html.slim:
+    1: - if current_user
+    2    li class="#{nav_class('people', request.path)}" = link_to 'People', people_path
+    3  li class="#{nav_class('volunteers', request.path)}"
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/organizations/index.html.erb:
+    5      <tr>
+    6        <th>Name</th>
+    7:       <% if current_user %>
+    8          <th></th>
+    9          <th></th>
+   ..
+   16        <tr>
+   17          <td><%= link_to organization.name, organization %></td>
+   18:         <% if current_user %>
+   19            <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_organization_path(organization), :class => 'btn btn-small' %></td>
+   20            <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, organization, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+   ..
+   27  <br>
+   28
+   29: <%= link_to 'New Organization', new_organization_path if current_user %>
+   30
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/organizations/show.html.erb:
+    6  </p>
+    7
+    8: <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_organization_path(@organization), :class => 'btn btn-small' if current_user %>
+    9  <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, organizations_path, :class => 'btn btn-small' %>
+   10
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/people/_show.html.slim:
+    7          = person.organization.try(:name)
+    8          '
+    9:         = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_path, :class => 'btn btn-small' if current_user
+   10  .row
+   11    .col-xs-4
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/people/index.html.slim:
+    4      '  #{@people.count} total
+    5
+    6: - if current_user
+    7    = params[:show_all] == 'true' ? "Show all" : link_to('Show all', :show_all => true)
+    8  hr
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/people/links.html.slim:
+    4      '  #{@people.count} total
+    5
+    6: - if current_user
+    7    = params[:show_all] == 'true' ? "Show all" : link_to('Show all', :show_all => true)
+    8    |  |&nbsp;
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/shifts/index.html.erb:
+    5      <tr>
+    6        <th>Time</th>
+    7:       <% if current_user %>
+    8          <th></th>
+    9          <th></th>
+   ..
+   16        <tr>
+   17          <td><%= link_to shift.time, shift %></td>
+   18:         <% if current_user %>
+   19            <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_shift_path(shift), :class => 'btn btn-small' %></td>
+   20            <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, shift, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+   ..
+   27  <br>
+   28
+   29: <%= link_to 'New Shift', new_shift_path if current_user %>
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/shifts/show.html.erb:
+    6  </p>
+    7
+    8: <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_shift_path(@shift), :class => 'btn btn-small' if current_user %>
+    9  <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, shifts_path, :class => 'btn btn-small' %>
+   10
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/volunteers/index.html.slim:
+    4      '  #{@volunteers.count} total
+    5
+    6: - if current_user
+    7    = link_to 'Add New Volunteer', new_volunteer_path
+    8    |  |&nbsp;
+    .
+   25        th Waiver
+   26        th
+   27:       - if current_user
+   28          th
+   29          th
+   ..
+   41          td = volunteer.waiver ? 'Y' : 'N'
+   42          td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
+   43:         - if current_user
+   44            td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
+   45            td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/volunteers/shirts.html.slim:
+   73              td = volunteer.shirt_size
+   74              td = volunteer.number_of_shirts
+   75:             - if current_user.try(:manage_shirts?)
+   76                td
+   77                  = check_box_tag :shirt_paid,
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/work_days/index.html.erb:
+    6        <th>Time</th>
+    7        <th></th>
+    8:       <% if current_user %>
+    9          <th></th>
+   10          <th></th>
+   ..
+   18          <td><%= work_day.time %></td>
+   19          <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, work_day, :class => 'btn btn-small' %></td>
+   20:         <% if current_user %>
+   21            <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_work_day_path(work_day), :class => 'btn btn-small' %></td>
+   22            <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, work_day, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
+
+/Users/john/Sites/stoney_point/stoney_point/app/views/work_days/show.html.erb:
+    6  </p>
+    7
+    8: <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_work_day_path(@work_day), :class => 'btn btn-small' if current_user %>
+    9  <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, work_days_path, :class => 'btn btn-small' %>
+   10
+
+39 matches across 20 files

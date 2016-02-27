@@ -6,7 +6,7 @@
         '
         = person.organization.try(:name)
         '
-        = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_path, :class => 'btn btn-small' if current_user
+        = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_path, :class => 'btn btn-small' if current_user.try(:admin?)
 .row
   .col-xs-4
     h5 Address

@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
+  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts]
   before_action :set_person, only: [:show, :destroy]
-  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     if params[:show_all] == 'true'

@@ -3,7 +3,7 @@ h1
   small
     '  #{@volunteers.count} total
 
-- if current_user
+- if current_user.try(:admin?)
   = link_to 'Add New Volunteer', new_volunteer_path
   |  |&nbsp;
   = params[:show_active] != 'true' && params[:show_all] != 'true' ? "Show Working" : link_to('Show Working')
@@ -24,7 +24,7 @@ table#data_table.table.table-striped
       th Organization
       th Waiver
       th
-      - if current_user
+      - if current_user.try(:admin?)
         th
         th
 
@@ -40,7 +40,7 @@ table#data_table.table.table-striped
         td = volunteer.organization.try(:name)
         td = volunteer.waiver ? 'Y' : 'N'
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
-        - if current_user
+        - if current_user.try(:admin?)
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
           td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 = render 'shared/datatable_js'

@@ -3,7 +3,7 @@ h1
   small
     '  #{@people.count} total
 
-- if current_user
+- if current_user.try(:admin?)
   = params[:show_all] == 'true' ? "Show all" : link_to('Show all', :show_all => true)
   |  |&nbsp;
   = params[:show_volunteers] == 'true' ? "Show volunteers" : link_to('Show volunteers', :show_volunteers => true)

@@ -3,7 +3,7 @@ h1
   small
     |  #{@number_of_beds}  Beds Total
 
-- if current_user
+- if current_user.try(:admin?)
   = link_to 'New Housing', new_housing_path
   |  |&nbsp;
   = params[:show_active] == 'true' ? "Show Active" : link_to('Show active', :show_active => true)
@@ -23,7 +23,7 @@ table.table.table-striped#data_table
       th Comments
       th Golfers
       th
-      - if current_user
+      - if current_user.try(:admin?)
         th
         th
 
@@ -40,7 +40,7 @@ table.table.table-striped#data_table
         td = housing.comments
         td = housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing, :class => 'btn btn-small'
-        - if current_user
+        - if current_user.try(:admin?)
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small'
           td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, housing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 

@@ -14,7 +14,7 @@ table#data_table.table.table-striped
       th Sat
       th Sun
       th
-      - if current_user
+      - if current_user.try(:admin?)
         th
         th
 
@@ -34,7 +34,7 @@ table#data_table.table.table-striped
         td = volunteer.saturday
         td = volunteer.sunday
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
-        - if current_user
+        - if current_user.try(:admin?)
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
           td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 = render 'shared/datatable_js'

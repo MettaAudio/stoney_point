@@ -5,7 +5,7 @@ h2
   small
     | #{@volunteers.count} Volunteers
   | &nbsp;
-  = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-xs' if current_user
+  = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-xs' if current_user.try(:admin?)
   | &nbsp;
   = link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, committees_path, :class => 'btn btn-xs'
 = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)

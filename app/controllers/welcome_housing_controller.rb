@@ -1,4 +1,6 @@
 class WelcomeHousingController < ApplicationController
+  skip_before_filter :permit_only_admin
+  skip_before_filter :authenticate_user!
   layout "public"
 
   def new

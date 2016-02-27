@@ -1,6 +1,6 @@
 h1 Caddies
-- if current_user
-  = link_to 'New Caddie', new_caddie_path if current_user
+- if current_user.try(:admin?)
+  = link_to 'New Caddie', new_caddie_path if current_user.try(:admin?)
   '  |
   = link_to 'Show all', :show_all => true
 hr
@@ -16,7 +16,7 @@ table.table.table-striped#data_table
       th Age
       th Comments
       th
-      - if current_user
+      - if current_user.try(:admin?)
         th
         th
 
@@ -32,7 +32,7 @@ table.table.table-striped#data_table
         td = caddie.age
         td = caddie.comments
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, caddie, :class => 'btn btn-small'
-        - if current_user
+        - if current_user.try(:admin?)
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_caddie_path(caddie), :class => 'btn btn-small'
           td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, caddie, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 

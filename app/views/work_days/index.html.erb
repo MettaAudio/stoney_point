@@ -5,7 +5,7 @@
     <tr>
       <th>Time</th>
       <th></th>
-      <% if current_user %>
+      <% if current_user.try(:admin?) %>
         <th></th>
         <th></th>
       <% end %>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= work_day.time %></td>
         <td><%= link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, work_day, :class => 'btn btn-small' %></td>
-        <% if current_user %>
+        <% if current_user.try(:admin?) %>
           <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_work_day_path(work_day), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, work_day, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>

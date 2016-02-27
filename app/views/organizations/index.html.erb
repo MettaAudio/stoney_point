@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <% if current_user %>
+      <% if current_user.try(:admin?) %>
         <th></th>
         <th></th>
       <% end %>
@@ -15,7 +15,7 @@
     <% @organizations.each do |organization| %>
       <tr>
         <td><%= link_to organization.name, organization %></td>
-        <% if current_user %>
+        <% if current_user.try(:admin?) %>
           <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_organization_path(organization), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, organization, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Organization', new_organization_path if current_user %>
+<%= link_to 'New Organization', new_organization_path if current_user.try(:admin?) %>

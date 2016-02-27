@@ -20,6 +20,6 @@ $ ->
       success_icon.removeClass('hidden').hide().fadeIn().delay( 800 ).fadeOut()
     request.fail (data) ->
       fail_icon.removeClass('hidden').hide().fadeIn().delay( 800 ).fadeOut()
-      $checkbox.prop('checked', (checked != true))
+      $checkbox.bootstrapSwitch('toggleState', 'skip')
       alert ('There was an error saving your change. Please refresh the page and try again.\n\nError: ' + data.responseJSON.errors)
   )

@@ -5,5 +5,5 @@
   <%= @organization.name %>
 </p>
 
-<%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_organization_path(@organization), :class => 'btn btn-small' if current_user %>
+<%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_organization_path(@organization), :class => 'btn btn-small' if current_user.try(:admin?) %>
 <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, organizations_path, :class => 'btn btn-small' %>

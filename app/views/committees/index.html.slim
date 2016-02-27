@@ -3,7 +3,7 @@ h1
   | &nbsp;
   small
     '  #{@volunteers.count} volunteers
-= link_to 'New Committee', new_committee_path if current_user
+= link_to 'New Committee', new_committee_path if current_user.try(:admin?)
 |  |&nbsp;
 = params[:unassigned] == 'true' ? "Show Unassigned" : link_to('Show Unassigned', :unassigned => true)
 |  |&nbsp;

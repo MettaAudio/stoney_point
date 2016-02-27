@@ -5,5 +5,5 @@
   <%= @job.title %>
 </p>
 
-<%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_job_path(@job), :class => 'btn btn-small' if current_user %>
+<%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_job_path(@job), :class => 'btn btn-small' if current_user.try(:admin?) %>
 <%= link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, jobs_path, :class => 'btn btn-small' %>

@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Time</th>
-      <% if current_user %>
+      <% if current_user.try(:admin?) %>
         <th></th>
         <th></th>
       <% end %>
@@ -15,7 +15,7 @@
     <% @shifts.each do |shift| %>
       <tr>
         <td><%= link_to shift.time, shift %></td>
-        <% if current_user %>
+        <% if current_user.try(:admin?) %>
           <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_shift_path(shift), :class => 'btn btn-small' %></td>
           <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, shift, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small' %></td>
         <% end %>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Shift', new_shift_path if current_user %>
+<%= link_to 'New Shift', new_shift_path if current_user.try(:admin?) %>

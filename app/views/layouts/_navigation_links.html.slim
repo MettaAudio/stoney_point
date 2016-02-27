@@ -1,4 +1,4 @@
-- if current_user
+- if current_user.try(:admin?)
   li class="#{nav_class('people', request.path)}" = link_to 'People', people_path
 li class="#{nav_class('volunteers', request.path)}"
   = link_to 'Volunteers', volunteers_path
