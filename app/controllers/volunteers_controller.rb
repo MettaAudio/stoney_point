@@ -1,5 +1,5 @@
 class VolunteersController < ApplicationController
-  before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
+  before_action :set_volunteer, only: [:show, :edit, :update, :destroy, :update_shirt_paid]
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
@@ -91,6 +91,16 @@ class VolunteersController < ApplicationController
       @organization = Organization.new
       @housing      = Housing.new
       render action: 'edit', notice: "There was a problem saving."
+    end
+  end
+
+  def update_shirt_paid
+    paid = params[:paid] == "true"
+    @volunteer.paid = paid
+    if @volunteer.save
+      render json: { success: true }
+    else
+      render json: { errors: @volunteer.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 

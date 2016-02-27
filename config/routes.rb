@@ -18,6 +18,7 @@ StoneyPoint::Application.routes.draw do
 
   resources :volunteers
   get "/volunteer_addresses", to: "volunteers#addresses"
+  post "/update_shirt_paid", to: "volunteers#update_shirt_paid"
 
   get "/people/links", to: "people#links", as: 'links'
 

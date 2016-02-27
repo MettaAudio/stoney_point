@@ -55,7 +55,7 @@ hr
             td = Volunteer.shirts_without_size.size
 .row
   .col-md-12
-    table#data_table.table.table-striped
+    table#data_table.table.table-striped.js-shirt-table
       thead
         tr
           th Last
@@ -72,7 +72,18 @@ hr
             td = link_to(volunteer.first_name, volunteer)
             td = volunteer.shirt_size
             td = volunteer.number_of_shirts
-            td = volunteer.paid ? "Yes" : "No"
+            td
+              = check_box_tag :shirt_paid,
+                1,
+                volunteer.paid,
+                class: 'js-paid-shirt-switch',
+                  data: { volunteer_id: volunteer.id, url: update_shirt_paid_path }
+              | &nbsp;&nbsp;
+              = fa_icon('check', class: 'text-success hidden js-success')
+              = fa_icon('times', class: 'text-danger hidden js-fail')
             td = committees_for(volunteer)
 
     = render 'shared/datatable_js'
+
+javascript:
+  $('.js-paid-shirt-switch').bootstrapSwitch();
