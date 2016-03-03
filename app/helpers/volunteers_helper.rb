@@ -91,7 +91,7 @@ module VolunteersHelper
 
   def shirt_count_for(size, volunteers)
     count = 0
-    volunteers.shirts_of_size(size).each do |volunteer|
+    volunteers.select{ |v| v.shirt_size == size }.each do |volunteer|
       count += (volunteer.number_of_shirts ? volunteer.number_of_shirts : 1)
     end
     count
