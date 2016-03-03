@@ -29,9 +29,10 @@ class VolunteersController < ApplicationController
   end
 
   def shirts
-    @volunteers = Volunteer.active.includes(:committees, person: :organization).receiving_shirts
-    @shirts_paid = Volunteer.active.includes(person: :organization).number_of_shirts_paid
-    @shirts_unpaid = Volunteer.active.includes(person: :organization).number_of_shirts_unpaid
+    @volunteers       = Volunteer.active.includes(:committees, person: :organization).receiving_shirts
+    @shirts_paid      = Volunteer.active.includes(person: :organization).number_of_shirts_paid
+    @shirts_unpaid    = Volunteer.active.includes(person: :organization).number_of_shirts_unpaid
+    @shirts_undecided = Volunteer.active.includes(person: :organization).shirts_without_size.size
   end
 
   def show
