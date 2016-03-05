@@ -1,7 +1,7 @@
 h1
   | Housing
   small
-    |  #{@number_of_beds}  Beds Total
+    |  #{@number_of_beds} #{"Guest".pluralize(@number_of_beds)} Total
 
 - if current_user.try(:admin?)
   = link_to 'New Housing', new_housing_path

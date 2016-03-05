@@ -11,7 +11,7 @@ class Housing < ActiveRecord::Base
 
   def self.total_number_of_beds(scope=:active)
     count = 0
-    Housing.send(scope).collect { |h| count += h.number_of_bedrooms.to_i }
+    Housing.send(scope).collect { |h| count += h.max_guests.to_i }
     count
   end
 end
