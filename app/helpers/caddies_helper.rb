@@ -20,4 +20,8 @@ module CaddiesHelper
     public_facing_page? ? "Do you know the rules of golf?" : "Rules?"
   end
 
+  def caddie_waiver_text
+    display_waiver? ? "I hereby agree and attest to the above." : "Accepted waiver"
+  end
+
 end

@@ -7,6 +7,29 @@ class WelcomeCaddiesController < ApplicationController
     @person_form = PersonForm.new()
   end
 
+  def find
+    @attempt = params[:attempt].to_i
+    # Case insensitive search
+    t = Person.arel_table
+    @first_name = search_params[:first_name].strip
+    @last_name  = search_params[:last_name].strip
+    @person = Person.where(t[:first_name].matches(@first_name).and(t[:last_name].matches(@last_name))).last
+
+    if @person && @person.caddie
+      redirect_to edit_welcome_caddie_path(@person)
+    else
+      @attempt += 1
+      render action: 'returning'
+    end
+  end
+
+  def welcome
+  end
+
+  def returning
+    @attempt ||= 0
+  end
+
   def create
     params[:person_form][:person_is_active] = true
 
@@ -72,5 +95,12 @@ class WelcomeCaddiesController < ApplicationController
       :organization_id,
       :is_active
       )
+  end
+
+  def search_params
+    params.require(:search).permit(
+      :first_name,
+      :last_name
+    )
   end
 end

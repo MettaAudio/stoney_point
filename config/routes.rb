@@ -32,13 +32,15 @@ StoneyPoint::Application.routes.draw do
 
   get "/welcome_housing/returning", to: "welcome_housing#returning"
   post "/welcome_housing/find", to: "welcome_housing#find"
-  # get "/welcome_housing/thank_you", to: "welcome_housing#thank_you"
+
+  get "/welcome_caddies/returning", to: "welcome_caddies#returning"
+  post "/welcome_caddies/find", to: "welcome_caddies#find"
 
   resources :welcome_volunteers, except: [:index, :show]
   resources :welcome_housing, except: [:index, :show]
 
   get "/welcome_caddies/thank_you", to: "welcome_caddies#thank_you"
-  resources :welcome_caddies, except: [:index]
+  resources :welcome_caddies, except: [:index, :show]
 
   post "/add_volunteer_committee", to: "volunteers#add_committee", as: 'add_volunteer_committee'
   post "/add_volunteer_job", to: "volunteers#add_job", as: 'add_volunteer_job'
