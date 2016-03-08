@@ -38,7 +38,7 @@ table.table.table-striped#data_table
         td = housing.max_guests
         td = housing.pets
         td = housing.comments
-        td = housing.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
+        td = housing.golfers.collect{ |g| link_to g.full_name, g, class: "#{'text-warning' if g.is_active}" }.join(' ').html_safe
         td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, housing, :class => 'btn btn-small'
         - if current_user.try(:admin?)
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_housing_path(housing), :class => 'btn btn-small'
