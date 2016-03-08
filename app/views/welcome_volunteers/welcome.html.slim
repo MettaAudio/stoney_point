@@ -48,5 +48,16 @@
       = link_to "#{fa_icon('plus')} New Caddie".html_safe, new_welcome_caddie_path, class: 'btn btn-primary btn-lg'
   .col-md-9
       h4
-        | Caddies are special.
-        |  Something about caddies
+        | Caddies require knowledge of golf rules and etiquette plus the stamina
+        |   to carry a tour bag for 18 holes a day.
+  .col-md-12
+    hr.fat
+.row
+  .col-md-12.text-center
+    h1 Contact Us
+    h4 If you have any comments or questions, send us an email
+    br
+    = mail_to "stoneypointvolunteer@gmail.com", "Click here", class: "btn btn-primary btn-lg"
+    br
+    h4 or send to: #{mail_to "stoneypointvolunteer@gmail.com" }
+
