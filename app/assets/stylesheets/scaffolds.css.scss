@@ -22,9 +22,6 @@ pre {
 
 a {
   color: $green;
-  &:visited {
-    color: $green;
-  }
   &:hover {
     color: desaturate($green, 50%);
     background-color: #DDD;
