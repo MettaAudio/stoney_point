@@ -1,37 +1,41 @@
 = f.fields_for @person_form.caddie do |caddie|
   .row
-    hr
-    .col-xs-4
+    .col-md-12
+      hr
+      h3 Knowledge and Skills
+    .col-xs-6
       .form-group
         .checkbox
           = caddie.label :golf do
             = caddie.check_box :golf
             = golfer_label
-    .col-xs-4
+    .col-xs-6
       .form-group
         .checkbox
           = caddie.label :experience_as_caddie do
             = caddie.check_box :experience_as_caddie
             = caddie_experience
-  .row
-    hr
-    .col-xs-4
-      .form-group
-        = caddie.label age
-        = caddie.number_field :age, class: "form-control"
-    .col-xs-4
+    .col-xs-6
       .form-group
         = caddie.label know_the_course
         = caddie.select :course, Caddie::KNOWLEDGE_OPTIONS, { include_blank: true, prompt: "Choose one..." }, class: "form-control chosen-select"
-    .col-xs-4
+    .col-xs-6
       .form-group
         = caddie.label know_the_rules
         = caddie.select :rules, Caddie::KNOWLEDGE_OPTIONS, { include_blank: true, prompt: "Choose one..." }, class: "form-control chosen-select"
+    .col-xs-6
+      .form-group
+        = caddie.label age
+        = caddie.number_field :age, class: "form-control"
   .row
+    .col-md-12
+      hr
     .col-xs-12
       .form-group
         = caddie.label :comments
         = caddie.text_area :comments, class: 'form-control'
+  .row
+    hr
   .row
     - if display_waiver?
       .col-xs-12
