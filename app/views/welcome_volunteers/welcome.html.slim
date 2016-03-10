@@ -36,14 +36,28 @@
     h4
       | Opening your home to allow one or more of the Symetra golfers to share in your hospitality
       |  is a rewarding experience for you and the golfers
+  .col-md-12
+    hr.fat
+/ .row
+/   .col-md-12
+/     h2 Caddies
+/   .col-md-3
+/       = link_to "#{fa_icon('user')} Returning Caddie".html_safe, welcome_caddies_returning_path, class: 'btn btn-primary btn-lg'
+/       br
+/       br
+/       = link_to "#{fa_icon('plus')} New Caddie".html_safe, new_welcome_caddie_path, class: 'btn btn-primary btn-lg'
+/   .col-md-9
+/       h4
+/         | Caddies require knowledge of golf rules and etiquette plus the stamina
+/         |   to carry a tour bag for 18 holes a day.
+/   .col-md-12
+/     hr.fat
+.row
+  .col-md-12.text-center
+    h1 Contact Us
+    h4 If you have any comments or questions, send us an email
+    br
+    = mail_to "stoneypointvolunteer@gmail.com", "Click here", class: "btn btn-primary btn-lg"
+    br
+    h4 or send to: #{mail_to "stoneypointvolunteer@gmail.com" }
 
-  / .col-md-4
-  /   .well
-  /     h3 Hosts
-  /     = link_to "#{fa_icon('user')} Returning Host".html_safe, '', class: 'btn btn-primary center-block'
-  /     | &nbsp;&nbsp;&nbsp;
-  /     = link_to "#{fa_icon('plus')} New Host".html_safe, '', class: 'btn btn-primary center-block'
-  / .col-md-4
-  /   .well
-  /     h3 Caddies
-  /     = link_to 'Caddie', '', class: 'btn btn-primary center-block'
