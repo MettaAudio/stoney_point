@@ -16,7 +16,4 @@
 //= require jquery.dataTables.js
 //= require dataTables.bootstrap.js
 //= require chosen-jquery
-//= require bootstrap-switch
 //= require_tree .
-
-$.fn.bootstrapSwitch.defaults.size = 'mini';

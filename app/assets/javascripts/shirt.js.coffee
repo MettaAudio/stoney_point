@@ -1,5 +1,5 @@
 $ ->
-  $('.js-shirt-table').on('switchChange.bootstrapSwitch', '.js-paid-shirt-switch', ->
+  $('.js-shirt-table').on('click', '.js-paid-shirt-switch', ->
     $checkbox    = $(this)
     volunteer_id = $checkbox.data('volunteer-id')
     checked      = $checkbox.prop('checked')
