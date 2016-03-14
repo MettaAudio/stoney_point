@@ -5,6 +5,7 @@ class Housing < ActiveRecord::Base
   validates :number_of_bedrooms, presence: true
   validates :number_of_bathrooms, presence: true
   validates :person_id, presence: true
+  validates :max_guests, presence: true
 
   default_scope { includes(:person).order('people.last_name ASC') }
   scope :active, -> { joins(:person).where("people.is_active = ? AND housings.is_active = ?", true, true) }

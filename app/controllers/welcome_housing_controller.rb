@@ -15,7 +15,7 @@ class WelcomeHousingController < ApplicationController
     @last_name  = search_params[:last_name].strip
     @person = Person.where(t[:first_name].matches(@first_name).and(t[:last_name].matches(@last_name))).last
 
-    if @person && @person.housings.present?
+    if @person
       redirect_to edit_welcome_housing_path(@person)
     else
       @attempt += 1
