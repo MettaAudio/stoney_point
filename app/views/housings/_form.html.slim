@@ -7,13 +7,13 @@
       |  If a bedroom has two or more separate beds available, describe in comments.
   .col-md-6
     .form-inputs
-      = f.input :number_of_bedrooms
+      = f.input :number_of_bedrooms, input_html: { max: 5, min: 0 }
 .row
   .col-md-6
     p Number of bathrooms available exclusively for the golfers
   .col-md-6
     .form-inputs
-      = f.input :number_of_bathrooms
+      = f.input :number_of_bathrooms, as: :integer, input_html: { max: 5, min: 0 }
 .row
   .col-md-6
     p Maximum number of golfers you are willing to host
