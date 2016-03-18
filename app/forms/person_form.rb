@@ -63,7 +63,7 @@ class PersonForm < FormBuilder
   def initialize(args={})
     @page_params      = args[:page_params] || {}
     @person_params    = @page_params[:person_form] || {}
-    @volunteer_params = @person_params[:volunteer]
+    @volunteer_params = @person_params[:volunteer] || @page_params[:volunteer]
     @caddie_params    = @person_params[:caddie]
     @golfer_params    = @person_params[:golfer]
     @housing_params   = @page_params[:housing] || @person_params[:housing]
@@ -110,6 +110,7 @@ class PersonForm < FormBuilder
     volunteer.friday            = @volunteer_params[:friday]
     volunteer.saturday          = @volunteer_params[:saturday]
     volunteer.sunday            = @volunteer_params[:sunday]
+    volunteer.committee_ids     = @volunteer_params[:committee_ids]
     volunteer.person            = person
 
     volunteer.committees << Committee.find_by_name(DEFAULT_COMMITTEE_NAME) if volunteer.committees.blank?

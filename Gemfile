@@ -13,6 +13,7 @@ gem 'devise'
 gem 'slim'
 gem 'chosen-sass-bootstrap-rails'
 gem "font-awesome-rails"
+gem 'x-editable-rails'
 
 group :production do
   gem 'rails_12factor'

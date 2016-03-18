@@ -26,7 +26,17 @@ table#data_table.table.table-striped
         td = volunteer.physical_activity ? "Y" : "N"
         td = volunteer.golfer ? "Y" : "N"
         td = volunteer.comments
-        td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
+        - if current_user.manage_committees?
+          td = editable(volunteer,
+                        :committee_ids,
+                        type: "select",
+                        source: Committee.all.collect{ |c| { value: c.id, text: c.name } },
+                        value: volunteer.committee_ids.to_json,
+                        tpl: "<select multiple='multiple'>",
+                        class: 'multiple-select',
+                        )
+        - else
+          td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
         td = volunteer.waiver ? "Y" : "N"
         td = volunteer.wednesday
         td = volunteer.thursday
@@ -38,3 +48,5 @@ table#data_table.table.table-striped
           td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
           td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 = render 'shared/datatable_js'
+javascript:
+  StoneyPoint.InlineEditing.init()

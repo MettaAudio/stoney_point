@@ -12,8 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require common
 //= require bootstrap-sprockets
 //= require jquery.dataTables.js
 //= require dataTables.bootstrap.js
 //= require chosen-jquery
+//= require bootstrap-popovers
+//= require editable/bootstrap-editable
+//= require editable/rails
+//= require inline_edit
 //= require_tree .

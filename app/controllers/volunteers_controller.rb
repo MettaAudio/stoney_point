@@ -84,7 +84,10 @@ class VolunteersController < ApplicationController
       person:      @person
     )
     if @person_form.update
-      redirect_to @person_form.volunteer, notice: 'Person was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to @person_form.volunteer, notice: 'Person was successfully created.' }
+        format.js   { render json: @volunteer.to_json }
+      end
     else
       @committees   = Committee.all
       @committee    = Committee.new
@@ -203,7 +206,8 @@ class VolunteersController < ApplicationController
         :sunday,
         :golfer,
         :waiver,
-        :is_active
+        :is_active,
+        committee_ids: []
         )
     end
 

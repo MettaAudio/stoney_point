@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def manage_shirts?
     role == "Manage shirts" || admin?
   end
+
+  def manage_committees?
+    role == "Committee Manager" || admin?
+  end
 end

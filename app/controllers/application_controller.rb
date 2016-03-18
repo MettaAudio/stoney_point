@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :permit_only_admin
   before_filter :authenticate_user!
+  helper_method :xeditable?
+
+  def xeditable?(object=nil)
+    true
+  end
 
   private
   def permit_only_admin
