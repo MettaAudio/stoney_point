@@ -26,7 +26,7 @@ table#data_table.table.table-striped
         td = volunteer.physical_activity ? "Y" : "N"
         td = volunteer.golfer ? "Y" : "N"
         td = volunteer.comments
-        - if current_user.manage_committees?
+        - if current_user.try(:manage_committees?)
           td = editable(volunteer,
                         :committee_ids,
                         type: "select",
