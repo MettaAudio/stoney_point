@@ -201,7 +201,7 @@ class VolunteersController < ApplicationController
             :comments,
             :waiver,
             :is_active,
-            committee_ids: [],
+            committee_ids:[],
           ]
         )
       end
@@ -223,7 +223,7 @@ class VolunteersController < ApplicationController
         :comments,
         :waiver,
         :is_active,
-        committee_ids: [],
+        committee_ids:[],
       )
     end
 

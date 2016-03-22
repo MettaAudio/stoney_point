@@ -1,4 +1,6 @@
 = f.fields_for @person_form.volunteer do |volunteer|
+  - volunteer.object.committees.each do |committee|
+    = volunteer.hidden_field :committee_ids, :multiple => true, :value => committee.id
   .row
     .col-md-4
       .form-group

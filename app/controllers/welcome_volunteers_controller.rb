@@ -66,6 +66,7 @@ class WelcomeVolunteersController < ApplicationController
 
     @person_form = PersonForm.new(
       page_params: params,
+      volunteer_params: person_params.try(:[], :volunteer) || volunteer_params,
       volunteer:   @volunteer,
       person:      @person
     )
@@ -86,19 +87,59 @@ class WelcomeVolunteersController < ApplicationController
   end
 
   def person_params
-    params.require(:person).permit(
-      :first_name,
-      :last_name,
-      :email,
-      :street,
-      :city,
-      :state,
-      :zip,
-      :phone,
-      :organization_id,
-      :is_active
+    if params[:person_form].present?
+      params.require(:person_form).permit(
+        :person_first_name,
+        :person_last_name,
+        :person_email,
+        :person_street,
+        :person_city,
+        :person_state,
+        :person_zip,
+        :person_phone,
+        :person_organization_id,
+        :person_is_active,
+        volunteer: [
+          :physical_activity,
+          :golfer,
+          :wednesday,
+          :thursday,
+          :friday,
+          :saturday,
+          :sunday,
+          :shirt_size,
+          :number_of_shirts,
+          :uniform_price,
+          :paid,
+          :comments,
+          :waiver,
+          :is_active,
+          committee_ids:[],
+        ]
       )
+    end
   end
+
+  def volunteer_params
+    params.require(:volunteer).permit(
+      :physical_activity,
+      :golfer,
+      :wednesday,
+      :thursday,
+      :friday,
+      :saturday,
+      :sunday,
+      :shirt_size,
+      :number_of_shirts,
+      :uniform_price,
+      :paid,
+      :comments,
+      :waiver,
+      :is_active,
+      committee_ids:[],
+    )
+  end
+
 
   def search_params
     params.require(:search).permit(
