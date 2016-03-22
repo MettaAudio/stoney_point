@@ -80,6 +80,7 @@ class VolunteersController < ApplicationController
     @person = @volunteer.person
     @person_form = PersonForm.new(
       page_params: params,
+      volunteer_params: person_params.try(:[], :volunteer) || volunteer_params,
       volunteer:   @volunteer,
       person:      @person
     )
@@ -182,33 +183,48 @@ class VolunteersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def person_params
+      if params[:person_form].present?
+        params.require(:person_form).permit(
+          volunteer: [
+            :physical_activity,
+            :golfer,
+            :wednesday,
+            :thursday,
+            :friday,
+            :saturday,
+            :sunday,
+            :shirt_size,
+            :number_of_shirts,
+            :uniform_price,
+            :paid,
+            :comments,
+            :waiver,
+            :is_active,
+            committee_ids: [],
+          ]
+        )
+      end
+    end
+
     def volunteer_params
       params.require(:volunteer).permit(
-        :first_name,
-        :last_name,
-        :street,
-        :city,
-        :state,
-        :zip,
-        :zip,
-        :primary_phone,
-        :secondary_phone,
-        :email,
-        :paid,
         :physical_activity,
-        :shirt_size,
-        :comments,
-        :number_of_shirts,
+        :golfer,
         :wednesday,
         :thursday,
         :friday,
         :saturday,
         :sunday,
-        :golfer,
+        :shirt_size,
+        :number_of_shirts,
+        :uniform_price,
+        :paid,
+        :comments,
         :waiver,
         :is_active,
-        committee_ids: []
-        )
+        committee_ids: [],
+      )
     end
 
     def association_params

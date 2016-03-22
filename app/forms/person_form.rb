@@ -63,7 +63,7 @@ class PersonForm < FormBuilder
   def initialize(args={})
     @page_params      = args[:page_params] || {}
     @person_params    = @page_params[:person_form] || {}
-    @volunteer_params = @person_params[:volunteer] || @page_params[:volunteer]
+    @volunteer_params = args[:volunteer_params] || @person_params[:volunteer] || @page_params[:volunteer]
     @caddie_params    = @person_params[:caddie]
     @golfer_params    = @person_params[:golfer]
     @housing_params   = @page_params[:housing] || @person_params[:housing]
@@ -97,24 +97,16 @@ class PersonForm < FormBuilder
 
   def update_volunteer
     return true unless @volunteer_params.present?
-    volunteer.shirt_size        = @volunteer_params[:shirt_size]
-    volunteer.number_of_shirts  = @volunteer_params[:number_of_shirts] || default_number_of_shirts
-    volunteer.comments          = @volunteer_params[:comments]
-    volunteer.golfer            = @volunteer_params[:golfer]
-    volunteer.physical_activity = @volunteer_params[:physical_activity]
-    volunteer.waiver            = @volunteer_params[:waiver]
-    volunteer.paid              = @volunteer_params[:paid]
-    volunteer.uniform_price     = @volunteer_params[:uniform_price] || uniform_price
-    volunteer.wednesday         = @volunteer_params[:wednesday]
-    volunteer.thursday          = @volunteer_params[:thursday]
-    volunteer.friday            = @volunteer_params[:friday]
-    volunteer.saturday          = @volunteer_params[:saturday]
-    volunteer.sunday            = @volunteer_params[:sunday]
-    volunteer.committee_ids     = @volunteer_params[:committee_ids]
-    volunteer.person            = person
+    defaults = {
+      "number_of_shirts" => default_number_of_shirts,
+      "uniform_price"    => uniform_price,
+      "committee_ids"    => [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
+    }
 
-    volunteer.committees << Committee.find_by_name(DEFAULT_COMMITTEE_NAME) if volunteer.committees.blank?
+    @volunteer_params = defaults.merge(@volunteer_params)
 
+    volunteer.update(@volunteer_params)
+    volunteer.person = person
     volunteer.save
   end
 
