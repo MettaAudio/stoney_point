@@ -22,8 +22,8 @@ class CommitteesController < ApplicationController
   end
 
   def show_all_schedules
-    @committees = Committee.all
-    @volunteers = @committees.collect(&:volunteers).flatten
+    @committees = Committee.scheduleable
+    @volunteers = @committees.collect(&:volunteers).flatten.uniq
     render "show_schedule"
   end
 
