@@ -1,0 +1,43 @@
+p#notice = notice
+h2
+  | #{@committee ? @committee.name : "All"} Jobs
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th
+      th
+      th
+      th.day-header colspan="3" Thursday
+      th.day-header colspan="3" Friday
+      th.day-header colspan="3" Saturday
+      th.day-header colspan="3" Sunday
+    tr
+      th Last Name
+      th First Name
+      th Job
+      - 4.times do
+        th Avail
+        th Time
+        th Hole
+
+  tbody
+    - @volunteers.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        td = volunteer.jobs.pluck(:title).join(", ")
+        td = volunteer.thursday
+        td
+        td
+        td = volunteer.friday
+        td
+        td
+        td = volunteer.saturday
+        td
+        td
+        td = volunteer.sunday
+        td
+        td
+= render 'shared/datatable_js'
+javascript:

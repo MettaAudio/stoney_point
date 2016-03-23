@@ -14,7 +14,14 @@ StoneyPoint::Application.routes.draw do
 
   resources :shifts
 
-  resources :committees
+  resources :committees do
+    collection do
+      get "show_all_jobs", to: "committees#show_all_jobs"
+    end
+    member do
+      get "show_jobs", to: "committees#show_jobs"
+    end
+  end
 
   resources :volunteers
   get "/volunteer_addresses", to: "volunteers#addresses"
