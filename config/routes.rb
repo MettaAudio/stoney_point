@@ -16,10 +16,10 @@ StoneyPoint::Application.routes.draw do
 
   resources :committees do
     collection do
-      get "show_all_jobs", to: "committees#show_all_jobs"
+      get "show_all_schedules", to: "committees#show_all_schedules"
     end
     member do
-      get "show_jobs", to: "committees#show_jobs"
+      get "show_schedule", to: "committees#show_schedule"
     end
   end
 

@@ -1,5 +1,5 @@
 class CommitteesController < ApplicationController
-  before_action :set_committee, only: [:show, :edit, :update, :destroy, :show_jobs]
+  before_action :set_committee, only: [:show, :edit, :update, :destroy, :show_schedule]
   skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
   skip_before_filter :permit_only_admin, only: [:index, :show, :shirts]
 
@@ -21,13 +21,13 @@ class CommitteesController < ApplicationController
     end
   end
 
-  def show_all_jobs
+  def show_all_schedules
     @committees = Committee.all
     @volunteers = @committees.collect(&:volunteers).flatten
-    render "show_jobs"
+    render "show_schedule"
   end
 
-  def show_jobs
+  def show_schedule
     @volunteers = @committee.volunteers.active
   end
 
