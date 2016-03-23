@@ -1,6 +1,6 @@
 class VolunteersController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
-  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update_shirt_paid]
+  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update_shirt_paid, :update]
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy, :update_shirt_paid]
 
   def index
