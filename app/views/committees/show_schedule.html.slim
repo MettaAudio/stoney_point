@@ -24,7 +24,14 @@ table#data_table.table.table-striped
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
-        td = volunteer.jobs.pluck(:title).join(", ")
+        td = editable(volunteer,
+                      :job_ids,
+                      type: "select",
+                      source: Job.all.collect{ |j| { text: j.title, value: j.id } },
+                      value: volunteer.job_ids.to_json,
+                      tpl: "<select multiple='multiple'>",
+                      class: 'multiple-select',
+                     )
         - @days.each do |day|
           td = volunteer.send(day)
           td = volunteer.send("#{day}_time")

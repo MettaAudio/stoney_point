@@ -202,6 +202,7 @@ class VolunteersController < ApplicationController
             :waiver,
             :is_active,
             committee_ids:[],
+            job_ids:[],
           ]
         )
       end
@@ -232,6 +233,7 @@ class VolunteersController < ApplicationController
         :sunday_time,
         :sunday_hole,
         committee_ids:[],
+        job_ids:[],
       )
     end
 
