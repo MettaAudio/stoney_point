@@ -3,6 +3,5 @@ class Committee < ActiveRecord::Base
   validates :name, presence: true
 
   scope :scheduleable, -> {where.not(name: ['*Not Assigned','Operations'])}
-
-  default_scope { order('name ASC') }
+  scope :sorted, -> { order('name ASC') }
 end
