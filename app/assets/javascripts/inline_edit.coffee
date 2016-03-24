@@ -100,7 +100,6 @@ StoneyPoint.InlineEditing =
   initHexColorEditHandler: (attributeName) ->
     $(".editable[data-name='" + attributeName + "']").on "save", (e, params) ->
       $(e.target).parent().attr("data-color", "#{params.submitValue}")
-      MarcomApps.Common.setContrastedColors($(e.target).parent(), params.submitValue)
 
 $(document).on "change", ".popover .chosen-select", (e) ->
   $(e.target).parents('.popover').data('bs.popover').reposition_popover()

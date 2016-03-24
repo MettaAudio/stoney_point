@@ -223,6 +223,14 @@ class VolunteersController < ApplicationController
         :comments,
         :waiver,
         :is_active,
+        :thursday_time,
+        :thursday_hole,
+        :friday_time,
+        :friday_hole,
+        :saturday_time,
+        :saturday_hole,
+        :sunday_time,
+        :sunday_hole,
         committee_ids:[],
       )
     end

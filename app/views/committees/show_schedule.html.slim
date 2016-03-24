@@ -8,15 +8,13 @@ table#data_table.table.table-striped
       th
       th
       th
-      th.day-header colspan="3" Thursday
-      th.day-header colspan="3" Friday
-      th.day-header colspan="3" Saturday
-      th.day-header colspan="3" Sunday
+      - @days.each do |day|
+        th.day-header colspan="3" = day.titlecase
     tr
       th Last Name
       th First Name
       th Job
-      - 4.times do
+      - @days.each do |day|
         th Avail
         th Time
         th Hole
@@ -27,17 +25,13 @@ table#data_table.table.table-striped
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
         td = volunteer.jobs.pluck(:title).join(", ")
-        td = volunteer.thursday
-        td
-        td
-        td = volunteer.friday
-        td
-        td
-        td = volunteer.saturday
-        td
-        td
-        td = volunteer.sunday
-        td
-        td
+        - @days.each do |day|
+          td = volunteer.send(day)
+          td = volunteer.send("#{day}_time")
+          td = editable(volunteer,
+                        "#{day}_hole",
+                        tpl: '<input type="number" max=18 min=0>',
+                       )
 = render 'shared/datatable_js'
 javascript:
+  StoneyPoint.InlineEditing.init()

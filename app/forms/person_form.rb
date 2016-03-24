@@ -98,9 +98,9 @@ class PersonForm < FormBuilder
   def update_volunteer
     return true unless @volunteer_params.present?
     defaults = {
-      "number_of_shirts" => default_number_of_shirts,
-      "uniform_price"    => uniform_price,
-      "committee_ids"    => [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
+      "number_of_shirts" => volunteer.number_of_shirts || default_number_of_shirts,
+      "uniform_price"    => volunteer.uniform_price    || uniform_price.to_i,
+      "committee_ids"    => volunteer.committee_ids    || [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
     }
 
     @volunteer_params = defaults.merge(@volunteer_params)

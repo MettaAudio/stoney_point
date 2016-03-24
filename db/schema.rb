@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224162313) do
+ActiveRecord::Schema.define(version: 20160323151908) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -176,6 +176,14 @@ ActiveRecord::Schema.define(version: 20160224162313) do
     t.string   "saturday"
     t.string   "sunday"
     t.integer  "uniform_price"
+    t.datetime "thursday_time"
+    t.integer  "thursday_hole"
+    t.datetime "friday_time"
+    t.integer  "friday_hole"
+    t.datetime "saturday_time"
+    t.integer  "saturday_hole"
+    t.datetime "sunday_time"
+    t.integer  "sunday_hole"
   end
 
   add_index "volunteers", ["person_id"], name: "index_volunteers_on_person_id"

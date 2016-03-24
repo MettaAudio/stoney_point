@@ -24,11 +24,13 @@ class CommitteesController < ApplicationController
   def show_all_schedules
     @committees = Committee.scheduleable
     @volunteers = @committees.collect(&:volunteers).flatten.uniq
+    @days = ["thursday", "friday", "saturday", "sunday"]
     render "show_schedule"
   end
 
   def show_schedule
     @volunteers = @committee.volunteers.active
+    @days = ["thursday", "friday", "saturday", "sunday"]
   end
 
   def new
