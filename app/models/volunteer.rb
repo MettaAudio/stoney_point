@@ -28,6 +28,7 @@ class Volunteer < ActiveRecord::Base
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }
+  scope :with_scheduleable_committees, -> { joins(:committees).merge(Committee.scheduleable) }
   scope :receiving_shirts, -> { where("number_of_shirts > 0 AND number_of_shirts IS NOT NULL") }
   scope :shirts_of_size, ->(shirt) { where("shirt_size = ? ", shirt) }
   scope :shirts_without_size, -> { where("shirt_size IS NULL OR shirt_size = ''").merge(Volunteer.receiving_shirts) }
