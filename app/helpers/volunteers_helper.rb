@@ -42,6 +42,10 @@ module VolunteersHelper
     "#{houses} bedrooms"
   end
 
+  def jobs_for(volunteer)
+    volunteer.jobs.pluck(:title).join(", ")
+  end
+
   def committees_for(volunteer)
     committees = []
     return unless volunteer.committees.present?

@@ -24,25 +24,32 @@ table#data_table.table.table-striped
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
-        td = editable(volunteer,
-                      :job_ids,
-                      type: "select",
-                      source: Job.all.collect{ |j| { text: j.title, value: j.id } },
-                      value: volunteer.job_ids.to_json,
-                      tpl: "<select multiple='multiple'>",
-                      class: 'multiple-select',
-                     )
+        - if current_user.try(:admin?)
+          td = editable(volunteer,
+                        :job_ids,
+                        type: "select",
+                        source: Job.all.collect{ |j| { text: j.title, value: j.id } },
+                        value: volunteer.job_ids.to_json,
+                        tpl: "<select multiple='multiple'>",
+                        class: 'multiple-select',
+                       )
+        - else
+          td = jobs_for(volunteer)
         - @days.each do |day|
           td = volunteer.send(day)
-          td = editable(volunteer,
-                        "#{day}_time",
-                        type: "select",
-                        source: Volunteer.time_options,
-                       )
-          td = editable(volunteer,
-                        "#{day}_hole",
-                        tpl: '<input type="number" max=18 min=0>',
-                       )
+          - if current_user.try(:admin?)
+            td = editable(volunteer,
+                          "#{day}_time",
+                          type: "select",
+                          source: Volunteer.time_options,
+                         )
+            td = editable(volunteer,
+                          "#{day}_hole",
+                          tpl: '<input type="number" max=18 min=0>',
+                         )
+          - else
+            td = volunteer.send("#{day}_time")
+            td = volunteer.send("#{day}_hole")
 = render 'shared/datatable_js'
 javascript:
   StoneyPoint.InlineEditing.init()
