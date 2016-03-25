@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
-      render @user.to_json
+      render json: @user.to_json
     else
       render json: @user.errors, status: :unprocessable_entity
     end

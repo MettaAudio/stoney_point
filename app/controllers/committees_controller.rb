@@ -22,6 +22,7 @@ class CommitteesController < ApplicationController
   end
 
   def show_all_schedules
+    @read_write = current_user.try(:admin?)
     @committees = Committee.sorted.scheduleable
     @volunteers = Volunteer.with_scheduleable_committees.active.uniq
     @days = ["thursday", "friday", "saturday", "sunday"]
@@ -29,6 +30,7 @@ class CommitteesController < ApplicationController
   end
 
   def show_schedule
+    @read_write = current_user.try(:admin?) || current_user.try(:role) == "#{@committee.name.titlecase} Manager"
     @volunteers = @committee.volunteers.active
     @days = ["thursday", "friday", "saturday", "sunday"]
   end

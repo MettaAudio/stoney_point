@@ -24,7 +24,7 @@ table#data_table.table.table-striped
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
-        - if current_user.try(:admin?)
+        - if @read_write
           td = editable(volunteer,
                         :job_ids,
                         type: "select",
@@ -37,7 +37,7 @@ table#data_table.table.table-striped
           td = jobs_for(volunteer)
         - @days.each do |day|
           td = volunteer.send(day)
-          - if current_user.try(:admin?)
+          - if @read_write
             td = editable(volunteer,
                           "#{day}_time",
                           type: "select",

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   scope :without, ->(user) { where.not(id: user.id) }
 
   def self.role_options
-    ROLE_OPTIONS
+    ROLE_OPTIONS + Committee.scheduleable.collect { |c| "#{c.name.titlecase} Manager"}
   end
 
   def admin?
