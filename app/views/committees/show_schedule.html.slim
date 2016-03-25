@@ -34,7 +34,11 @@ table#data_table.table.table-striped
                      )
         - @days.each do |day|
           td = volunteer.send(day)
-          td = volunteer.send("#{day}_time")
+          td = editable(volunteer,
+                        "#{day}_time",
+                        type: "select",
+                        source: Volunteer.time_options,
+                       )
           td = editable(volunteer,
                         "#{day}_hole",
                         tpl: '<input type="number" max=18 min=0>',

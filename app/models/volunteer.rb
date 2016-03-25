@@ -59,6 +59,27 @@ class Volunteer < ActiveRecord::Base
     receiving_shirts.with_shirts_paid.collect{ |v| (v.number_of_shirts * v.uniform_price)}.inject(:+) || 0
   end
 
+  def self.time_options
+    time_options = []
+    minute_intervals = ['00', '15', '30', '45']
+    ['AM', 'PM'].each do |meridiem|
+      if meridiem == 'AM'
+        [7,8,9,10,11].each do |hour|
+          minute_intervals.each do |minute|
+            time_options << "#{hour}:#{minute} #{meridiem}"
+          end
+        end
+      elsif meridiem == 'PM'
+        [12,1,2,3,4,5,6].each do |hour|
+          minute_intervals.each do |minute|
+            time_options << "#{hour}:#{minute} #{meridiem}"
+          end
+        end
+      end
+    end
+    time_options
+  end
+
   def duplicate!
     duplicate_attributes = {}
     usable_attributes.each do |usable_attribute|
