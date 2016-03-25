@@ -1,0 +1,24 @@
+h1
+  | Manage Users
+  small
+    '  #{@users.count} total
+
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th Email
+      th Role
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = editable(user, :email)
+        td = editable(user,
+                      :role,
+                      type: "select",
+                      source: User.role_options,
+                     )
+= render 'shared/datatable_js'
+javascript:
+  StoneyPoint.InlineEditing.init()

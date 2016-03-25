@@ -4,7 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLE_OPTIONS = ["Manage shirts", "Admin"]
+  ROLE_OPTIONS = ["Manage shirts", "Admin", "Committee Manager"]
+
+  scope :without, ->(user) { where.not(id: user.id) }
+
+  def self.role_options
+    ROLE_OPTIONS
+  end
 
   def admin?
     role == "Admin"

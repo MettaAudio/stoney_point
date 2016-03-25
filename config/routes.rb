@@ -1,6 +1,7 @@
 StoneyPoint::Application.routes.draw do
   devise_for :users
   resources :organizations
+  resources :users, only: [:index, :update]
 
   resources :work_days
 
