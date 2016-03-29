@@ -8,14 +8,16 @@ table#data_table.table.table-striped
       th
       th
       th
-      th
+      - unless @committee
+        th
       - @days.each do |day|
         th.day-header colspan="3" = day.titlecase
     tr
       th Last Name
       th First Name
       th Job
-      th Committees
+      - unless @committee
+        th Committees
       - @days.each do |day|
         th Avail
         th Time
@@ -37,7 +39,8 @@ table#data_table.table.table-striped
                        )
         - else
           td = jobs_for(volunteer)
-        td = committees_for(volunteer)
+        - unless @committee
+          td = committees_for(volunteer)
         - @days.each do |day|
           td = volunteer.send(day)
           - if @read_write

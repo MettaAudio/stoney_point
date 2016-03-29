@@ -1,7 +1,7 @@
 class CommitteesController < ApplicationController
   before_action :set_committee, only: [:show, :edit, :update, :destroy, :show_schedule]
-  skip_before_filter :authenticate_user!, only: [:index, :show, :shirts, :show_all_schedules, :show_schedule]
-  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :show_all_schedules, :show_schedule]
+  skip_before_filter :authenticate_user!, only: [:index, :show, :shirts, :show_all_schedules, :show_schedule, :show_day]
+  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :show_all_schedules, :show_schedule, :show_day]
 
   def index
     if params[:show_all] == 'true'
@@ -23,7 +23,6 @@ class CommitteesController < ApplicationController
 
   def show_all_schedules
     @read_write = current_user.try(:admin?)
-    @committees = Committee.sorted.scheduleable
     @volunteers = Volunteer.with_scheduleable_committees.active.uniq
     @days = ["thursday", "friday", "saturday", "sunday"]
     render "show_schedule"
