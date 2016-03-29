@@ -1,0 +1,49 @@
+p#notice = notice
+h2
+  | #{@day.titlecase} Schedule
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th Last Name
+      th First Name
+      th Job
+      th Committees
+      th Avail
+      th Time
+      th Hole
+
+  tbody
+    - @volunteers.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        - if @read_write
+          td = editable(volunteer,
+                        :job_ids,
+                        type: "select",
+                        source: Job.all.collect{ |j| { text: j.title, value: j.id } },
+                        value: volunteer.job_ids.to_json,
+                        tpl: "<select multiple='multiple'>",
+                        class: 'multiple-select',
+                       )
+        - else
+          td = jobs_for(volunteer)
+          td = committees_for(volunteer)
+        td = volunteer.send(@day)
+        - if @read_write
+          td = editable(volunteer,
+                        "#{@day}_time",
+                        type: "select",
+                        source: Volunteer.time_options,
+                       )
+          td = editable(volunteer,
+                        "#{@day}_hole",
+                        tpl: '<input type="number" max=19 min=0>',
+                       )
+        - else
+          td = volunteer.send("#{@day}_time")
+          td = volunteer.send("#{@day}_hole")
+= render 'shared/datatable_js'
+javascript:
+  StoneyPoint.InlineEditing.init()

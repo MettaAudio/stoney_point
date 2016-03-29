@@ -35,6 +35,12 @@ class CommitteesController < ApplicationController
     @days = ["thursday", "friday", "saturday", "sunday"]
   end
 
+  def show_day
+    @day = params[:day]
+    @committees = Committee.sorted.scheduleable
+    @volunteers = Volunteer.with_scheduleable_committees.active.schedule_for(@day).uniq
+  end
+
   def new
     @committee = Committee.new
   end

@@ -18,6 +18,7 @@ StoneyPoint::Application.routes.draw do
   resources :committees do
     collection do
       get "show_all_schedules", to: "committees#show_all_schedules"
+      get "show_day", to: "committees#show_day"
     end
     member do
       get "show_schedule", to: "committees#show_schedule"
