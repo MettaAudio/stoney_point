@@ -38,7 +38,7 @@ table#data_table.table.table-striped
                         class: 'multiple-select',
                        )
         - else
-          td = volunteer.send("#{@day}_checkin") ? "Yes" : "No"
+          td = volunteer.send("#{@day}_checkin") ? fa_icon('check', class: 'text-success') : ''
           td = jobs_for(volunteer)
         td = committees_for(volunteer)
         td = volunteer.send(@day)
