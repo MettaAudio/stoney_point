@@ -1,7 +1,7 @@
 class VolunteersController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
   skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update_shirt_paid, :update]
-  before_action :set_volunteer, only: [:show, :edit, :update, :destroy, :update_shirt_paid]
+  before_action :set_volunteer, only: [:show, :edit, :update, :destroy, :update_shirt_paid, :check_in]
 
   def index
     if params[:show_all] == 'true'
@@ -103,6 +103,15 @@ class VolunteersController < ApplicationController
   def update_shirt_paid
     paid = params[:paid] == "true"
     @volunteer.paid = paid
+    if @volunteer.save
+      render json: { success: true }
+    else
+      render json: { errors: @volunteer.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
+  def check_in
+    @volunteer.send("#{params[:day]}_checkin=", params[:checked])
     if @volunteer.save
       render json: { success: true }
     else

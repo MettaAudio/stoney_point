@@ -25,7 +25,12 @@ StoneyPoint::Application.routes.draw do
     end
   end
 
-  resources :volunteers
+  resources :volunteers do
+    member do
+      put "/check_in", to: "volunteers#check_in"
+    end
+  end
+
   get "/volunteer_addresses", to: "volunteers#addresses"
   post "/update_shirt_paid", to: "volunteers#update_shirt_paid"
 

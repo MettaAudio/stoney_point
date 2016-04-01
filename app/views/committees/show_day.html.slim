@@ -7,18 +7,28 @@ table#data_table.table.table-striped
     tr
       th Last Name
       th First Name
+      th Check In
       th Job
       th Committees
       th Avail
       th Time
       th Hole
 
-  tbody
+  tbody#js-show-day
     - @volunteers.each do |volunteer|
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
         - if @read_write
+          td
+            = check_box_tag "#{@day}_checkin",
+               1,
+               !!volunteer.send("#{@day}_checkin"),
+               class: 'js-check-in',
+               data: { url: check_in_volunteer_path(volunteer), day: @day }
+            | &nbsp;&nbsp;
+            = fa_icon('check', class: 'text-success hidden js-success')
+            = fa_icon('times', class: 'text-danger hidden js-fail')
           td = editable(volunteer,
                         :job_ids,
                         type: "select",
@@ -28,8 +38,9 @@ table#data_table.table.table-striped
                         class: 'multiple-select',
                        )
         - else
+          td = volunteer.send("#{@day}_checkin") ? "Yes" : "No"
           td = jobs_for(volunteer)
-          td = committees_for(volunteer)
+        td = committees_for(volunteer)
         td = volunteer.send(@day)
         - if @read_write
           td = editable(volunteer,

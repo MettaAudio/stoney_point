@@ -35,6 +35,7 @@ class CommitteesController < ApplicationController
   end
 
   def show_day
+    @read_write = current_user.try(:admin?)
     @day = params[:day]
     @committees = Committee.sorted.scheduleable
     @volunteers = Volunteer.with_scheduleable_committees.active.schedule_for(@day).uniq
