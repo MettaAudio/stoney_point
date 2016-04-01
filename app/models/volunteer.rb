@@ -81,6 +81,10 @@ class Volunteer < ActiveRecord::Base
     time_options
   end
 
+  def time_option_index_for(day)
+    self.send("#{day}_time").present? ? Volunteer.time_options.index(self.send("#{day}_time")).to_s.rjust(2, '0') : "99"
+  end
+
   def duplicate!
     duplicate_attributes = {}
     usable_attributes.each do |usable_attribute|

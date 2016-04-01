@@ -44,7 +44,7 @@ table#data_table.table.table-striped
         - @days.each do |day|
           td = volunteer.send(day)
           - if @read_write
-            td = editable(volunteer,
+            td data-sort='#{volunteer.time_option_index_for(day)}' = editable(volunteer,
                           "#{day}_time",
                           type: "select",
                           source: Volunteer.time_options,
@@ -54,7 +54,7 @@ table#data_table.table.table-striped
                           tpl: '<input type="number" max=19 min=0>',
                          )
           - else
-            td = volunteer.send("#{day}_time")
+            td data-sort='#{volunteer.time_option_index_for(day)}' = volunteer.send("#{day}_time")
             td = volunteer.send("#{day}_hole")
 = render 'shared/datatable_js'
 javascript:
