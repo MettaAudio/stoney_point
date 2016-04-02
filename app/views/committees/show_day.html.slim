@@ -12,6 +12,7 @@ table#data_table.table.table-striped
       th Committees
       th Avail
       th Time
+      th sort time
       th Hole
 
   tbody#js-show-day
@@ -43,18 +44,32 @@ table#data_table.table.table-striped
         td = committees_for(volunteer)
         td = volunteer.send(@day)
         - if @read_write
-          td data-sort='#{volunteer.time_option_index_for(@day)}' = editable(volunteer,
+          td = editable(volunteer,
                         "#{@day}_time",
                         type: "select",
                         source: Volunteer.time_options,
                        )
+          td = volunteer.time_option_index_for(@day)
           td = editable(volunteer,
                         "#{@day}_hole",
                         tpl: '<input type="number" max=19 min=0>',
                        )
         - else
-          td data-sort='#{volunteer.time_option_index_for(@day)}' = volunteer.send("#{@day}_time")
+          td = volunteer.send("#{@day}_time")
+          td = volunteer.time_option_index_for(@day)
           td = volunteer.send("#{@day}_hole")
-= render 'shared/datatable_js'
 javascript:
+  $(document).ready(function() {
+    $('#data_table').dataTable( {
+      "iDisplayLength": 100,
+      'columnDefs': [
+        { 'orderData':[7], 'targets': [6] },
+        {
+          'targets': [7],
+          'visible': false,
+          'searchable': false
+        },
+      ]
+    });
+  });
   StoneyPoint.InlineEditing.init()
