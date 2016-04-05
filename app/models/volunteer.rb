@@ -62,6 +62,8 @@ class Volunteer < ActiveRecord::Base
 
   def self.time_options
     time_options = []
+
+    time_options << ''
     minute_intervals = ['00', '15', '30', '45']
     ['AM', 'PM'].each do |meridiem|
       if meridiem == 'AM'

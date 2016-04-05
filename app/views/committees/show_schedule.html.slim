@@ -24,7 +24,7 @@ table#data_table.table.table-striped
         th sort time
         th Hole
 
-  tbody
+  tbody#schedule
     - @volunteers.each do |volunteer|
       tr
         td = link_to(volunteer.last_name, volunteer)
