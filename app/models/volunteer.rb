@@ -34,7 +34,7 @@ class Volunteer < ActiveRecord::Base
   scope :shirts_without_size, -> { where("shirt_size IS NULL OR shirt_size = ''").merge(Volunteer.receiving_shirts) }
   scope :with_shirts_paid, -> { where(paid: true) }
   scope :with_shirts_unpaid, -> { where(paid: [false, nil]) }
-  scope :schedule_for, ->(day) { where("#{day}_time IS NOT NULL") }
+  scope :schedule_for, ->(day) { where("#{day}_time IS NOT NULL AND #{day}_time != ''") }
 
   def self.working
     Volunteer.with_committees.distinct
