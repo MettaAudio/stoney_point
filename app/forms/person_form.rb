@@ -8,7 +8,7 @@ class PersonForm < FormBuilder
               :caddie,
               :housing
 
-  DEFAULT_COMMITTEE_NAME = "*Not Assigned"
+  DEFAULT_COMMITTEE_NAME = "Unassigned"
 
   delegate  :first_name,
             :last_name,
@@ -100,9 +100,10 @@ class PersonForm < FormBuilder
     defaults = {
       "number_of_shirts" => volunteer.number_of_shirts || default_number_of_shirts,
       "uniform_price"    => volunteer.uniform_price    || uniform_price.to_i,
-      "committee_ids"    => volunteer.committee_ids    || [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
+      "committee_ids"    => volunteer.committee_ids.present? ? volunteer.committee_ids : [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
     }
 
+    binding.pry
     @volunteer_params = defaults.merge(@volunteer_params)
 
     volunteer.update(@volunteer_params)
