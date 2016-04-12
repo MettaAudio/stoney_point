@@ -103,7 +103,6 @@ class PersonForm < FormBuilder
       "committee_ids"    => volunteer.committee_ids.present? ? volunteer.committee_ids : [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
     }
 
-    binding.pry
     @volunteer_params = defaults.merge(@volunteer_params)
 
     volunteer.update(@volunteer_params)
