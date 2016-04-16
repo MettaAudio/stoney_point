@@ -25,6 +25,7 @@
       p = house.comments
 
   - if house.golfers.present?
-    h5 Golfers
-    p
-      = house.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
+    .col-xs-12
+      h5 Golfers
+      p
+        = house.golfers.collect{ |g| link_to g.full_name, g }.join(' ').html_safe
