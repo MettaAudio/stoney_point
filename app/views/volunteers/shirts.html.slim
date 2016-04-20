@@ -73,7 +73,7 @@ hr
             td = volunteer.shirt_size
             td = volunteer.number_of_shirts
             - if current_user.try(:manage_shirts?)
-              td
+              td data-sort="#{volunteer.paid}"
                 = check_box_tag :shirt_paid,
                   1,
                   volunteer.paid,
