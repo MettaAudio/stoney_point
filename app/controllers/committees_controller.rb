@@ -23,14 +23,15 @@ class CommitteesController < ApplicationController
 
   def show_all_schedules
     @read_write = current_user.try(:admin?)
-    @volunteers = Volunteer.with_scheduleable_committees.includes(:jobs).active.uniq
+    @volunteers = Volunteer.with_scheduleable_committees.includes(:jobs, :committees, :person).active.uniq
     @days = ["thursday", "friday", "saturday", "sunday"]
+    @job_options = Job.all.collect{ |j| { text: j.title, value: j.id } }
     render "show_schedule"
   end
 
   def show_schedule
     @read_write = current_user.try(:admin?) || current_user.try(:role) == "#{@committee.name.titlecase} Manager"
-    @volunteers = @committee.volunteers.includes(:jobs).active
+    @volunteers = @committee.volunteers.includes(:jobs, :committees, :person).active
     @days = ["thursday", "friday", "saturday", "sunday"]
   end
 
@@ -38,7 +39,7 @@ class CommitteesController < ApplicationController
     @read_write = current_user.try(:admin?) || current_user.try(:manage_committees?) || current_user.try(:volunteer_center_manager?)
     @day = params[:day]
     @committees = Committee.sorted.scheduleable
-    @volunteers = Volunteer.with_scheduleable_committees.includes(:jobs).active.schedule_for(@day).uniq
+    @volunteers = Volunteer.with_scheduleable_committees.includes(:jobs, :committees, :person).active.schedule_for(@day).uniq
   end
 
   def new

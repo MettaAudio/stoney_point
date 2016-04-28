@@ -37,7 +37,7 @@ table#data_table.table.table-striped
             td = editable(volunteer,
                           "#{day}_job_id",
                           type: "select",
-                          source: Job.all.collect{ |j| { text: j.title, value: j.id } },
+                          source: @job_options,
                           )
             td = editable(volunteer,
                           "#{day}_time",
@@ -51,7 +51,7 @@ table#data_table.table.table-striped
                          )
 
           - else
-            td = Job.find_by(id: volunteer.send("#{day}_job_id")).try(:title)
+            td = volunteer.send("#{day}_job").try(:title)
             td = volunteer.send("#{day}_time")
             td = volunteer.time_option_index_for(day)
             td = volunteer.send("#{day}_hole")
