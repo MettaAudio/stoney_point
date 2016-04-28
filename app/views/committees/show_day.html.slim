@@ -14,6 +14,7 @@ table#data_table.table.table-striped
       th Time
       th sort time
       th Hole
+      th sort hole
 
   tbody#js-show-day
     - @volunteers.each do |volunteer|
@@ -51,9 +52,11 @@ table#data_table.table.table-striped
                         "#{@day}_hole",
                         tpl: '<input type="number" max=19 min=0>',
                        )
+          td = volunteer.send("#{@day}_hole")
         - else
           td = volunteer.send("#{@day}_time")
           td = volunteer.time_option_index_for(@day)
+          td = volunteer.send("#{@day}_hole")
           td = volunteer.send("#{@day}_hole")
 javascript:
   $(document).ready(function() {
@@ -62,8 +65,9 @@ javascript:
       "iDisplayLength": 100,
       'columnDefs': [
         { 'orderData':[7], 'targets': [6] },
+        { 'orderData':[9], 'targets': [8] },
         {
-          'targets': [7],
+          'targets': [7, 8],
           'visible': false,
           'searchable': false
         },
