@@ -32,6 +32,7 @@ class CommitteesController < ApplicationController
   def show_schedule
     @read_write = current_user.try(:admin?) || current_user.try(:role) == "#{@committee.name.titlecase} Manager"
     @volunteers = @committee.volunteers.includes(:jobs, :committees, :person).active
+    @job_options = Job.all.collect{ |j| { text: j.title, value: j.id } }
     @days = ["thursday", "friday", "saturday", "sunday"]
   end
 
