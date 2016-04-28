@@ -5,6 +5,10 @@ class Volunteer < ActiveRecord::Base
   belongs_to :organization
   belongs_to :person
   has_many :work_days
+  belongs_to :thursday_job, class_name: "Job"
+  belongs_to :friday_job, class_name: "Job"
+  belongs_to :saturday_job, class_name: "Job"
+  belongs_to :sunday_job, class_name: "Job"
 
   after_initialize :init
 
@@ -81,6 +85,22 @@ class Volunteer < ActiveRecord::Base
       end
     end
     time_options
+  end
+
+  def thursday_job_id
+    read_attribute(:thursday_job_id) || jobs.first.try(:id)
+  end
+
+  def friday_job_id
+    read_attribute(:friday_job_id) || jobs.first.try(:id)
+  end
+
+  def saturday_job_id
+    read_attribute(:saturday_job_id) || jobs.first.try(:id)
+  end
+
+  def sunday_job_id
+    read_attribute(:sunday_job_id) || jobs.first.try(:id)
   end
 
   def time_option_index_for(day)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331144459) do
+ActiveRecord::Schema.define(version: 20160427145810) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -188,6 +188,10 @@ ActiveRecord::Schema.define(version: 20160331144459) do
     t.boolean  "friday_checkin"
     t.boolean  "saturday_checkin"
     t.boolean  "sunday_checkin"
+    t.integer  "thursday_job_id"
+    t.integer  "friday_job_id"
+    t.integer  "saturday_job_id"
+    t.integer  "sunday_job_id"
   end
 
   add_index "volunteers", ["person_id"], name: "index_volunteers_on_person_id"

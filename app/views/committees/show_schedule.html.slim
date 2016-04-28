@@ -7,19 +7,18 @@ table#data_table.table.table-striped
     tr
       th
       th
-      th
       - unless @committee
         th
       - @days.each do |day|
-        th.day-header colspan="4" = day.titlecase
+        th.day-header colspan="5" = day.titlecase
     tr
       th Last Name
       th First Name
-      th Job
       - unless @committee
         th Committees
       - @days.each do |day|
         th Avail
+        th Job
         th Time
         th sort time
         th Hole
@@ -29,22 +28,17 @@ table#data_table.table.table-striped
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
-        - if @read_write
-          td = editable(volunteer,
-                        :job_ids,
-                        type: "select",
-                        source: Job.all.collect{ |j| { text: j.title, value: j.id } },
-                        value: volunteer.job_ids.to_json,
-                        tpl: "<select multiple='multiple'>",
-                        class: 'multiple-select',
-                       )
-        - else
-          td = jobs_for(volunteer)
         - unless @committee
           td = committees_for(volunteer)
         - @days.each do |day|
           td = volunteer.send(day)
+
           - if @read_write
+            td = editable(volunteer,
+                          "#{day}_job_id",
+                          type: "select",
+                          source: Job.all.collect{ |j| { text: j.title, value: j.id } },
+                          )
             td = editable(volunteer,
                           "#{day}_time",
                           type: "select",
@@ -55,55 +49,27 @@ table#data_table.table.table-striped
                           "#{day}_hole",
                           tpl: '<input type="number" max=19 min=0>',
                          )
+
           - else
+            td = Job.find_by(id: volunteer.send("#{day}_job_id")).try(:title)
             td = volunteer.send("#{day}_time")
             td = volunteer.time_option_index_for(day)
             td = volunteer.send("#{day}_hole")
+
 javascript:
   var committee = #{ @committee.present? };
   if(committee) {
     $(document).ready(function() {
       $('#data_table').dataTable( {
+        "scrollX": true,
         "iDisplayLength": 100,
         'columnDefs': [
           { 'orderData':[5],  'targets': [4] },
-          { 'orderData':[9],  'targets': [8] },
-          { 'orderData':[13], 'targets': [12] },
-          { 'orderData':[17], 'targets': [16] },
+          { 'orderData':[10],  'targets': [9] },
+          { 'orderData':[15], 'targets': [14] },
+          { 'orderData':[20], 'targets': [19] },
           {
             'targets': [5],
-            'visible': false,
-            'searchable': false
-          },
-          {
-            'targets': [9],
-            'visible': false,
-            'searchable': false
-          },
-          {
-            'targets': [13],
-            'visible': false,
-            'searchable': false
-          },
-          {
-            'targets': [17],
-            'visible': false,
-            'searchable': false
-          },
-        ]
-      });
-    });
-  } else {
-    $(document).ready(function() {
-      $('#data_table').dataTable( {
-        "iDisplayLength": 100,
-        'columnDefs': [
-          { 'orderData':[6],  'targets': [5] },
-          { 'orderData':[10], 'targets': [9] },
-          { 'orderData':[14], 'targets': [13] },
-          { 'orderData':[18], 'targets': [17] },
-          {
-            'targets': [6],
             'visible': false,
             'searchable': false
           },
@@ -113,12 +79,45 @@ javascript:
             'searchable': false
           },
           {
-            'targets': [14],
+            'targets': [15],
             'visible': false,
             'searchable': false
           },
           {
-            'targets': [18],
+            'targets': [20],
+            'visible': false,
+            'searchable': false
+          },
+        ]
+      });
+    });
+  } else {
+    $(document).ready(function() {
+      $('#data_table').dataTable( {
+        "scrollX": true,
+        "iDisplayLength": 100,
+        'columnDefs': [
+          { 'orderData':[6],  'targets': [5] },
+          { 'orderData':[11], 'targets': [10] },
+          { 'orderData':[16], 'targets': [15] },
+          { 'orderData':[20], 'targets': [19] },
+          {
+            'targets': [6],
+            'visible': false,
+            'searchable': false
+          },
+          {
+            'targets': [11],
+            'visible': false,
+            'searchable': false
+          },
+          {
+            'targets': [16],
+            'visible': false,
+            'searchable': false
+          },
+          {
+            'targets': [21],
             'visible': false,
             'searchable': false
           },

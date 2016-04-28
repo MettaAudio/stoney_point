@@ -31,16 +31,13 @@ table#data_table.table.table-striped
             = fa_icon('check', class: 'text-success hidden js-success')
             = fa_icon('times', class: 'text-danger hidden js-fail')
           td = editable(volunteer,
-                        :job_ids,
+                        "#{@day}_job_id",
                         type: "select",
                         source: Job.all.collect{ |j| { text: j.title, value: j.id } },
-                        value: volunteer.job_ids.to_json,
-                        tpl: "<select multiple='multiple'>",
-                        class: 'multiple-select',
                        )
         - else
           td = volunteer.send("#{@day}_checkin") ? fa_icon('check', class: 'text-success') : ''
-          td = jobs_for(volunteer)
+          td = Job.find_by(id: volunteer.send("#{@day}_job_id")).try(:title)
         td = committees_for(volunteer)
         td = volunteer.send(@day)
         - if @read_write
@@ -61,6 +58,7 @@ table#data_table.table.table-striped
 javascript:
   $(document).ready(function() {
     $('#data_table').dataTable( {
+      "scrollX": true,
       "iDisplayLength": 100,
       'columnDefs': [
         { 'orderData':[7], 'targets': [6] },
