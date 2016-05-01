@@ -29,6 +29,10 @@ class Volunteer < ActiveRecord::Base
             :organization,
             :organization_id,
             to: :person
+  delegate  :name,              # organization_name
+            to: :organization,
+            prefix: true,
+            allow_nil: true
 
   scope :active, -> { joins(:person).where("people.is_active = ?", true) }
   scope :with_committees, -> { joins(:committees) }

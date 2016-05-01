@@ -64,6 +64,7 @@ hr
           th # Ordered
           th Paid?
           th Committee
+          th Organization
 
       tbody
         - @volunteers.each do |volunteer|
@@ -85,5 +86,6 @@ hr
             -else
               td = volunteer.paid ? "Yes" : "No"
             td = committees_for(volunteer)
+            td = volunteer.organization_name
 
     = render 'shared/datatable_js'
