@@ -66,7 +66,7 @@ class PersonForm < FormBuilder
     @volunteer_params = args[:volunteer_params] || @person_params[:volunteer] || @page_params[:volunteer]
     @caddie_params    = @person_params[:caddie]
     @golfer_params    = @person_params[:golfer]
-    @housing_params   = @page_params[:housing] || @person_params[:housing]
+    @housing_params   = args[:housing_params] || @person_params[:housing] || @page_params[:housing]
 
     @person           = args[:person]    || Person.new
     @volunteer        = args[:volunteer] || Volunteer.new(number_of_shirts: 1)
@@ -130,18 +130,9 @@ class PersonForm < FormBuilder
 
   def update_housing
     return true unless @housing_params.present?
-    housing.available           = @housing_params[:available]
-    housing.number_of_bedrooms  = @housing_params[:number_of_bedrooms]
-    housing.number_of_bathrooms = @housing_params[:number_of_bathrooms]
-    housing.pets                = @housing_params[:pets]
-    housing.smoking             = @housing_params[:smoking]
-    housing.comments            = @housing_params[:comments]
-    housing.golfer_ids          = @housing_params[:golfer_ids]
-    housing.max_guests          = @housing_params[:max_guests]
-    housing.specific_golfers    = @housing_params[:specific_golfers]
-    housing.is_active           = @housing_params[:is_active]
-    housing.person              = person
 
+    housing.update(@housing_params)
+    housing.person = person
     housing.save
   end
 

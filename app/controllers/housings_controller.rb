@@ -51,13 +51,21 @@ class HousingsController < ApplicationController
     @person = @housing.person
     @person_form = PersonForm.new(
       page_params: params,
+      housing_params: person_params.try(:[], :housing) || housing_params,
       housing:     @housing,
       person:      @person
     )
+
     if @person_form.update
-      redirect_to @housing, notice: 'Housing was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @housing, notice: 'Housing was successfully updated.' }
+        format.js   { render json: @housing.to_json }
+      end
     else
-      render action: 'edit', notice: "Sorry, there was a problem saving your housing selection."
+      respond_to do |format|
+        format.json { render json: @housing.errors, status: :unprocessable_entity }
+        format.html { render action: 'edit', notice: "Sorry, there was a problem saving your housing selection." }
+      end
     end
   end
 
@@ -97,23 +105,26 @@ class HousingsController < ApplicationController
         :max_guests,
         :specific_golfers,
         :is_active,
-        :golfer_ids => []
+        :golfer_ids,
+        golfer_ids: [],
       )
     end
 
   def person_params
-    params.require(:person_form).permit(
-      :person_first_name,
-      :person_last_name,
-      :person_email,
-      :person_street,
-      :person_city,
-      :person_state,
-      :person_zip,
-      :person_phone,
-      :person_organization_id,
-      :person_is_active
-      )
+    if params[:person_form].present?
+      params.require(:person_form).permit(
+        :person_first_name,
+        :person_last_name,
+        :person_email,
+        :person_street,
+        :person_city,
+        :person_state,
+        :person_zip,
+        :person_phone,
+        :person_organization_id,
+        :person_is_active
+        )
+    end
   end
 
     def association_params
