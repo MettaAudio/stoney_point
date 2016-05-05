@@ -38,7 +38,7 @@ table.table.table-striped#data_table
         td = housing.max_guests
         td = housing.pets
         td = housing.comments
-        - if current_user.try(:admin?)
+        - if current_user.try(:housing_manager?)
           td = editable(housing,
                         :golfer_ids,
                         type: "select",
