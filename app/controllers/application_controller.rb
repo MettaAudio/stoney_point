@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   private
   def permit_only_admin
     return true if controller_path.include?('devise')
-    raise ActionController::RoutingError.new('Not Found') unless current_user.try(:admin?)
+    raise ActionController::RoutingError.new('Not Found') unless current_user.try(:admin?) || current_user.try(:super_user?)
   end
 end

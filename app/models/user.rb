@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
   HOUSING_MANAGER          = "Housing Manager"
   VOLUNTEER_CENTER_MANAGER = "Volunteer Center Manager"
 
-  ROLE_OPTIONS = [SHIRT_MANAGER, ADMIN_ROLE, COMMITTEE_MANAGER, HOUSING_MANAGER, VOLUNTEER_CENTER_MANAGER]
-
-  scope :without, ->(user) { where.not(id: user.id) }
+  ROLE_OPTIONS = [SHIRT_MANAGER, ADMIN_ROLE, COMMITTEE_MANAGER, HOUSING_MANAGER, VOLUNTEER_CENTER_MANAGER, 'No Role']
 
   def self.role_options
     ROLE_OPTIONS + Committee.scheduleable.collect { |c| "#{c.name.titlecase} Manager"}
+  end
+
+  def super_user?
+    ['john@mettaaudio.com', 'ctomking@gmail.com'].include? email.to_s.downcase
   end
 
   def admin?

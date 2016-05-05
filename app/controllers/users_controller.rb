@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.without(current_user)
+    @users = User.all
   end
 
   def update
