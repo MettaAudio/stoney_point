@@ -181,8 +181,11 @@ class VolunteersController < ApplicationController
   end
 
   def addresses
-    @people = Person.active.volunteers
-    render layout: false
+    scope = params[:scope] || :all
+    @csv  = Person.to_csv(scope)
+    respond_to do |format|
+      format.csv { send_data @csv, filename: "#{scope}_addresses.csv"  }
+    end
   end
 
   private

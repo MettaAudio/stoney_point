@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  require 'csv'
   has_one :volunteer, dependent: :destroy
   has_one :caddie, dependent: :destroy
   has_one :golfer, dependent: :destroy
@@ -13,8 +14,26 @@ class Person < ActiveRecord::Base
   default_scope { order('last_name ASC') }
   scope :active, -> { where("is_active = ?", true) }
   scope :volunteers, -> { joins(:volunteer) }
-  scope :housing, -> { joins(:housing) }
+  scope :housing, -> { joins(:housings) }
   scope :caddies, -> { joins(:caddie) }
+
+   def self.to_csv(scope)
+    column_names = [
+      "first_name",
+      "last_name",
+      "street",
+      "city",
+      "state",
+      "zip",
+    ]
+
+    CSV.generate do |csv|
+      csv << column_names
+      self.send(scope).each do |person|
+        csv << person.attributes.values_at(*column_names)
+      end
+    end
+  end
 
   def phone=(val)
     write_attribute(:phone, formatted_number(val))
