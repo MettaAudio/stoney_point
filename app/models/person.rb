@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
 
     CSV.generate do |csv|
       csv << column_names
-      self.send(scope).each do |person|
+      self.active.send(scope).each do |person|
         csv << person.attributes.values_at(*column_names)
       end
     end
