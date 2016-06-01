@@ -8,7 +8,7 @@ class Housing < ActiveRecord::Base
   validates :max_guests, presence: true
 
   default_scope { includes(:person).order('people.last_name ASC') }
-  scope :active, -> { joins(:person).where("people.is_active = ? AND housings.is_active = ?", true, true) }
+  scope :active, -> { joins(:person).where(is_active: true).merge(Person.active) }
 
   def self.total_number_of_beds(scope=:active)
     count = 0

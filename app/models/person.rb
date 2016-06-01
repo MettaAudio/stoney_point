@@ -12,7 +12,7 @@ class Person < ActiveRecord::Base
   after_initialize :init
 
   default_scope { order('last_name ASC') }
-  scope :active, -> { where("is_active = ?", true) }
+  scope :active, -> { where(is_active: true) }
   scope :volunteers, -> { joins(:volunteer) }
   scope :housing, -> { joins(:housings) }
   scope :caddies, -> { joins(:caddie) }
