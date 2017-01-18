@@ -11,7 +11,7 @@ class Person < ActiveRecord::Base
 
   after_initialize :init
 
-  default_scope { order('last_name ASC') }
+  default_scope { order(last_name: :asc) }
   scope :active, -> { where(is_active: true) }
   scope :volunteers, -> { joins(:volunteer) }
   scope :housing, -> { joins(:housings) }
