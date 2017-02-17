@@ -185,7 +185,7 @@ module VolunteersHelper
 
   def work_availability_text
     if public_facing_page?
-      'Each day has a series of choices regarding your availability to volunteer during the tournament May 3-8, 2016. Please select an option for each day. Actual shift length will be determined by your Committee chair. NOTE: if you are unsure as to your availability, you may log back in (with your first name/last name) at a later date to update your information.'
+      'Each day has a series of choices regarding your availability to volunteer during the tournament May 11-14, 2017. Please select an option for each day. Actual shift length will be determined by your Committee chair. NOTE: if you are unsure as to your availability, you may log back in (with your first name/last name) at a later date to update your information.'
     else
       ''
     end
