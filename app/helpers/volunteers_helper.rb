@@ -199,4 +199,8 @@ module VolunteersHelper
     display_waiver? ? "I am at least 18 years of age and I accept these terms and conditions" : "Accepted waiver"
   end
 
+  def emails_for(volunteers)
+    volunteers.collect(&:email).reject{ |e| e.blank? }.join(', ')
+  end
+
 end
