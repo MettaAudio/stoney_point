@@ -35,7 +35,7 @@
   .col-md-6
     .form-group
       = f.select :person_organization_id, options_from_collection_for_select(Organization.all, :id, :name, f.object.person.organization_id), {prompt: "Choose an Organization..."}, class: "form-control"
-  button.btn.btn-primary.btn-xs type="button" data-toggle="popover" data-placement="right" title="Organization" data-content="In order to summarize our recruitment efforts and to recognize organizations which are participating, please select the listed option that best describes you: Student, if you are a full time student in college or high school; Sponsor, if you are a member/employee of a tournament sponsor; Lake Community, if you live in one of the designated subdivisions; Other, if you are not otherwise covered."
+  button.btn.btn-primary.btn-xs type="button" data-toggle="popover" data-placement="right" title="Organization" data-content="In order to summarize our recruitment efforts and to recognize organizations which are participating, please select the listed option that best describes you: STUDENT, if you are a full-time student in college or high school; SPONSOR, if you are a member/employee of a tournament sponsor; LAKE COMMUNITY, if you live in one of the designated subdivisions; OTHER, if you are not otherwise covered."
     span.fa.fa-question &nbsp; More info
 .row class="#{hidden_form_class}"
   .col-md-12
