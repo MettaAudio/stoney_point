@@ -62,7 +62,7 @@ class WelcomeHousingController < ApplicationController
     @housing   = @person.housings.first
 
     @person_form = PersonForm.new(
-      page_params: params,
+      page_params: person_params,
       housing:     @housing,
       person:      @person
     )
@@ -83,18 +83,32 @@ class WelcomeHousingController < ApplicationController
   end
 
   def person_params
-    params.require(:person).permit(
-      :first_name,
-      :last_name,
-      :email,
-      :street,
-      :city,
-      :state,
-      :zip,
-      :phone,
-      :organization_id,
-      :is_active
+    if params[:person_form].present?
+      params.require(:person_form).permit(
+        :person_first_name,
+        :person_last_name,
+        :person_email,
+        :person_street,
+        :person_city,
+        :person_state,
+        :person_zip,
+        :person_phone,
+        :person_organization_id,
+        :person_is_active,
+        housing: [
+          :number_of_bedrooms,
+          :number_of_bathrooms,
+          :max_guests,
+          :pets,
+          :available,
+          :specific_golfers,
+          :smoking,
+          :comments,
+          :is_active,
+          golfer_ids: [],
+        ]
       )
+    end
   end
 
   def search_params
