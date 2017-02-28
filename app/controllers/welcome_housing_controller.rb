@@ -62,7 +62,7 @@ class WelcomeHousingController < ApplicationController
     @housing   = @person.housings.first
 
     @person_form = PersonForm.new(
-      page_params: person_params,
+      page_params: { person_form: person_params },
       housing:     @housing,
       person:      @person
     )
