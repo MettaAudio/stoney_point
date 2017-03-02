@@ -15,6 +15,8 @@ StoneyPoint::Application.routes.draw do
 
   resources :shifts
 
+  get "/volunteers", to: "committees#index"
+
   resources :committees do
     collection do
       get "show_all_schedules", to: "committees#show_all_schedules"
