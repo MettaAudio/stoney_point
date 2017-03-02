@@ -105,6 +105,7 @@ class HousingsController < ApplicationController
         :max_guests,
         :specific_golfers,
         :is_active,
+        :waiver,
         :golfer_ids,
         golfer_ids: [],
       )

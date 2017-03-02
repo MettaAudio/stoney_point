@@ -1,5 +1,9 @@
 .row.well
-  .col-xs-4
+  .col-xs-2
+    h5 Waiver Signed?
+    p = house.waiver ? "Yes" : "No"
+
+  .col-xs-2
     h5 Date Available
     p = house.available.strftime('%A, %B %e %Y')
 

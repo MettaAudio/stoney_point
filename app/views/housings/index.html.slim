@@ -15,6 +15,7 @@ table.table.table-striped#data_table
     tr
       th Last
       th First
+      th Waiver
       th Available
       th Beds
       th Baths
@@ -32,6 +33,7 @@ table.table.table-striped#data_table
       tr
         td = link_to housing.person.last_name, housing
         td = link_to housing.person.first_name, housing
+        td = housing.waiver ? "Y" : "N"
         td = housing.available.strftime('%A')
         td = housing.number_of_bedrooms
         td = housing.number_of_bathrooms
