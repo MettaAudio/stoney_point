@@ -8,10 +8,11 @@ h2
   = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_committee_path(@committee), :class => 'btn btn-xs' if current_user.try(:admin?)
   | &nbsp;
   = link_to '<span class="glyphicon glyphicon-list"></span>'.html_safe, committees_path, :class => 'btn btn-xs'
-- unless emails_for(@volunteers).blank?
-  = mail_to emails_for(@volunteers), '<span class="btn btn-default glyphicon glyphicon-envelope"></span>'.html_safe, :class => 'btn btn-xs'
-| &nbsp;
 = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr
+- unless emails_for(@volunteers).blank?
+  = mail_to emails_for(@volunteers), '<span class="btn btn-primary glyphicon glyphicon-envelope"> email all</span>'.html_safe, :class => 'btn btn-xs'
+  br
+  br
 
 = render partial: 'volunteers_table'
