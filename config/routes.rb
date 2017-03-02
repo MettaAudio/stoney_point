@@ -68,6 +68,6 @@ StoneyPoint::Application.routes.draw do
 
   get "/shirts", to: "volunteers#shirts", as: 'shirts'
 
-  root :to => 'volunteers#index'
+  root :to => 'committees#index'
 
 end

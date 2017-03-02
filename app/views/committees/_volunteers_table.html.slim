@@ -3,50 +3,26 @@ table#data_table.table.table-striped
     tr
       th Last
       th First
+      th Email
+      th Phone
+      th Committee
+      th Organization
+      th Waiver
       th Golf
       th Phys
-      th Comments
-      th Committees
-      th Waiver
-      th Tues
-      th Thur
-      th Fri
-      th Sat
-      th Sun
-      th
-      - if current_user.try(:admin?)
-        th
-        th
+      th Comment
 
   tbody
     - @volunteers.each do |volunteer|
       tr
         td = link_to(volunteer.last_name, volunteer)
         td = link_to(volunteer.first_name, volunteer)
-        td = volunteer.physical_activity ? "Y" : "N"
+        td = mail_to volunteer.email, volunteer.email, :encode => "javascript"
+        td = build_phone_number(volunteer.phone)
+        td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
+        td = volunteer.organization.try(:name)
+        td = volunteer.waiver ? 'Y' : 'N'
         td = volunteer.golfer ? "Y" : "N"
+        td = volunteer.physical_activity ? "Y" : "N"
         td = volunteer.comments
-        - if current_user.try(:manage_committees?)
-          td = editable(volunteer,
-                        :committee_ids,
-                        type: "select",
-                        source: Committee.all.collect{ |c| { value: c.id, text: c.name } },
-                        value: volunteer.committee_ids.to_json,
-                        tpl: "<select multiple='multiple'>",
-                        class: 'multiple-select',
-                        )
-        - else
-          td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
-        td = volunteer.waiver ? "Y" : "N"
-        td = volunteer.wednesday
-        td = volunteer.thursday
-        td = volunteer.friday
-        td = volunteer.saturday
-        td = volunteer.sunday
-        td = link_to '<span class="glyphicon glyphicon-eye-open"></span>'.html_safe, volunteer, :class => 'btn btn-small'
-        - if current_user.try(:admin?)
-          td = link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_volunteer_path(volunteer), :class => 'btn btn-small'
-          td = link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, volunteer, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small'
 = render 'shared/datatable_js'
-javascript:
-  StoneyPoint.InlineEditing.init()
