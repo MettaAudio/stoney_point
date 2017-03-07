@@ -1,0 +1,45 @@
+p#notice = notice
+h2
+  | Jr Clinic Day Schedule
+hr
+table#data_table.table.table-striped
+  thead
+    tr
+      th Last Name
+      th First Name
+      th Avail
+      th Time
+      th sort time
+
+  tbody#js-show-day
+    - @volunteers.each do |volunteer|
+      tr
+        td = link_to(volunteer.last_name, volunteer)
+        td = link_to(volunteer.first_name, volunteer)
+        td = volunteer.send(:wednesday)
+        - if @read_write
+          td = editable(volunteer,
+                        "jr_clinic_day_time",
+                        type: "select",
+                        source: Volunteer.time_options,
+                       )
+          td = volunteer.time_option_index_for(:jr_clinic_day)
+        - else
+          td = volunteer.send(:jr_clinic_day_time)
+          td = volunteer.time_option_index_for(:jr_clinic_day)
+javascript:
+  $(document).ready(function() {
+    $('#data_table').dataTable( {
+      "scrollX": true,
+      "iDisplayLength": 100,
+      'columnDefs': [
+        { 'orderData':[4], 'targets': [3] },
+        {
+          'targets': [4],
+          'visible': false,
+          'searchable': false
+        },
+      ]
+    });
+  });
+  StoneyPoint.InlineEditing.init()

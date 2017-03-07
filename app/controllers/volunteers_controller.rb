@@ -1,6 +1,6 @@
 class VolunteersController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
-  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update_shirt_paid, :update, :check_in, :addresses]
+  skip_before_filter :authenticate_user!, only: [:index, :show, :shirts, :jr_clinic_day]
+  skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update_shirt_paid, :update, :check_in, :addresses, :jr_clinic_day]
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy, :update_shirt_paid, :check_in]
 
   def index
@@ -188,6 +188,11 @@ class VolunteersController < ApplicationController
     end
   end
 
+  def jr_clinic_day
+    @read_write = current_user.try(:admin?)
+    @volunteers = Volunteer.active
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_volunteer
@@ -248,6 +253,7 @@ class VolunteersController < ApplicationController
         :sunday_job_id,
         :sunday_time,
         :sunday_hole,
+        :jr_clinic_day_time,
         committee_ids:[],
         job_ids:[],
       )

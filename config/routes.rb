@@ -33,6 +33,7 @@ StoneyPoint::Application.routes.draw do
     end
   end
 
+  get "jr_clinic_day", to: "volunteers#jr_clinic_day"
   get "/volunteer_addresses", to: "volunteers#addresses"
   post "/update_shirt_paid", to: "volunteers#update_shirt_paid"
 
