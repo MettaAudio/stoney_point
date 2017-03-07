@@ -11,6 +11,18 @@ task reset_people_data: :environment do
     friday:           nil,
     saturday:         nil,
     sunday:           nil,
+    thursday_time:    nil,
+    thursday_hole:    nil,
+    friday_time:      nil,
+    friday_hole:      nil,
+    saturday_time:    nil,
+    saturday_hole:    nil,
+    sunday_time:      nil,
+    sunday_hole:      nil,
+    thursday_checkin: false,
+    friday_checkin:   false,
+    saturday_checkin: false,
+    sunday_checkin:   false,
   }
 
   person_attributes = {
