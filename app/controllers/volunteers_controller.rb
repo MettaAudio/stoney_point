@@ -190,7 +190,7 @@ class VolunteersController < ApplicationController
 
   def jr_clinic_day
     @read_write = current_user.try(:admin?)
-    @volunteers = Volunteer.active
+    @volunteers = Volunteer.for_jr_clinic
   end
 
   private

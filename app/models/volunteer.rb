@@ -43,6 +43,7 @@ class Volunteer < ActiveRecord::Base
   scope :with_shirts_paid, -> { where(paid: true) }
   scope :with_shirts_unpaid, -> { where(paid: [false, nil]) }
   scope :schedule_for, ->(day) { where("#{day}_time IS NOT NULL AND #{day}_time != ''") }
+  scope :for_jr_clinic, -> { joins(:committees).merge(Committee.junior_clinic).merge(Volunteer.active) }
 
   def self.working
     Volunteer.with_committees.distinct
