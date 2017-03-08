@@ -19,10 +19,23 @@ table#data_table.table.table-striped
         td = link_to(volunteer.first_name, volunteer)
         td = mail_to volunteer.email, volunteer.email, :encode => "javascript"
         td = build_phone_number(volunteer.phone)
-        td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
+        - if current_user.try(:manage_committees?)
+          td = editable(volunteer,
+                        :committee_ids,
+                        type: "select",
+                        source: Committee.all.collect{ |c| { value: c.id, text: c.name } },
+                        value: volunteer.committee_ids.to_json,
+                        tpl: "<select multiple='multiple'>",
+                        class: 'multiple-select',
+                        )
+        - else
+          td = volunteer.committees.collect{ |g| link_to g.name, g }.join(' ').html_safe
         td = volunteer.organization.try(:name)
         td = volunteer.waiver ? 'Y' : 'N'
         td = volunteer.golfer ? "Y" : "N"
         td = volunteer.physical_activity ? "Y" : "N"
         td = volunteer.comments
 = render 'shared/datatable_js'
+
+javascript:
+  StoneyPoint.InlineEditing.init()
