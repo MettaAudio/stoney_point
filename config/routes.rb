@@ -5,7 +5,11 @@ StoneyPoint::Application.routes.draw do
 
   resources :work_days
 
-  resources :housings
+  resources :housings do
+    member do
+      post "/waiver_check", to: "housings#waiver_check"
+    end
+  end
 
   resources :caddies
 

@@ -1,9 +1,10 @@
 class HousingsController < ApplicationController
-  before_action :set_housing, only: [:show, :edit, :update, :destroy]
+  before_action :set_housing, only: [:show, :edit, :update, :destroy, :waiver_check]
   skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
   skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update]
 
   def index
+    @read_write = current_user.try(:admin?)
     if params[:show_all] == 'true'
       @housings = Housing.all.includes(:person, golfers: :person)
       @number_of_beds = Housing.total_number_of_beds(:all)
@@ -84,6 +85,15 @@ class HousingsController < ApplicationController
       redirect_to @housing, notice: "Golfer added!"
     else
       redirect_to @housing, notice: "We're sorry, an error has occurred. Please try again."
+    end
+  end
+
+  def waiver_check
+    @housing.waiver = params[:waiver_check]
+    if @housing.save
+      render json: { success: true }
+    else
+      render json: { errors: @housing.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 

@@ -10,7 +10,7 @@ h1
   |  |&nbsp;
   = params[:show_all] == 'true' ? "Show All" : link_to('Show all', :show_all => true)
 hr
-table.table.table-striped#data_table
+table.table.table-striped#data_table.js-housing-table
   thead
     tr
       th Last
@@ -33,7 +33,18 @@ table.table.table-striped#data_table
       tr
         td = link_to housing.person.last_name, housing
         td = link_to housing.person.first_name, housing
-        td = housing.waiver ? "Y" : "N"
+        - if @read_write
+          td
+            = check_box_tag :waiver,
+               1,
+               !!housing.waiver,
+               class: 'js-waiver-check',
+               data: { url: waiver_check_housing_path(housing) }
+            | &nbsp;&nbsp;
+            = fa_icon('check', class: 'text-success hidden js-success')
+            = fa_icon('times', class: 'text-danger hidden js-fail')
+        - else
+          td = housing.waiver ? fa_icon('check', class: 'text-success') : ''
         td = housing.available.strftime('%A')
         td = housing.number_of_bedrooms
         td = housing.number_of_bathrooms
