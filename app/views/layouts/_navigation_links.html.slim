@@ -27,6 +27,7 @@ li.dropdown
     li = link_to 'Jr. Clinic Day', jr_clinic_day_path
     li.divider
     - Committee.sorted.scheduleable.each do |committee|
+      - next if Committee::EXCLUDED_FROM_SCHEDULING.include?(committee.name)
       li
         = link_to "#{committee.name}", show_schedule_committee_path(committee)
 li class="#{nav_class('shirts', request.path)}" = link_to 'Shirts', shirts_path
