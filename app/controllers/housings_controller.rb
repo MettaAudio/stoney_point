@@ -37,8 +37,9 @@ class HousingsController < ApplicationController
     @person = Person.find_by_id(params[:person_id]) || Person.new
 
     @person_form = PersonForm.new(
-      page_params: params,
-      person:      @person
+      page_params:    params,
+      housing_params: person_params.try(:[], :housing) || housing_params,
+      person:         @person
     )
 
     if @person_form.update

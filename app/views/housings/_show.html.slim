@@ -1,27 +1,31 @@
 .row.well
-  .col-xs-2
-    h5 Waiver Signed?
-    p = house.waiver ? "Yes" : "No"
-
-  .col-xs-2
-    h5 Date Available
-    p = house.available.strftime('%A, %B %e %Y')
-
-  .col-xs-2
+  .col-xs-3
     h5 Bedrooms
     p = house.number_of_bedrooms
 
-  .col-xs-2
+  .col-xs-3
     h5 Bathrooms
     p = house.number_of_bathrooms
 
-  .col-xs-2
+  .col-xs-3
     h5 Max Guests
     p = house.max_guests
 
-  .col-xs-2
+  .col-xs-3
     h5 Pets
     p = house.pets
+
+  .col-xs-3
+    h5 Date Available
+    p = house.available.strftime('%A, %B %e %Y')
+
+  .col-xs-3
+    h5 Waiver Signed?
+    p = house.waiver ? "Yes" : "No"
+
+  .col-xs-3
+    h5 Housing Active?
+    p = house.is_active ? "Yes" : "No"
 
   - if house.comments.present?
     .col-xs-12

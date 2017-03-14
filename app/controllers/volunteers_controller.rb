@@ -160,18 +160,15 @@ class VolunteersController < ApplicationController
   end
 
   def add_housing
-    @volunteer   = Volunteer.find(housing_params[:volunteer_id])
+    @volunteer   = Volunteer.find(params[:housing][:volunteer_id])
     @person      = @volunteer.person
-    @person_form = PersonForm.new(
-      page_params: params,
-      person:      @person
-    )
-    if @person_form.update
+    @housing     = @person.housings.new(housing_params)
+    if @housing.save
       redirect_to :back, notice: "#{@volunteer.full_name}'s housing was added."
     else
       @committees = Committee.all
-      flash[:error] = "There was a problem adding your housing. Please try again."
-      render action: 'edit'
+      flash[:error] = "There was a problem adding your housing:<br>#{@housing.errors.full_messages.to_sentence}.<br>Please try again.".html_safe
+      redirect_to :back
     end
   end
 
@@ -264,6 +261,18 @@ class VolunteersController < ApplicationController
     end
 
     def housing_params
-      params.require(:housing).permit(:volunteer_id, :available, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoking, :comments, :golfer_ids => [])
+      params.require(:housing).permit(
+        :max_guests,
+        :specific_golfers,
+        :waiver,
+        :is_active,
+        :available,
+        :number_of_bedrooms,
+        :number_of_bathrooms,
+        :pets,
+        :smoking,
+        :comments,
+        :golfer_ids => []
+      )
     end
 end
