@@ -4,7 +4,7 @@ class HousingsController < ApplicationController
   skip_before_filter :permit_only_admin, only: [:index, :show, :shirts, :update]
 
   def index
-    @read_write = current_user.try(:admin?)
+    @read_write = current_user.try(:admin?) || current_user.try(:housing_manager?)
     if params[:show_all] == 'true'
       @housings = Housing.all.includes(:person, golfers: :person)
       @number_of_beds = Housing.total_number_of_beds(:all)
