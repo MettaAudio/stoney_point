@@ -129,9 +129,9 @@ class PersonForm < FormBuilder
   end
 
   def update_housing
-    return true unless @housing_params.present?
+    return true unless housing_params.present?
 
-    housing.update(@housing_params)
+    housing.update(housing_params)
     housing.person = person
     housing.save
   end
@@ -150,5 +150,22 @@ class PersonForm < FormBuilder
 
   def uniform_price
     return 0 if (person.organization_id || @person_params[:person_organization_id]) == Organization.college_organization_id
+  end
+
+  def housing_params
+    @housing_params.permit(
+      :available,
+      :number_of_bedrooms,
+      :number_of_bathrooms,
+      :pets,
+      :smoking,
+      :comments,
+      :max_guests,
+      :specific_golfers,
+      :is_active,
+      :waiver,
+      :golfer_ids,
+      golfer_ids: [],
+    )
   end
 end
