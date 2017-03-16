@@ -62,11 +62,11 @@ class PersonForm < FormBuilder
 
   def initialize(args={})
     @page_params      = args[:page_params] || {}
-    @person_params    = @page_params[:person_form] || {}
-    @volunteer_params = args[:volunteer_params] || @person_params[:volunteer] || @page_params[:volunteer]
-    @caddie_params    = @person_params[:caddie]
-    @golfer_params    = @person_params[:golfer]
-    @housing_params   = args[:housing_params] || @person_params[:housing] || @page_params[:housing]
+    @person_params    = @page_params[:person_form]
+    @volunteer_params = args[:volunteer_params] || @page_params[:person_form].try(:[], :volunteer) || @page_params[:volunteer]
+    @caddie_params    = @page_params[:person_form].try(:[], :caddie)
+    @golfer_params    = @page_params[:person_form].try(:[], :golfer) || @page_params[:golfer]
+    @housing_params   = args[:housing_params] || @page_params[:person_form].try(:[], :housing) || @page_params[:housing]
 
     @person           = args[:person]    || Person.new
     @volunteer        = args[:volunteer] || Volunteer.new(number_of_shirts: 1)
@@ -103,9 +103,8 @@ class PersonForm < FormBuilder
       "committee_ids"    => volunteer.committee_ids.present? ? volunteer.committee_ids : [Committee.find_by_name(DEFAULT_COMMITTEE_NAME).id],
     }
 
-    volunteer_params = defaults.merge(volunteer_params)
 
-    volunteer.update(volunteer_params)
+    volunteer.update(defaults.merge(volunteer_params))
     volunteer.person = person
     volunteer.save
   end
@@ -166,22 +165,26 @@ class PersonForm < FormBuilder
       :waiver,
       :golfer_ids,
       golfer_ids: [],
-    )
+    ) if @housing_params.present?
   end
 
     def person_params
-      @person_params.permit(
-        :first_name,
-        :last_name,
-        :email,
-        :street,
-        :city,
-        :state,
-        :zip,
-        :phone,
-        :organization_id,
-        :is_active
-      )
+      if @person_params.present?
+        @person_params.permit(
+          :person_first_name,
+          :person_last_name,
+          :person_email,
+          :person_street,
+          :person_city,
+          :person_state,
+          :person_zip,
+          :person_phone,
+          :person_organization_id,
+          :person_is_active
+        )
+      else
+        {}
+      end
     end
 
     def volunteer_params
@@ -215,7 +218,7 @@ class PersonForm < FormBuilder
         :jr_clinic_day_time,
         committee_ids:[],
         job_ids:[],
-      )
+      ) if @volunteer_params.present?
     end
 
     def caddie_params
@@ -228,8 +231,11 @@ class PersonForm < FormBuilder
         :golf,
         :rules,
         :course,
+        :experience_as_caddie,
+        :age,
+        :waiver,
         :is_active
-      )
+      ) if @caddie_params.present?
     end
     def golfer_params
       @golfer_params.permit(
@@ -237,7 +243,11 @@ class PersonForm < FormBuilder
         :last_name,
         :email,
         :caddie_preferences,
-        :is_active
-      )
+        :arrival_day,
+        :country,
+        :school,
+        :is_active,
+        caddie_ids: [],
+      ) if @golfer_params.present?
     end
 end

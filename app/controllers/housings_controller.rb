@@ -53,7 +53,6 @@ class HousingsController < ApplicationController
     @person = @housing.person
     @person_form = PersonForm.new(
       page_params: params,
-      housing_params: person_params.try(:[], :housing) || housing_params,
       housing:     @housing,
       person:      @person
     )

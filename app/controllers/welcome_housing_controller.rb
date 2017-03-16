@@ -105,6 +105,7 @@ class WelcomeHousingController < ApplicationController
           :smoking,
           :comments,
           :is_active,
+          :waiver,
           golfer_ids: [],
         ]
       )
