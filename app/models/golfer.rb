@@ -5,11 +5,15 @@ class Golfer < ActiveRecord::Base
 
   delegate  :first_name,
             :last_name,
-            :full_name,
             :email,
             :is_active,
             to: :person
 
   default_scope { includes(:person).order('people.last_name ASC') }
   scope :active, -> { includes(:person).where('people.is_active = ?', true) }
+
+  def full_name
+    inactive_text = is_active ? "" : "(I)"
+    [person.first_name, person.last_name, inactive_text].join(' ')
+  end
 end
