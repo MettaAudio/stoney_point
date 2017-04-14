@@ -1,5 +1,5 @@
 $ ->
-  $('.js-housing-table').on('click', '.js-waiver-check', ->
+  $('.table').on('click', '.js-waiver-check', ->
     $checkbox    = $(this)
     checked      = $checkbox.prop('checked')
     url          = $checkbox.data('url')

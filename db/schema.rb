@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307162319) do
+ActiveRecord::Schema.define(version: 20170413152150) do
 
   create_table "_volunteers_old_20150310", force: true do |t|
     t.datetime "created_at"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170307162319) do
     t.string   "arrival_day"
     t.string   "country"
     t.string   "school"
+    t.boolean  "waiver"
   end
 
   add_index "golfers", ["person_id"], name: "index_golfers_on_person_id"

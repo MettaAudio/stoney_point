@@ -1,20 +1,25 @@
   .row.well
-    .col-md-4
-      h5 Arrival Day
-      p = golfer.arrival_day
+    .col-md-12
+      .row
+        .col-md-4
+          h5 Arrival Day
+          p = golfer.arrival_day
 
-    .col-md-4
-      h5 Country
-      p = golfer.country
+        .col-md-4
+          h5 Country
+          p = golfer.country
 
-    .col-md-4
-      h5 School
-      p = golfer.school
-
-    .col-xs-12
-      h5 Caddies
-      p = golfer.caddies.collect{ |c| link_to c.full_name, c }.join(' ').html_safe
-    - if golfer.caddie_preferences.present?
-      .col-xs-12
-        h5 Preferences
-        p = golfer.caddie_preferences
+        .col-md-4
+          h5 School
+          p = golfer.school
+      .row
+        .col-md-4
+          h5 Signed Waiver?
+          p = golfer.waiver ? "Yes" : "No"
+        .col-md-4
+          h5 Caddies
+          p = golfer.caddies.collect{ |c| link_to c.full_name, c }.join(' ').html_safe
+        - if golfer.caddie_preferences.present?
+          .col-xs-12
+            h5 Preferences
+            p = golfer.caddie_preferences

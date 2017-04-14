@@ -13,7 +13,11 @@ StoneyPoint::Application.routes.draw do
 
   resources :caddies
 
-  resources :golfers
+  resources :golfers do
+    member do
+      post "/waiver_check", to: "golfers#waiver_check"
+    end
+  end
 
   resources :jobs
 

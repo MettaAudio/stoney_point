@@ -1,5 +1,5 @@
 class GolfersController < ApplicationController
-  before_action :set_golfer, only: [:show, :edit, :update, :destroy]
+  before_action :set_golfer, only: [:show, :edit, :update, :destroy, :waiver_check]
   skip_before_filter :authenticate_user!, only: [:index, :show, :shirts]
   skip_before_filter :permit_only_admin, only: [:index, :show, :shirts]
 
@@ -72,6 +72,18 @@ class GolfersController < ApplicationController
   def destroy
     @golfer.destroy
     redirect_to :back
+  end
+
+  def waiver_check
+    raise ActionController::RoutingError.new('Not Found') unless current_user.try(:admin?) ||
+                                                                 current_user.try(:super_user?) ||
+                                                                 current_user.try(:housing_manager?)
+    @golfer.waiver = params[:waiver_check]
+    if @golfer.save
+      render json: { success: true }
+    else
+      render json: { errors: @golfer.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
   end
 
   private

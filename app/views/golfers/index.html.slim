@@ -13,6 +13,7 @@ table.table.table-striped#data_table
       th Last
       th First
       th Email
+      th Waiver
       th Day
       th Country
       th School
@@ -30,6 +31,18 @@ table.table.table-striped#data_table
         td = link_to golfer.last_name, golfer
         td = link_to golfer.first_name, golfer
         td = mail_to golfer.email, golfer.email, :encode => "javascript"
+        - if current_user.try(:admin?)
+          td
+            = check_box_tag :waiver,
+               1,
+               !!golfer.waiver,
+               class: 'js-waiver-check',
+               data: { url: waiver_check_golfer_path(golfer) }
+            | &nbsp;&nbsp;
+            = fa_icon('check', class: 'text-success hidden js-success')
+            = fa_icon('times', class: 'text-danger hidden js-fail')
+        - else
+          td = golfer.waiver ? fa_icon('check', class: 'text-success') : ''
         td = golfer.arrival_day
         td = golfer.country
         td = golfer.school

@@ -142,6 +142,7 @@ class PersonForm < FormBuilder
     golfer.country            = golfer_params[:country]
     golfer.school             = golfer_params[:school]
     golfer.caddie_ids         = golfer_params[:caddie_ids]
+    golfer.waiver             = golfer_params[:waiver]
     golfer.person             = person
 
     golfer.save
@@ -247,6 +248,7 @@ class PersonForm < FormBuilder
         :country,
         :school,
         :is_active,
+        :waiver,
         caddie_ids: [],
       ) if @golfer_params.present?
     end
