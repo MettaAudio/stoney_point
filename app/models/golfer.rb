@@ -13,7 +13,17 @@ class Golfer < ActiveRecord::Base
   scope :active, -> { includes(:person).where('people.is_active = ?', true) }
 
   def full_name
-    inactive_text = is_active ? "" : "(I)"
-    [person.first_name, person.last_name, inactive_text].join(' ')
+    [person.first_name, tagged_last_name].join(' ')
   end
+
+  def tagged_last_name
+    additional_text = ''
+    if !is_active
+      additional_text = "*"
+    elsif housings.blank?
+      additional_text = "(a)"
+    end
+    person.last_name + additional_text
+  end
+
 end

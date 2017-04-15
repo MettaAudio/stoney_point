@@ -14,3 +14,11 @@
     .col-xs-12
       .form-group
         = golfer.text_field :caddie_preferences, class: "form-control", placeholder: "Caddie Preferences"
+  .row
+    .col-md-3
+      div class="#{hidden_form_class}"
+        .form-group
+          .checkbox
+            = golfer.label :waiver do
+              = golfer.check_box :waiver
+              | Signed Waiver?
